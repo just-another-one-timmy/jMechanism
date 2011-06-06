@@ -20,6 +20,6 @@ public class JMechanizm {
         System.out.println("Here we are");
         Segment s = new Segment("name").setMass(10).setRotInertia(20);
         CompManager cm = new CompManager();
-        cm.addSegment("f", Math.PI).setRotInertia(1);
+        cm.addSegment("f", Math.PI).setRotInertia(1).setRotInertia(20);
     }
 }
