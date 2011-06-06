@@ -13,7 +13,7 @@ import tmm.tf.TFTurn;
  *
  * @author jtimv
  */
-public class Segment {
+public class Segment{
 
     private Connector cmass, cpolus;
     private List<Connector> connectors;
