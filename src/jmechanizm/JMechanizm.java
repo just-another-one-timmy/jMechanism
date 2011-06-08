@@ -4,12 +4,9 @@
  */
 package jmechanizm;
 
-import tmm.compmanager.CompManager;
-import tmm.segment.Segment;
-
 /**
  *
- * @author jtimv
+ * @author ArcSin
  */
 public class JMechanizm {
 
@@ -17,9 +14,8 @@ public class JMechanizm {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Here we are");
-        Segment s = new Segment("name").setMass(10).setRotInertia(20);
-        CompManager cm = new CompManager();
-        cm.addSegment("f", Math.PI).setRotInertia(1).setRotInertia(20);
+        // TODO code application logic here
+    // ARCSIN WAS HERE
+
     }
 }
