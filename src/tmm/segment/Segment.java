@@ -45,6 +45,9 @@ public class Segment{
         return this;
     }
 
+    /**
+     * Задает момент вращательной инерции, возвращает сегмент
+     */
     public Segment setRotInertia(double rotInertia) {
         this.rotInertia = rotInertia;
         return this;

@@ -4,6 +4,9 @@
  */
 package jmechanizm;
 
+import tmm.compmanager.CompManager;
+import tmm.segment.Segment;
+
 /**
  *
  * @author ArcSin
@@ -14,8 +17,11 @@ public class JMechanizm {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-    // ARCSIN WAS HERE
-
+        System.out.println("Here we are");
+        Segment s = new Segment("name").setMass(10).setRotInertia(20);
+        CompManager cm = new CompManager();
+        cm.addSegment("f", Math.PI).setRotInertia(1).setRotInertia(20);
+        // arcsin was here
+        //
     }
 }
