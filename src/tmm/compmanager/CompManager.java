@@ -74,28 +74,28 @@ public class CompManager {
     public ConnectorSlide addConnectorSlideDescartes(String name, String segmentName, double ro, double phi, double alpha) {
         return null;
     }
-    
-    public Connector getConnector(String name){
+
+    public Connector getConnector(String name) {
         return null;
     }
-    
-    public CompManager deleteConnector(String name){
+
+    public CompManager deleteConnector(String name) {
         return this;
     }
-    
-    public Force addTechnoForce(String name, String connectorName, double fx, double fy, double torque){
+
+    public Force addTechnoForce(String name, String connectorName, double fx, double fy, double torque) {
         return null;
     }
-    
-    public Force getForce(String name){
+
+    public Force getForce(String name) {
         return null;
     }
-    
-    public CompManager delTechnoForce(String name){
+
+    public CompManager delTechnoForce(String name) {
         return this;
     }
-    
-    public CompManager clear(){
+
+    public CompManager clear() {
         return this;
     }
 }

@@ -10,14 +10,14 @@ import tmm.compmanager.CompManager;
  *
  * @author jtimv
  */
-public class J3dVisualizer extends Visualizer {
+public class J2dVisualizer extends Visualizer {
 
     @Override
     public void draw() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public J3dVisualizer(CompManager c) {
+    public J2dVisualizer(CompManager c) {
         super(c);
         this.cm = c;
     }
