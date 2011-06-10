@@ -46,17 +46,18 @@ public class ConnectorSlide extends Connector {
         return linear0;
     }
 
-    public TFTurn getTurnTF() {
+    public TFTurn getTurn() {
         return turn;
     }
 
-    public ConnectorSlide setTurnTF(TFTurn t) {
+    public ConnectorSlide setTurn(TFTurn t) {
         this.turn = t;
         return this;
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        linear0.clear();
+        turn.clear();
     }
 }

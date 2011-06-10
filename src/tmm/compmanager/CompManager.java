@@ -127,7 +127,7 @@ public class CompManager {
         ConnectorSlide res = new ConnectorSlide(s, name);
         s.addConnector(res);
         connectors.put(name, res);
-        res.setTurnTF(new TFTurn()).setAlpha(alpha).setRo(ro).setPhi(phi);
+        res.setTurn(new TFTurn()).setAlpha(alpha).setRo(ro).setPhi(phi);
         return res;
     }
 

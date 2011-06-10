@@ -38,6 +38,6 @@ public class ConnectorTurn extends Connector {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        linear.clear();
     }
 }
