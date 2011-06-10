@@ -24,5 +24,15 @@ public class Group2 extends Group {
     public void calcTF2() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public void calcReaction() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public GroupType getType() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

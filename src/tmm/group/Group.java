@@ -25,7 +25,11 @@ public abstract class Group {
     public abstract void calcTF1();
 
     public abstract void calcTF2();
+    
+    public abstract void calcReaction();
 
+    public abstract GroupType getType();
+    
     public final void calcTF() {
         calcTF0();
         calcTF1();
