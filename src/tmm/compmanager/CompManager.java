@@ -106,6 +106,9 @@ public class CompManager {
     }
 
     public CompManager deleteKPair(String name) {
+        KPair k = kpairs.get(name);
+        forces.remove(k.getR1().getName());
+        forces.remove(k.getR2().getName());
         kpairs.remove(name);
         return this;
     }

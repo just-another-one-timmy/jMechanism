@@ -89,4 +89,12 @@ public class Segment {
     public void addConnector(Connector c) {
         connectors.add(c);
     }
+
+    public void deleteConnector(Connector c) {
+        connectors.remove(c);
+    }
+
+    public void deleteForce(Force f) {
+        forces.remove(f);
+    }
 }
