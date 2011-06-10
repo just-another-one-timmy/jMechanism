@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-// TODO: переписать Force, пока - только заглушки
 package tmm.force;
 
 import tmm.connector.Connector;

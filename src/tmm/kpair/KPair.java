@@ -11,7 +11,6 @@ import tmm.tf.*;
  *
  * @author jtimv
  */
-// TODO: упс, проблема с деструктором. Разобраться, когда же надо удалять силы реакции
 public abstract class KPair {
 
     protected Force R1, R2;

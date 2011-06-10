@@ -8,6 +8,8 @@ package tmm.tf;
  *
  * @author jtimv
  */
+
+// TODO: здесь проверить, может я зря написал с константой TF_COUNT
 public class TF {
 
     public static final int TF_COUNT = 3;
