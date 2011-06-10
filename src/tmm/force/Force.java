@@ -24,7 +24,8 @@ public class Force {
         this.name = name;
         this.type = type;
         this.c = c;
-        // TODO: в сегмент какие-то силы добавляются..
+        calculatedX = calculatedY = calculatedTorque = false;
+        c.getSegment().getForces().add(this);
     }
 
     public Force setTFLinear(TFLinear t) {
