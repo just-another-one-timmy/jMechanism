@@ -5,17 +5,17 @@
 package tmm.segment;
 
 import java.util.*;
-import tmm.connector.Connector;
-import tmm.force.Force;
-import tmm.tf.TFTurn;
+import tmm.connector.*;
+import tmm.force.*;
+import tmm.tf.*;
 
 /**
  *
  * @author jtimv
  */
-public class Segment{
+public class Segment {
 
-    private Connector cmass, cpolus;
+    private ConnectorTurn cmass, cpolus;
     private List<Connector> connectors;
     private List<Force> forces;
     private String name;
@@ -32,12 +32,21 @@ public class Segment{
         this.name = name;
     }
 
-    public Connector getCMass() {
+    public ConnectorTurn getCMass() {
         return cmass;
     }
 
-    public Connector getCPolus() {
+    public Segment setCMass(ConnectorTurn ct) {
+        this.cmass = ct;
+        return this;
+    }
+
+    public ConnectorTurn getCPolus() {
         return cpolus;
+    }
+
+    public void setCPolus(ConnectorTurn c) {
+        this.cpolus = c;
     }
 
     public Segment setMass(double mass) {
@@ -69,8 +78,15 @@ public class Segment{
         return turn;
     }
 
-    // TODO: сделать здесь unmodifiable iterator, но пока что пусть будет так. Да и вообще подумать, нужно ли сегменту знать свои коннекторы?
-    ListIterator<Connector> getConnectorIterator() {
-        return connectors.listIterator();
+    public List<Connector> getConnectors() {
+        return connectors;
+    }
+
+    public List<Force> getForces() {
+        return forces;
+    }
+
+    public void addConnector(Connector c) {
+        connectors.add(c);
     }
 }

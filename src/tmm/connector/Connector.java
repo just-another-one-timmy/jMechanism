@@ -16,9 +16,9 @@ public abstract class Connector {
     private double ro, phi;
     private String name;
 
-    public Connector(){
+    public Connector() {
     }
-    
+
     public Connector(Segment s, String name) {
         this.s = s;
         this.name = name;
@@ -42,8 +42,9 @@ public abstract class Connector {
         return ro;
     }
 
-    public void setPhi(double phi) {
+    public Connector setPhi(double phi) {
         this.phi = phi;
+        return this;
     }
 
     public double getPhi() {
@@ -60,4 +61,6 @@ public abstract class Connector {
     }
 
     public abstract ConnectorType getType();
+
+    public abstract void clear();
 }

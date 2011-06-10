@@ -4,6 +4,8 @@
  */
 package tmm.kpair;
 
+import tmm.connector.*;
+
 /**
  *
  * @author jtimv
@@ -15,4 +17,7 @@ public class KPairTurn  extends KPair {
         return KPairType.KPAIR_TYPE_TURN;
     }
     
+    public KPairTurn(String name, ConnectorTurn c1, ConnectorTurn c2){
+        //
+    }
 }

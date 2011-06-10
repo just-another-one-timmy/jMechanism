@@ -49,4 +49,14 @@ public class ConnectorSlide extends Connector {
     public TFTurn getTurnTF() {
         return turn;
     }
+
+    public ConnectorSlide setTurnTF(TFTurn t) {
+        this.turn = t;
+        return this;
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

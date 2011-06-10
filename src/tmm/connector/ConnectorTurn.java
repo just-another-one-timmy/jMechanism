@@ -15,6 +15,9 @@ public class ConnectorTurn extends Connector {
 
     private TFLinear linear;
 
+    public ConnectorTurn() {
+    }
+
     public ConnectorTurn(Segment s, String name, TFLinear linear) {
         super(s, name);
         this.linear = linear;
@@ -24,8 +27,17 @@ public class ConnectorTurn extends Connector {
         return linear;
     }
 
+    public void setLinear(TFLinear linear) {
+        this.linear = linear;
+    }
+
     @Override
     public ConnectorType getType() {
         return ConnectorType.CONNECTOR_TYPE_TURN;
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

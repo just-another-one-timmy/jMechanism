@@ -4,15 +4,19 @@
  */
 package tmm.kpair;
 
+import tmm.connector.*;
+
 /**
  *
  * @author jtimv
  */
-public class KPairSlide  extends KPair{
+public class KPairSlide extends KPair {
 
     @Override
     public KPairType getType() {
         return KPairType.KPAIR_TYPE_SLIDE;
     }
-    
+
+    public KPairSlide(String name, ConnectorSlide c1, ConnectorSlide c2) {
+    }
 }

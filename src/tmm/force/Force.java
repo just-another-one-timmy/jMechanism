@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+// TODO: переписать Force, пока - только заглушки
 package tmm.force;
 
 import tmm.connector.Connector;
+import tmm.tf.*;
 
 /**
  *
@@ -23,6 +25,14 @@ public class Force {
         this.type = type;
         this.c = c;
         // TODO: в сегмент какие-то силы добавляются..
+    }
+
+    public Force setTFLinear(TFLinear t) {
+        return this;
+    }
+
+    public Force setTFTurn(TFTurn t) {
+        return this;
     }
 
     public String getName() {
