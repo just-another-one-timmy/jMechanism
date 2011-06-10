@@ -2,6 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+ * TODO: выбрать что-то одно: getTFTurn, getTFSlide или getTurn, getSlide
+ */
 package jmechanizm;
 
 import tmm.compmanager.CompManager;

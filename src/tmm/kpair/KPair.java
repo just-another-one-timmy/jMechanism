@@ -5,14 +5,18 @@
 package tmm.kpair;
 
 import tmm.force.*;
+import tmm.tf.*;
 
 /**
  *
  * @author jtimv
  */
+// TODO: упс, проблема с деструктором. Разобраться, когда же надо удалять силы реакции
 public abstract class KPair {
 
-    private Force R1, R2;
+    protected Force R1, R2;
+    protected String name;
+    protected TFLinear linear = new TFLinear();
 
     public abstract KPairType getType();
 
