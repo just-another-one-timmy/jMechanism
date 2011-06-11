@@ -194,4 +194,24 @@ public class CompManager {
         }
         return this;
     }
+
+    public int getKPairsCount() {
+        return kpairs.size();
+    }
+
+    public Map<String, KPair> getKPairs() {
+        return kpairs;
+    }
+
+    public int getSegmentsCount() {
+        return segments.size();
+    }
+
+    public int getForcesCount() {
+        return forces.size();
+    }
+
+    public int getConnectorsCount() {
+        return connectors.size();
+    }
 }

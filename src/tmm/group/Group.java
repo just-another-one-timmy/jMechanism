@@ -4,10 +4,14 @@
  */
 package tmm.group;
 
+import tmm.connector.*;
+import tmm.segment.*;
+
 /**
  *
  * @author jtimv
  */
+//TODO: реализовал методы, но не все. Дописать.
 public abstract class Group {
 
     private String name;
@@ -20,16 +24,75 @@ public abstract class Group {
         this.name = name;
     }
 
+    public void calcTF0Segment(Segment s, ConnectorTurn c) {
+        //
+    }
+
+    public void calcTF1Segment(Segment s, ConnectorTurn c) {
+        //
+    }
+
+    public void calcTF2Segment(Segment s, ConnectorTurn c) {
+        //
+    }
+
+    public double getDist(ConnectorTurn c1, ConnectorTurn c2) {
+        return Math.sqrt(Math.pow(c1.getRo(), 2) + Math.pow(c2.getRo(), 2) - 2.0 * c1.getRo() * c2.getRo() * Math.cos(c1.getPhi() - c2.getPhi()));
+    }
+
+    public double getHeight(ConnectorTurn c1, ConnectorSlide c2) {
+        double res = point2LineDistanceP(c1.getRo(), c1.getPhi(), c2.getRo(), c2.getPhi(), c2.getAlpha());
+        return res;
+    }
+
+    public double getAngleSS(ConnectorSlide c1, ConnectorSlide c2) {
+        return c1.getAlpha() - c2.getAlpha();
+    }
+
+    public double getAngleTT(ConnectorTurn c1, ConnectorTurn c2) {
+        double x1 = c1.getRo() * Math.cos(c1.getPhi());
+        double y1 = c1.getRo() * Math.sin(c1.getPhi());
+        double x2 = c2.getRo() * Math.cos(c2.getPhi());
+        double y2 = c2.getRo() * Math.sin(c2.getPhi());
+
+        return Math.atan2(y2 - y1, x2 - x1);
+    }
+
+    public double point2LineDistance(double x1, double y1, double A, double B, double C) {
+        double res;
+        double num = Math.abs(A * x1 + B * y1 + C);
+        double denum = Math.sqrt(A * A + B * B);
+        res = num / denum;
+        if (C < 0) {
+            res = -res;
+        }
+        return res;
+    }
+
+    double point2LineDistanceP(double ro1, double phi1, double ro2, double phi2, double alpha) {
+        double x1 = ro1 * Math.cos(phi1);
+        double y1 = ro1 * Math.sin(phi1);
+        double x2 = ro2 * Math.cos(phi2);
+        double y2 = ro2 * Math.sin(phi2);
+
+        double A = Math.tan(alpha);
+        double B = -1;
+        double C = y2 - x2 * Math.tan(alpha);
+
+        double res = point2LineDistance(x1, y1, A, B, C);
+        return res;
+    }
+
     public abstract void calcTF0();
 
     public abstract void calcTF1();
 
     public abstract void calcTF2();
-    
+
     public abstract void calcReaction();
 
     public abstract GroupType getType();
-    
+
     public final void calcTF() {
         calcTF0();
         calcTF1();

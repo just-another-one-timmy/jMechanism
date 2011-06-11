@@ -4,6 +4,7 @@
  */
 package tmm.kpair;
 
+import tmm.connector.*;
 import tmm.force.*;
 import tmm.tf.*;
 
@@ -26,4 +27,8 @@ public abstract class KPair {
     public Force getR2() {
         return R2;
     }
+
+    public abstract Connector getC1();
+
+    public abstract Connector getC2();
 }

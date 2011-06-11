@@ -22,6 +22,16 @@ public class KPairSlide extends KPair {
         return KPairType.KPAIR_TYPE_SLIDE;
     }
 
+    @Override
+    public ConnectorSlide getC1() {
+        return c1;
+    }
+
+    @Override
+    public ConnectorSlide getC2() {
+        return c2;
+    }
+
     public KPairSlide(String name, ConnectorSlide c1, ConnectorSlide c2) {
         this.c1 = c1;
         this.c2 = c2;
