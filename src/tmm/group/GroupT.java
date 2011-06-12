@@ -11,6 +11,7 @@ import tmm.segment.Segment;
  *
  * @author jtimv
  */
+//TODO: сделать
 public class GroupT extends Group1 {
 
     @Override
@@ -29,5 +30,15 @@ public class GroupT extends Group1 {
     }
 
     public GroupT(KPairTurn K, Segment s0, Segment s1) {
+    }
+
+    @Override
+    public void calcReaction() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public GroupType getType() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

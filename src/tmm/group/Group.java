@@ -4,6 +4,7 @@
  */
 package tmm.group;
 
+import sun.security.util.PropertyExpander.ExpandException;
 import tmm.connector.*;
 import tmm.segment.*;
 
@@ -88,11 +89,11 @@ public abstract class Group {
     }
 
     public void calcTF1Segment(Segment s, ConnectorTurn c) {
-        //TODO: !
+        //TODO: Group.calcTF1Segment
     }
 
     public void calcTF2Segment(Segment s, ConnectorTurn c) {
-        //TODO: !
+        //TODO: Group.calcTF2Segment
     }
 
     public double getDist(ConnectorTurn c1, ConnectorTurn c2) {
@@ -142,7 +143,7 @@ public abstract class Group {
         return res;
     }
 
-    public abstract void calcTF0();
+    public abstract void calcTF0() throws Exception;
 
     public abstract void calcTF1();
 
@@ -152,7 +153,9 @@ public abstract class Group {
 
     public abstract GroupType getType();
 
-    public final void calcTF() {
+    public abstract int getGroupClass();
+
+    public final void calcTF() throws Exception {
         calcTF0();
         calcTF1();
         calcTF2();

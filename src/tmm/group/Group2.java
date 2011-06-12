@@ -8,34 +8,9 @@ package tmm.group;
  *
  * @author jtimv
  */
-public class Group2 extends Group {
+public abstract class Group2 extends Group {
 
     protected int j1, j2;
-
-    @Override
-    public void calcTF0() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void calcTF1() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void calcTF2() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void calcReaction() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public GroupType getType() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public void setJ1(int j1) {
         this.j1 = j1;
@@ -51,5 +26,10 @@ public class Group2 extends Group {
 
     public int getJ2() {
         return j2;
+    }
+
+    @Override
+    public int getGroupClass() {
+        return 2;
     }
 }
