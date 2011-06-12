@@ -199,8 +199,8 @@ public class CompManager {
         return kpairs.size();
     }
 
-    public Map<String, KPair> getKPairs() {
-        return kpairs;
+    public Collection<KPair> getKPairs() {
+        return kpairs.values();
     }
 
     public int getSegmentsCount() {
@@ -213,5 +213,9 @@ public class CompManager {
 
     public int getConnectorsCount() {
         return connectors.size();
+    }
+
+    public Collection<Segment> getSegments() {
+        return segments.values();
     }
 }

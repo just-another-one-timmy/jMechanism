@@ -14,7 +14,7 @@ import tmm.segment.*;
  * @author jtimv
  */
 public class GroupManager {
-
+    
     private double stepSize, minGC, maxGC;
     private boolean jump, moveForward;
     private CompManager cm;
@@ -23,29 +23,44 @@ public class GroupManager {
     private Set<KPair> commonEdges;
     private Map<Segment, Set<KPair>> edges;
     private List<Group> groups;
-
+    
     private void addSecondGroup(KPair k1, KPair k2, KPair k3, Segment s1, Segment s2) {
-         groups.add(GroupBuilder.createGroup("(" + s1.getName() + "," + s2.getName() + ")", k1, k2, k3, s1, s2));
+        groups.add(GroupBuilder.createGroup("(" + s1.getName() + "," + s2.getName() + ")", k1, k2, k3, s1, s2));
     }
-
+    
     private void addBlackEdge(KPair k) {
         blackEdges.add(k);
     }
-
+    
     private void addBlackVertex(Segment s) {
         blackVertexes.add(s);
     }
-
-    private void findPath(List<Segment> path, int len) {
-        // TODO: написать
+    
+    private void findPath(List<Segment> path, int len) throws Exception {
+        if (len == -1) {
+            processPath(path);
+        } else {
+            Segment s = path.get(path.size() - 1);
+            boolean findBlack = (len == 0);
+            for (Segment si : cm.getSegments()) {
+                boolean inPath = path.contains(si);
+                if (inPath && (blackVertexes.contains(si) == findBlack)) {
+                    if (!commonEdges(s, si).isEmpty()) {
+                        path.add(si);
+                        findPath(path, len - 1);
+                        path.remove(path.size() - 1);
+                    }
+                }
+            }
+        }
     }
-
+    
     private Set<KPair> commonEdges(Segment s1, Segment s2) {
         Set<KPair> res = new HashSet<KPair>(edges.get(s1));
         res.retainAll(edges.get(s2));
         return res;
     }
-
+    
     private void processPath(List<Segment> path) throws Exception {
         int len = path.size();
         KPair k[] = new KPair[len - 1];
@@ -55,52 +70,52 @@ public class GroupManager {
             blackVertexes.add(path.get(i - 1));
         }
         blackVertexes.add(path.get(len - 1));
-
+        
         if (len == 4) {
             addSecondGroup(k[0], k[1], k[2], path.get(1), path.get(2));
         } else {
             throw new Exception("Can't process group!");
         }
     }
-
+    
     public GroupManager(CompManager cm) {
         this.cm = cm;
         minGC = maxGC = 0;
         jump = moveForward = true;
     }
-
+    
     public void setStepSize(double stepSize) {
         this.stepSize = stepSize;
     }
-
+    
     public double getStepSize() {
         return stepSize;
     }
-
+    
     public void setMinGC(double val) {
         minGC = val;
     }
-
+    
     public void setMaxGC(double val) {
         maxGC = val;
     }
-
+    
     public double getMinGC() {
         return minGC;
     }
-
+    
     public double getMaxGC() {
         return maxGC;
     }
-
+    
     public void setJump(boolean jump) {
         this.jump = jump;
     }
-
+    
     public boolean getJump() {
         return jump;
     }
-
+    
     private void addToEdges(Segment s, KPair k) {
         Set<KPair> kps = edges.get(s);
         if (edges.get(s) == null) {
@@ -109,20 +124,49 @@ public class GroupManager {
         }
         kps.add(k);
     }
-
+    
     public void buildEdgesSets() {
-        for (KPair k : cm.getKPairs().values()) {
+        for (KPair k : cm.getKPairs()) {
             addToEdges(k.getC1().getSegment(), k);
             addToEdges(k.getC2().getSegment(), k);
         }
     }
-
+    
     public void calcNextStep() {
+        // TODO: переделать gruop, чтобы можно было писать так:
+        // for (int tf=0; tf<=2; tf++){
+        //     for (Group g: gruops){
+        //         g.calcTF(tf);
+        //     }
+        // }
+        for (Group g : groups) {
+            g.calcTF0();
+        }
+        for (Group g : groups) {
+            g.calcTF1();
+        }
+        for (Group g : groups) {
+            g.calcTF2();
+        }
     }
-
+    
     public void makeStep() {
+        GroupT g = (GroupT) groups.get(0);
+        double gc = g.getGC();
+        gc += moveForward ? stepSize : -stepSize;
+        cm.clear();
+        if (moveForward && gc > maxGC) {
+            if (jump) {
+                gc = minGC;
+            } else {
+                moveForward = false;
+            }
+        } else if (!moveForward && gc < minGC) {
+            moveForward = true;
+        }
+        g.setGC(gc);
     }
-
+    
     public void addFirstGroupByName(String kp1name, String segment1name, String segment2name) {
         Segment s1 = cm.getSegment(segment1name),
                 s2 = cm.getSegment(segment2name);
@@ -132,15 +176,34 @@ public class GroupManager {
         addBlackVertex(s1);
         addBlackVertex(s2);
     }
-
+    
     public void addSecondGroupByName(String kp1name, String kp2name, String kp3name, String segment1name, String segment2name, int... mjs) {
+        int mj1 = 0, mj2 = 0;
+        if (mjs != null) {
+            if (mjs.length > 0) {
+                mj1 = mjs[0];
+            }
+            if (mjs.length > 1) {
+                mj2 = mjs[2];
+            }
+        }
+        Segment s1 = cm.getSegment(segment1name),
+                s2 = cm.getSegment(segment2name);
+        KPair k1 = cm.getKPair(kp1name),
+                k2 = cm.getKPair(kp2name),
+                k3 = cm.getKPair(kp3name);
+        String gname = "(" + s1.getName() + "," + s2.getName() + ")";
+        Group2 g = (Group2) GroupBuilder.createGroup(gname, k1, k2, k3, s1, s2);
+        g.setJ1(mj1);
+        g.setJ1(mj2);
+        groups.add(g);
     }
-
+    
     public void addGround(String groundName) {
         addBlackVertex(cm.getSegment(groundName));
     }
-
-    public void analyze() {
+    
+    public void analyze() throws Exception {
         int edgesCount = cm.getKPairsCount(),
                 vertexesCount = cm.getSegmentsCount();
         while (blackVertexes.size() != vertexesCount && blackEdges.size() != edgesCount) {
@@ -152,7 +215,7 @@ public class GroupManager {
             }
         }
     }
-
+    
     public List<Group> getGroups() {
         return groups;
     }
