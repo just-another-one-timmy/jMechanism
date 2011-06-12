@@ -13,7 +13,6 @@ import tmm.tf.*;
  *
  * @author jtimv
  */
-//TODO: сделать
 public class GroupTSS extends Group2 {
 
     private double h, alpha, tgN, tgM, tgN_, tgM_, tgN__, tgM__, roK, phiK,

@@ -44,4 +44,8 @@ public class KPairSlide extends KPair {
         c1.setTurn(angle);
         c2.setTurn(angle);
     }
+
+    public TFTurn getAngle() {
+        return angle;
+    }
 }
