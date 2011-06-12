@@ -4,6 +4,8 @@
  */
 package tmm.group;
 
+import tmm.segment.*;
+
 /**
  *
  * @author jtimv
@@ -11,6 +13,7 @@ package tmm.group;
 public abstract class Group2 extends Group {
 
     protected int j1, j2;
+    protected Segment s1, s2;
 
     public void setJ1(int j1) {
         this.j1 = j1;

@@ -4,7 +4,6 @@
  */
 package tmm.group;
 
-import sun.security.util.PropertyExpander.ExpandException;
 import tmm.connector.*;
 import tmm.segment.*;
 
@@ -12,10 +11,10 @@ import tmm.segment.*;
  *
  * @author jtimv
  */
-//TODO: реализовал методы, но не все. Дописать.
 public abstract class Group {
 
     private String name;
+    protected final double epsilon = 1e-10;
 
     public String getName() {
         return name;
@@ -89,11 +88,9 @@ public abstract class Group {
     }
 
     public void calcTF1Segment(Segment s, ConnectorTurn c) {
-        //TODO: Group.calcTF1Segment
     }
 
     public void calcTF2Segment(Segment s, ConnectorTurn c) {
-        //TODO: Group.calcTF2Segment
     }
 
     public double getDist(ConnectorTurn c1, ConnectorTurn c2) {

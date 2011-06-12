@@ -12,7 +12,6 @@ import tmm.segment.*;
  *
  * @author jtimv
  */
-//TODO: доделать groupS
 public class GroupS extends Group1 {
 
     private ConnectorSlide s0c0, s1c0;
@@ -40,12 +39,10 @@ public class GroupS extends Group1 {
 
     @Override
     public void calcTF1() {
-        //TODO: GroupS.calcTF1()
     }
 
     @Override
     public void calcTF2() {
-        //TODO: GroupS.calcTF2()
     }
 
     public GroupS(KPairSlide K, Segment s0, Segment s1) {
@@ -66,7 +63,6 @@ public class GroupS extends Group1 {
 
     @Override
     public void calcReaction() {
-        //TODO: GroupS.calcReaction()
     }
 
     @Override

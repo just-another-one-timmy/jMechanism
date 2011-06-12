@@ -31,4 +31,8 @@ public abstract class KPair {
     public abstract Connector getC1();
 
     public abstract Connector getC2();
+    
+    public TFLinear getLinear(){
+        return linear;
+    }
 }

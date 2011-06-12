@@ -4,41 +4,60 @@
  */
 package tmm.group;
 
-import tmm.kpair.KPairTurn;
-import tmm.segment.Segment;
+import tmm.connector.*;
+import tmm.kpair.*;
+import tmm.segment.*;
 
 /**
  *
  * @author jtimv
  */
-//TODO: сделать
 public class GroupT extends Group1 {
 
+    private ConnectorTurn s0c0, s1c0;
+    private KPairTurn O;
+    
     @Override
-    public void calcTF0() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void calcTF0() throws Exception {
+        s0.getTFTurn().getPhi().setValue(0.0, 0);
+        s0.getCPolus().getLinear().getX().setValue(0.0, 0);
+        s0.getCPolus().getLinear().getY().setValue(0.0, 0);
+        calcTF0Segment(s0, s0.getCPolus());
+        
+        s1.getTFTurn().getPhi().setValue(GC, 0);
+        calcTF0Segment(s1, s1c0);
     }
 
     @Override
     public void calcTF1() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void calcTF2() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public GroupT(KPairTurn K, Segment s0, Segment s1) {
+        O = K;
+        this.s0 = s0;
+        this.s1 = s1;
+        ConnectorTurn c1 = O.getC1(),
+                      c2 = O.getC2();
+        if (c1.getSegment() == s1){
+            s0c0 = c2;
+            s1c0 = c1;
+        }
+        if (c2.getSegment() == s1){
+            s0c0 = c1;
+            s1c0 = c2;
+        }
     }
 
     @Override
     public void calcReaction() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public GroupType getType() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return GroupType.GROUP_TYPE_T;
     }
 }

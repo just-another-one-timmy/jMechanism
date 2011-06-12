@@ -132,7 +132,7 @@ public class GroupManager {
         }
     }
     
-    public void calcNextStep() {
+    public void calcNextStep() throws Exception {
         // TODO: переделать gruop, чтобы можно было писать так:
         // for (int tf=0; tf<=2; tf++){
         //     for (Group g: gruops){
