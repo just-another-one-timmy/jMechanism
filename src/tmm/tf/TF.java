@@ -8,7 +8,6 @@ package tmm.tf;
  *
  * @author jtimv
  */
-
 // TODO: здесь проверить, может я зря написал с константой TF_COUNT
 public class TF {
 
@@ -21,16 +20,16 @@ public class TF {
         calculated = new boolean[TF_COUNT];
     }
 
-    boolean isCalculated(int i) {
+    public boolean isCalculated(int i) {
         return calculated[i];
     }
 
-    void setValue(double value, int i) {
+    public void setValue(double value, int i) {
         values[i] = value;
         calculated[i] = true;
     }
 
-    double getValue(int i) throws Exception {
+    public double getValue(int i) throws Exception {
         if (!calculated[i]) {
             throw new Exception("values[" + i + "] is not calculated yet!");
         }
