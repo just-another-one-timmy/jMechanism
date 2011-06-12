@@ -10,6 +10,8 @@ package gui;
  */
 public class startWindow {
 
+    //TODO: KPair - tmm.kpair, tmm.segment, tmm.tf, tmm.force, tmm.connector, tmm.compmanager - завершенные пакеты
+    
     public static void main(String[] args) {
     }
 }
