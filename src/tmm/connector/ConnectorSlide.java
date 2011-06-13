@@ -26,6 +26,7 @@ public class ConnectorSlide extends Connector {
 
     public ConnectorSlide(Segment s, String name) {
         super(s, name);
+        linear0 = new TFLinear();
     }
 
     @Override

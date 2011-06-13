@@ -25,7 +25,7 @@ public abstract class Group {
     }
 
     public void calcTF0Segment(Segment s, ConnectorTurn c) throws Exception {
-        if (s.getTFTurn().getPhi().isCalculated(0)) {
+        if (!s.getTFTurn().getPhi().isCalculated(0)) {
             throw new Exception("calcTF0Segment: s.getTFTurn().getPhi().isCalculated(0)");
         }
         double x = c.getLinear().getX().getValue(0),
@@ -123,6 +123,7 @@ public abstract class Group {
         if (C < 0) {
             res = -res;
         }
+
         return res;
     }
 

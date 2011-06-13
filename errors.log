@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:14:14</date>
+  <millis>1307902454185</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addToEdges</method>
+      <line>119</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>buildEdgesSets</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>128</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>41</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:15:21</date>
+  <millis>1307902521218</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupBuilder</class>
+      <method>createGroup</method>
+      <line>29</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addFirstGroupByName</method>
+      <line>174</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>41</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:17:47</date>
+  <millis>1307902667794</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addFirstGroupByName</method>
+      <line>174</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>41</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:18:22</date>
+  <millis>1307902702884</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addBlackEdge</method>
+      <line>31</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addFirstGroupByName</method>
+      <line>176</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>41</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:19:03</date>
+  <millis>1307902743415</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addBlackVertex</method>
+      <line>35</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addFirstGroupByName</method>
+      <line>178</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>41</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:50:51</date>
+  <millis>1307904651990</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupBuilder</class>
+      <method>createGroup</method>
+      <line>79</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addSecondGroup</method>
+      <line>27</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>processPath</method>
+      <line>74</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>40</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>analyze</method>
+      <line>217</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>135</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>49</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:53:19</date>
+  <millis>1307904799220</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.group.GroupBuilder</class>
+      <method>createGroup</method>
+      <line>80</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>addSecondGroup</method>
+      <line>27</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>processPath</method>
+      <line>74</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>40</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>findPath</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>analyze</method>
+      <line>217</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>43</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:58:09</date>
+  <millis>1307905089101</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.util.ConcurrentModificationException</message>
+  <exception>
+    <message>java.util.ConcurrentModificationException</message>
+    <frame>
+      <class>java.util.HashMap$HashIterator</class>
+      <method>nextEntry</method>
+      <line>793</line>
+    </frame>
+    <frame>
+      <class>java.util.HashMap$KeyIterator</class>
+      <method>next</method>
+      <line>828</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>analyze</method>
+      <line>215</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>43</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T21:59:15</date>
+  <millis>1307905155785</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.util.ConcurrentModificationException</message>
+  <exception>
+    <message>java.util.ConcurrentModificationException</message>
+    <frame>
+      <class>java.util.HashMap$HashIterator</class>
+      <method>nextEntry</method>
+      <line>793</line>
+    </frame>
+    <frame>
+      <class>java.util.HashMap$KeyIterator</class>
+      <method>next</method>
+      <line>828</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>analyze</method>
+      <line>215</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>43</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T22:00:20</date>
+  <millis>1307905220029</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.util.ConcurrentModificationException</message>
+  <exception>
+    <message>java.util.ConcurrentModificationException</message>
+    <frame>
+      <class>java.util.HashMap$HashIterator</class>
+      <method>nextEntry</method>
+      <line>793</line>
+    </frame>
+    <frame>
+      <class>java.util.HashMap$KeyIterator</class>
+      <method>next</method>
+      <line>828</line>
+    </frame>
+    <frame>
+      <class>tmm.group.GroupManager</class>
+      <method>analyze</method>
+      <line>215</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>&lt;init&gt;</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>43</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2011-06-12T22:07:10</date>
+  <millis>1307905630360</millis>
+  <sequence>0</sequence>
+  <logger>startWindow</logger>
+  <level>SEVERE</level>
+  <class>startWindow</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>tmm.visual.LWJGLVIsualizer</class>
+      <method>draw</method>
+      <line>20</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>render</method>
+      <line>192</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>run</method>
+      <line>231</line>
+    </frame>
+    <frame>
+      <class>startWindow</class>
+      <method>main</method>
+      <line>45</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>

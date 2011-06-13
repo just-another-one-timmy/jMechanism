@@ -21,7 +21,7 @@ public class GroupTST extends Group2 {
     private ConnectorTurn s1cA, s2cC;
     private ConnectorSlide s1cB, s2cB;
     private double lac, lac_, lac__, b, b_, b__;
-    private TFTurn AC, beta;
+    private TFTurn AC = new TFTurn(), beta=new TFTurn();
 
     @Override
     public void calcTF0() throws Exception {

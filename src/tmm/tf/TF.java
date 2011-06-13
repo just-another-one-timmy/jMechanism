@@ -30,8 +30,11 @@ public class TF {
     }
 
     public double getValue(int i) throws Exception {
-        if (!calculated[i]) {
-            throw new Exception("values[" + i + "] is not calculated yet!");
+        try {
+            if (!calculated[i]) {
+                throw new Exception("values[" + i + "] is not calculated yet!");
+            }
+        } catch (Exception e) {
         }
         return values[i];
     }

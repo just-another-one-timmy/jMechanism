@@ -18,7 +18,7 @@ public class GroupTTT extends Group2 {
     private KPairTurn A, B, C;
     private ConnectorTurn s1cA, s1cB, s2cB, s2cC;
     private double lab, lcb;
-    private TFTurn AB, CB;
+    private TFTurn AB = new TFTurn(), CB = new TFTurn();
 
     @Override
     public void calcTF0() throws Exception {

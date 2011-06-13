@@ -20,7 +20,7 @@ public class Segment {
     private List<Force> forces;
     private String name;
     private double mass, rotInertia;
-    private TFTurn turn;
+    private TFTurn turn = new TFTurn();
 
     public Segment() {
         connectors = new LinkedList<Connector>();

@@ -10,7 +10,7 @@ package tmm.tf;
  */
 public class TFLinear {
 
-    private TF x, y;
+    private TF x = new TF(), y = new TF();
 
     public TFLinear() {
         x = new TF();   
