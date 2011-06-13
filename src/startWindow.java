@@ -26,7 +26,7 @@ public final class startWindow extends JFrame {
 
     cm.addSegment("Ground");
     cm.addConnectorTurnDescartes("s0c1", "Ground", 0,0.3);
-    cm.addConnectorTurnDescartes("s0c2", "Ground", 0.4, 0);
+    cm.addConnectorTurnDescartes("s0c2", "Ground", 0.0, 0);
 
     cm.addSegment("s1",0,2);
     cm.addCMass("s1",0.1,0);
@@ -41,7 +41,7 @@ public final class startWindow extends JFrame {
     cm.addSegment("s3",280,6);
     cm.addCMass("s3",0.1,0);
     cm.addConnectorTurn("s3c1", "s3", 0, 0);
-    cm.addConnectorTurn("s3c2", "s3", 0.2, 0);
+    cm.addConnectorTurn("s3c2", "s3", 0.3, 0);
 
     cm.addKPairTurn("O", "s0c1", "s1c1");
     cm.addKPairTurn("A", "s1c2", "s2c1");
