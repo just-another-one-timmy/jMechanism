@@ -20,7 +20,36 @@ public final class startWindow extends JFrame {
     private J2dVisualizer vis = new J2dVisualizer(cm);
 
     public void buildMechanizm() throws Exception {
-        cm.addSegment("Ground", 10000, 0);
+
+        
+    //  T TTT
+/*
+    cm.AddSegment("Ground");
+    cm.AddConnectorTurnD("s0c1", "Ground", 0,0.3);
+    cm.AddConnectorTurnD("s0c2", "Ground", 0.4, 0);
+
+    cm.AddSegment("s1",0,2);
+    cm.AddCMass("s1",0.1,0);
+    cm.AddConnectorTurn("s1c1", "s1", 0, 0);
+    cm.AddConnectorTurn("s1c2", "s1", 0.2,0);
+
+    cm.AddSegment("s2",0,9);
+    cm.AddCMass("s2",0.2,0);
+    cm.AddConnectorTurn("s2c1", "s2", 0, 0);
+    cm.AddConnectorTurn("s2c2", "s2", 0.5, 0);
+
+    cm.AddSegment("s3",280,6);
+    cm.AddCMass("s3",0.1,0);
+    cm.AddConnectorTurn("s3c1", "s3", 0, 0);
+    cm.AddConnectorTurn("s3c2", "s3", 0.2, 0);
+
+    cm.AddKPTurn("O", "s0c1", "s1c1");
+    cm.AddKPTurn("A", "s1c2", "s2c1");
+    cm.AddKPTurn("B", "s2c2", "s3c2");
+    cm.AddKPTurn("C", "s3c1", "s0c2");
+*/    
+        
+   /*     cm.addSegment("Ground", 10000, 0);
 
         cm.addConnectorSlideDescartes("s0c1", "Ground", 0.0, -0.150, Math.PI / 2);
         cm.addConnectorTurnDescartes("s0c2", "Ground", 0.20, 0.10);
@@ -32,7 +61,7 @@ public final class startWindow extends JFrame {
         cm.addConnectorSlide("s1c3", "s1", 0.0, 0.0, Math.PI / 2);
         cm.addConnectorTurnDescartes("s1c4", "s1", 0.0, 0.0);
 
-        /*
+        
         cm.addSegment("s2");
         cm.addConnectorTurn("s2c1", "s2", 0, 0.0);
         cm.addConnectorTurn("s2c2", "s2", 0.3, 0.0);
@@ -71,10 +100,10 @@ public final class startWindow extends JFrame {
         cm.addConnectorTurn("s9c1", "s9", 0, 0);
         cm.addConnectorSlide("s9c2", "s9", 0, 0, 0);
 
-*/
+
         cm.addKPairSlide("O", "s0c1", "s1c1");
         
-        /*
+        
         cm.addKPairTurn("A", "s1c2", "s2c1");
         cm.addKPairTurn("B", "s2c2", "s3c1");
         cm.addKPairTurn("S", "s3c2", "s0c2");
@@ -90,7 +119,7 @@ public final class startWindow extends JFrame {
         cm.addKPairSlide("L", "s1c3", "s9c2");
         cm.addKPairTurn("M", "s9c1", "s8c1");
         cm.addKPairSlide("N", "s8c2", "s7c3");
-         */
+     */    
         gm.setStepSize(0.005);
         gm.setMinGC(0);
         gm.setMaxGC(6.28);
