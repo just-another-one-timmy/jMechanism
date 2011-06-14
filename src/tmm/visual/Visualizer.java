@@ -4,6 +4,7 @@
  */
 package tmm.visual;
 
+import java.awt.Color;
 import tmm.compmanager.*;
 import tmm.connector.Connector;
 import tmm.connector.ConnectorSlide;
@@ -18,7 +19,7 @@ public abstract class Visualizer {
 
     protected boolean debugMode;
     protected CompManager cm;
-    double sc0 = 1.0;
+    double scaleX = 1.0, scaleY, translateX = 0, translateY = 0;
     double h;
 
     public Visualizer(CompManager c) {
@@ -26,11 +27,12 @@ public abstract class Visualizer {
     }
 
     public void draw() throws Exception {
+        if (cm.isBusy()) {
+            return;
+        }
         for (Segment s : cm.getSegments()) {
             double pol_x = s.getCPolus().getLinear().getX().getValue(0);
             double pol_y = s.getCPolus().getLinear().getY().getValue(0);
-            pol_x *= sc0;
-            pol_y *= sc0;
 
             for (Connector c : s.getConnectors()) {
                 switch (c.getType()) {
@@ -45,10 +47,10 @@ public abstract class Visualizer {
 
                         double x = ct.getLinear().getX().getValue(0);
                         double y = ct.getLinear().getY().getValue(0);
-                        x *= sc0;
-                        y *= sc0;
 
-                        drawCircle(x, h - y, 2, 0xFF0000, 2, 0xFF0000);
+                        System.out.println("Drawing " + ct.getName() + " at: " + x + "  " + y);
+
+                        drawCircle(x, h - y, 5, 0xFF0000, 2, 0xFF0000);
 
                         if (!s.getName().equals("Ground")) {
                             drawLine(pol_x, h - pol_y, x, h - y, 2, 0xFFFFFF);
@@ -61,8 +63,6 @@ public abstract class Visualizer {
                         ConnectorSlide cs = (ConnectorSlide) c;
                         double x = cs.getLinear0().getX().getValue(0);
                         double y = cs.getLinear0().getY().getValue(0);
-                        x *= sc0;
-                        y *= sc0;
 
                         double phi = cs.getTurn().getPhi().getValue(0);
                         double len = 50;
@@ -70,7 +70,7 @@ public abstract class Visualizer {
                         double delta_y = len * Math.sin(phi);
                         drawLine(x - delta_x, h - (y - delta_y), x + delta_x, h - (y + delta_y), 1, 0x00FF00);
 
-                        double rh = 10, rw = 16;
+                        double rh = .1, rw = .2;
                         double x1 = x - rw / 2, x2 = x + rw / 2;
                         double y1 = y + rh / 2, y2 = y - rh / 2;
                         //sf::Shape rect = sf::Shape::Rectangle(-rw/2,-rh/2,+rw/2,+rh/2,sf::Color::Blue, 2, sf::Color::Blue);
@@ -78,6 +78,8 @@ public abstract class Visualizer {
                         //rect.SetPosition(x, h-y);
                         //rect.EnableFill(false);
                         //w->Draw(rect);
+                        drawRect(x1, y1, x2, y2);
+
                         if (!s.getName().equals("Ground")) {
                             drawLine(pol_x, h - pol_y, x, h - y, 1, 0x0000FF);
                         }
@@ -102,7 +104,18 @@ public abstract class Visualizer {
         cm = c;
     }
 
-    protected abstract void drawCircle(double x, double d, int i, int i0, int i1, int i2);
+    public final void setScalesAndTranslations(double scaleX, double scaleY, double translateX, double translateY) {
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+        this.translateX = translateX;
+        this.translateY = translateY;
+    }
 
-    protected abstract void drawLine(double pol_x, double d, double x, double d0, int i, int i0);
+    protected abstract void drawCircle(double x, double y, int radius, int color, int outline, int outlineColor);
+
+    protected abstract void drawLine(double x1, double y1, double x2, double y2, int thickness, int color);
+
+    protected void drawRect(double x1, double y1, double x2, double y2) {
+        //
+    }
 }

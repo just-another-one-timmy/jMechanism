@@ -16,8 +16,7 @@ import tmm.visual.*;
  * @author jtimv
  */
 public class viewPanel extends JPanel implements ActionListener {
-    
-    double tq;
+
     J2dVisualizer v;
     
     public void setVisualizer(J2dVisualizer v) {
@@ -26,10 +25,12 @@ public class viewPanel extends JPanel implements ActionListener {
     
     @Override
     public void paint(Graphics g) {
+        super.paint(g);
+        ((Graphics2D)g).setBackground(Color.BLACK);
+        g.clearRect(0, 0, this.getWidth(), this.getHeight());
         try {
             v.setGraphics((Graphics2D)g);
             v.draw();
-            g.dispose();
         } catch (Exception ex) {
             Logger.getLogger(viewPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,7 +38,6 @@ public class viewPanel extends JPanel implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        tq++;
         repaint();
     }
     

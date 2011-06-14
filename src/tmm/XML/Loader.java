@@ -4,10 +4,16 @@
  */
 package tmm.XML;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+
 /**
  *
  * @author jtimv
  */
 public class Loader {
+    
+    public void loadFromFile(String filename){
+       // DocumentBuilderFactory dbfac = new DocumentBuilderFactory.
+    }
     
 }

@@ -115,7 +115,7 @@ public class GroupTTS extends Group2 {
         } else if (ct2.getSegment() == s1) {
             s1cA = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair A not connected to s1");
+            throw new Exception("GroupTTS: KPair "+A.getName()+" not connected to segment "+s1.getName());
         }
 
         ct1 = B.getC1();

@@ -38,12 +38,12 @@ public abstract class Group {
             s.getCPolus().getLinear().getX().setValue(x - ro * Math.cos(phi0 + phi), 0);
         }
         if (!s.getCPolus().getLinear().getY().isCalculated(0)) {
-            s.getCPolus().getLinear().getY().setValue(y - ro * Math.cos(phi0 + phi), 0);
+            s.getCPolus().getLinear().getY().setValue(y - ro * Math.sin(phi0 + phi), 0);
         }
 
         double pol_x = s.getCPolus().getLinear().getX().getValue(0),
                 pol_y = s.getCPolus().getLinear().getY().getValue(0);
-
+        
         for (Connector ci : s.getConnectors()) {
             switch (ci.getType()) {
                 case CONNECTOR_TYPE_SLIDE: {
@@ -73,7 +73,7 @@ public abstract class Group {
                         throw new Exception("CalcTF0Segment: ConnectorTurn [" + ct.getName() + "] doesn't have LinearTF!");
                     }
                     double roc = ct.getRo();
-                    double phic = c.getPhi();
+                    double phic = ct.getPhi();
 
                     if (!ct.getLinear().getX().isCalculated(0)) {
                         ct.getLinear().getX().setValue(pol_x + roc * Math.cos(phi0 + phic), 0);

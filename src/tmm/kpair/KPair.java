@@ -20,19 +20,23 @@ public abstract class KPair {
 
     public abstract KPairType getType();
 
-    public Force getR1() {
+    public final Force getR1() {
         return R1;
     }
 
-    public Force getR2() {
+    public final Force getR2() {
         return R2;
+    }
+    
+    public final String getName(){
+        return name;
     }
 
     public abstract Connector getC1();
 
     public abstract Connector getC2();
     
-    public TFLinear getLinear(){
+    public final TFLinear getLinear(){
         return linear;
     }
 }

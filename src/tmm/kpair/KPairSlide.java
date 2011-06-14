@@ -33,6 +33,7 @@ public class KPairSlide extends KPair {
     }
 
     public KPairSlide(String name, ConnectorSlide c1, ConnectorSlide c2) {
+        this.name = name;
         this.c1 = c1;
         this.c2 = c2;
         this.R1 = new Force("R_" + c2.getSegment().getName() + "_" + c1.getSegment().getName(), ForceType.FORCE_TYPE_REACTION, c1);

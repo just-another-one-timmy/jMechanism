@@ -22,7 +22,6 @@ public class GroupTTT extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        System.out.println("Hello from TTT!");
         double lac, b1, beta, alfa;
 
         if (!s1cA.getLinear().getX().isCalculated(0)) {

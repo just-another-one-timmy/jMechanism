@@ -22,7 +22,8 @@ public class CompManager {
     private Map<String, Force> forces;
     private Map<String, Connector> connectors;
     private double gravity;
-
+    boolean isBusy;
+    
     /**
      * Creates new segment and adds it into internal map.
      * Also adds connector (turn) named as segment's name + "cP".
@@ -45,6 +46,14 @@ public class CompManager {
         res.setCPolus(this.addConnectorTurn(name + "cP", name, 0, 0));
         res.getCPolus().setLinear(new TFLinear());
         return res;
+    }
+    
+    public void setBusy(boolean isBusy){
+        this.isBusy = isBusy;
+    }
+    
+    public boolean isBusy(){
+        return isBusy;
     }
 
     public CompManager() {
@@ -135,13 +144,13 @@ public class CompManager {
     }
 
     public ConnectorTurn addConnectorTurnDescartes(String name, String segmentName, double x, double y) {
-        double ro = Math.sqrt(Math.pow(x, 2.) + Math.pow(y, 2.));
+        double ro = Math.sqrt(Math.pow(x, 2.0) + Math.pow(y, 2.0));
         double phi = Math.atan2(y, x);
         return this.addConnectorTurn(name, segmentName, ro, phi);
     }
 
     public ConnectorSlide addConnectorSlideDescartes(String name, String segmentName, double x, double y, double alpha) {
-        double ro = Math.sqrt(Math.pow(x, 2.) + Math.pow(y, 2.));
+        double ro = Math.sqrt(Math.pow(x, 2.0) + Math.pow(y, 2.0));
         double phi = Math.atan2(y, x);
         return this.addConnectorSlide(name, segmentName, ro, phi, alpha);
     }

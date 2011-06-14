@@ -14,7 +14,7 @@ import tmm.segment.*;
  * @author jtimv
  */
 public class GroupManager {
-
+    
     private double stepSize, minGC, maxGC;
     private boolean jump, moveForward;
     private CompManager cm;
@@ -22,19 +22,19 @@ public class GroupManager {
     private Set<KPair> blackEdges;
     private Map<Segment, Set<KPair>> edges;
     private List<Group> groups;
-
+    
     private void addSecondGroup(KPair k1, KPair k2, KPair k3, Segment s1, Segment s2) throws Exception {
         groups.add(GroupBuilder.createGroup("(" + s1.getName() + "," + s2.getName() + ")", k1, k2, k3, s1, s2));
     }
-
+    
     private void addBlackEdge(KPair k) {
         blackEdges.add(k);
     }
-
+    
     private void addBlackVertex(Segment s) {
         blackVertexes.add(s);
     }
-
+    
     private void findPath(List<Segment> path, int len) throws Exception {
         if (len == -1) {
             processPath(path);
@@ -53,13 +53,13 @@ public class GroupManager {
             }
         }
     }
-
+    
     private Set<KPair> commonEdges(Segment s1, Segment s2) {
         Set<KPair> res = new HashSet<KPair>(edges.get(s1));
         res.retainAll(edges.get(s2));
         return res;
     }
-
+    
     private void processPath(List<Segment> path) throws Exception {
         int len = path.size();
         KPair k[] = new KPair[len - 1];
@@ -69,14 +69,14 @@ public class GroupManager {
             newBlackVertexes.add(path.get(i - 1));
         }
         newBlackVertexes.add(path.get(len - 1));
-
+        
         if (len == 4) {
             addSecondGroup(k[0], k[1], k[2], path.get(1), path.get(2));
         } else {
             throw new Exception("Can't process group!");
         }
     }
-
+    
     public GroupManager(CompManager cm) {
         this.cm = cm;
         minGC = maxGC = 0;
@@ -87,39 +87,39 @@ public class GroupManager {
         blackVertexes = new HashSet<Segment>();
         newBlackVertexes = new HashSet<Segment>();
     }
-
+    
     public void setStepSize(double stepSize) {
         this.stepSize = stepSize;
     }
-
+    
     public double getStepSize() {
         return stepSize;
     }
-
+    
     public void setMinGC(double val) {
         minGC = val;
     }
-
+    
     public void setMaxGC(double val) {
         maxGC = val;
     }
-
+    
     public double getMinGC() {
         return minGC;
     }
-
+    
     public double getMaxGC() {
         return maxGC;
     }
-
+    
     public void setJump(boolean jump) {
         this.jump = jump;
     }
-
+    
     public boolean getJump() {
         return jump;
     }
-
+    
     private void addToEdges(Segment s, KPair k) {
         Set<KPair> kps = edges.get(s);
         if (edges.get(s) == null) {
@@ -128,14 +128,14 @@ public class GroupManager {
         }
         kps.add(k);
     }
-
+    
     public void buildEdgesSets() {
         for (KPair k : cm.getKPairs()) {
             addToEdges(k.getC1().getSegment(), k);
             addToEdges(k.getC2().getSegment(), k);
         }
     }
-
+    
     public void calcNextStep() throws Exception {
         // TODO: переделать gruop, чтобы можно было писать так:
         // for (int tf=0; tf<=2; tf++){
@@ -153,12 +153,13 @@ public class GroupManager {
             g.calcTF2();
         }
     }
-
+    
     public void makeStep() {
         if (groups.isEmpty()) {
             return;
         }
-        GroupS g = (GroupS) groups.get(0);
+        cm.setBusy(true);
+        Group1 g = (Group1) groups.get(0);
         double gc = g.getGC();
         gc += moveForward ? stepSize : -stepSize;
         cm.clear();
@@ -172,8 +173,9 @@ public class GroupManager {
             moveForward = true;
         }
         g.setGC(gc);
+        cm.setBusy(false);
     }
-
+    
     public void addFirstGroupByName(String kp1name, String segment1name, String segment2name) {
         Segment s1 = cm.getSegment(segment1name),
                 s2 = cm.getSegment(segment2name);
@@ -183,7 +185,7 @@ public class GroupManager {
         addBlackVertex(s1);
         addBlackVertex(s2);
     }
-
+    
     public void addSecondGroupByName(String kp1name, String kp2name, String kp3name, String segment1name, String segment2name, int... mjs) throws Exception {
         int mj1 = 0, mj2 = 0;
         if (mjs != null) {
@@ -205,11 +207,11 @@ public class GroupManager {
         g.setJ1(mj2);
         groups.add(g);
     }
-
+    
     public void addGround(String groundName) {
         addBlackVertex(cm.getSegment(groundName));
     }
-
+    
     public void analyze() throws Exception {
         int edgesCount = cm.getKPairsCount(),
                 vertexesCount = cm.getSegmentsCount();
@@ -226,7 +228,7 @@ public class GroupManager {
             }
         }
     }
-
+    
     public List<Group> getGroups() {
         return groups;
     }
