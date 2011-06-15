@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import tmm.XML.Loader;
 import tmm.compmanager.CompManager;
 import tmm.group.GroupManager;
 import tmm.visual.J2dVisualizer;
@@ -27,7 +28,9 @@ public final class startWindow extends JFrame {
 
     public void buildMechanizm() throws Exception {
 
-
+        Loader lo = new Loader();
+        lo.loadFromFile("xmls\\ArcSin009.xml");
+        
         //  T TTT
         /*
         cm.addSegment("Ground");
