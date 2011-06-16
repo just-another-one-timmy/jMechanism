@@ -27,7 +27,7 @@ public class J2dVisualizer extends Visualizer {
         y = y * scaleY + translateY;
         Shape circle = new Ellipse2D.Double(x-3, y-3, 5, 5);
         g.setStroke(new BasicStroke(1));
-        g.setColor(Color.WHITE);
+        g.setColor(Color.YELLOW);
         g.draw(circle);
     }
 
@@ -39,7 +39,7 @@ public class J2dVisualizer extends Visualizer {
         y2 = y2 * scaleY + translateY;
         Shape line = new Line2D.Double(x1, y1, x2, y2);
         g.setStroke(new BasicStroke(2));
-        g.setColor(Color.RED);
+        g.setColor(Color.BLUE);
         g.draw(line);
     }
 

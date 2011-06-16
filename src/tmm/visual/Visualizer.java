@@ -4,11 +4,8 @@
  */
 package tmm.visual;
 
-import java.awt.Color;
 import tmm.compmanager.*;
-import tmm.connector.Connector;
-import tmm.connector.ConnectorSlide;
-import tmm.connector.ConnectorTurn;
+import tmm.connector.*;
 import tmm.segment.*;
 
 /**
@@ -35,57 +32,63 @@ public abstract class Visualizer {
             double pol_y = s.getCPolus().getLinear().getY().getValue(0);
 
             for (Connector c : s.getConnectors()) {
-                switch (c.getType()) {
-                    case CONNECTOR_TYPE_TURN: {
-                        ConnectorTurn ct = (ConnectorTurn) c;
-                        if (!ct.getLinear().getX().isCalculated(0)) {
-                            //    System.out.println("X not calcul " + ct.getName());
+                try {
+                    switch (c.getType()) {
+                        case CONNECTOR_TYPE_TURN: {
+                            ConnectorTurn ct = (ConnectorTurn) c;
+                            if (!ct.getLinear().getX().isCalculated(0)) {
+                                //    System.out.println("X not calcul " + ct.getName());
+                            }
+                            if (!ct.getLinear().getY().isCalculated(0)) {
+                                //     System.out.println("Y not calcul " + ct.getName());
+                            }
+
+                            double x = ct.getLinear().getX().getValue(0);
+                            double y = ct.getLinear().getY().getValue(0);
+
+                            System.out.println("Drawing " + ct.getName() + " at: " + x + "  " + y);
+
+                            drawCircle(x, h - y, 5, 0xFFBB22, 2, 0xFFBB22);
+
+                            if (!s.getName().equals("Ground")) {
+                                drawLine(pol_x, h - pol_y, x, h - y, 2, 0xFFFFFF);
+                            }
+
+                            break;
                         }
-                        if (!ct.getLinear().getY().isCalculated(0)) {
-                            //     System.out.println("Y not calcul " + ct.getName());
+
+                        case CONNECTOR_TYPE_SLIDE: {
+                            ConnectorSlide cs = (ConnectorSlide) c;
+                            double x = cs.getLinear0().getX().getValue(0);
+                            double y = cs.getLinear0().getY().getValue(0);
+
+                            double phi = cs.getTurn().getPhi().getValue(0);
+                            double len = 50;
+                            double delta_x = len * Math.cos(phi);
+                            double delta_y = len * Math.sin(phi);
+                            drawLine(x - delta_x, h - (y - delta_y), x + delta_x, h - (y + delta_y), 1, 0x00FF00);
+
+                            double rh = .1, rw = .2;
+                            double x1 = x - rw / 2, x2 = x + rw / 2;
+                            double y1 = y + rh / 2, y2 = y - rh / 2;
+                            //sf::Shape rect = sf::Shape::Rectangle(-rw/2,-rh/2,+rw/2,+rh/2,sf::Color::Blue, 2, sf::Color::Blue);
+                            //rect.Rotate(phi*180/pi);
+                            //rect.SetPosition(x, h-y);
+                            //rect.EnableFill(false);
+                            //w->Draw(rect);
+                            drawRect(x1, y1, x2, y2);
+
+                            if (!s.getName().equals("Ground")) {
+                                drawLine(pol_x, h - pol_y, x, h - y, 1, 0x00BBFF);
+                            }
+
+                            break;
                         }
-
-                        double x = ct.getLinear().getX().getValue(0);
-                        double y = ct.getLinear().getY().getValue(0);
-
-                        System.out.println("Drawing " + ct.getName() + " at: " + x + "  " + y);
-
-                        drawCircle(x, h - y, 5, 0xFF0000, 2, 0xFF0000);
-
-                        if (!s.getName().equals("Ground")) {
-                            drawLine(pol_x, h - pol_y, x, h - y, 2, 0xFFFFFF);
-                        }
-
-                        break;
                     }
-
-                    case CONNECTOR_TYPE_SLIDE: {
-                        ConnectorSlide cs = (ConnectorSlide) c;
-                        double x = cs.getLinear0().getX().getValue(0);
-                        double y = cs.getLinear0().getY().getValue(0);
-
-                        double phi = cs.getTurn().getPhi().getValue(0);
-                        double len = 50;
-                        double delta_x = len * Math.cos(phi);
-                        double delta_y = len * Math.sin(phi);
-                        drawLine(x - delta_x, h - (y - delta_y), x + delta_x, h - (y + delta_y), 1, 0x00FF00);
-
-                        double rh = .1, rw = .2;
-                        double x1 = x - rw / 2, x2 = x + rw / 2;
-                        double y1 = y + rh / 2, y2 = y - rh / 2;
-                        //sf::Shape rect = sf::Shape::Rectangle(-rw/2,-rh/2,+rw/2,+rh/2,sf::Color::Blue, 2, sf::Color::Blue);
-                        //rect.Rotate(phi*180/pi);
-                        //rect.SetPosition(x, h-y);
-                        //rect.EnableFill(false);
-                        //w->Draw(rect);
-                        drawRect(x1, y1, x2, y2);
-
-                        if (!s.getName().equals("Ground")) {
-                            drawLine(pol_x, h - pol_y, x, h - y, 1, 0x0000FF);
-                        }
-
-                        break;
-                    }
+                } catch (Exception e) {
+                    System.out.println("Visualizer: problems with connector " + c.getName());
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
 

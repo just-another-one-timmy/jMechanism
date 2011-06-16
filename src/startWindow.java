@@ -17,23 +17,23 @@ import tmm.visual.*;
  * @author jtimv
  */
 public final class startWindow extends JFrame {
-    
+
     private CompManager cm = new CompManager();
     private GroupManager gm = new GroupManager(cm);
     private J2dVisualizer vis = new J2dVisualizer(cm);
     private Timer t;
-    
+
     public void buildMechanizm(String name) throws Exception {
-        
+
         new XMLWorker(cm, gm).loadFromFile("xmls\\" + name + ".xml");
-        
+
         try {
             gm.calcNextStep();
         } catch (Exception exception) {
         }
-        
+
         t = new Timer(25, new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 gm.makeStep();
@@ -46,8 +46,8 @@ public final class startWindow extends JFrame {
         });
         t.start();
     }
-    
-    public startWindow() throws Exception {
+
+    public startWindow(String name) throws Exception {
         viewPanel vp = new viewPanel();
         vis.setGraphics((Graphics2D) vp.getGraphics());
         vp.setVisualizer(vis);
@@ -56,12 +56,15 @@ public final class startWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
-        setTitle("jMechanizm");
+        setTitle("jMechanizm: "+name);
         setVisible(true);
     }
-    
+
     public static void main(String[] args) throws Exception {
-        startWindow s = new startWindow();
-        s.buildMechanizm("T_TTT_TTS_simple");
+        String[] names = {"T_TTT", "chebyshev", "T_TSS_some"};
+        for (String x : names) {
+            startWindow s = new startWindow(x);
+            s.buildMechanizm(x);
+        }
     }
 }

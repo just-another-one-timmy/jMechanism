@@ -108,6 +108,7 @@ public class XMLWorker extends DefaultHandler {
     public void loadFromFile(String filename) throws ParserConfigurationException, SAXException, IOException {
         cm.setBusy(true);
         SAXParserFactory.newInstance().newSAXParser().parse(filename, new XMLWorker(cm, gm));
+        cm.createMissingTFs();
         cm.setBusy(false);
     }
     
