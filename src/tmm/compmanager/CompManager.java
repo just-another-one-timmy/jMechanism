@@ -23,7 +23,7 @@ public class CompManager {
     private Map<String, Connector> connectors;
     private double gravity;
     boolean isBusy;
-    
+
     /**
      * Creates new segment and adds it into internal map.
      * Also adds connector (turn) named as segment's name + "cP".
@@ -47,12 +47,12 @@ public class CompManager {
         res.getCPolus().setLinear(new TFLinear());
         return res;
     }
-    
-    public void setBusy(boolean isBusy){
+
+    public void setBusy(boolean isBusy) {
         this.isBusy = isBusy;
     }
-    
-    public boolean isBusy(){
+
+    public boolean isBusy() {
         return isBusy;
     }
 
@@ -61,6 +61,7 @@ public class CompManager {
         kpairs = new HashMap<String, KPair>();
         forces = new HashMap<String, Force>();
         connectors = new HashMap<String, Connector>();
+        isBusy = true;
     }
 
     public CompManager deleteSegment(String name) {
