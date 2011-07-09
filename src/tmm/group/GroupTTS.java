@@ -16,10 +16,10 @@ import tmm.tf.*;
 public class GroupTTS extends Group2 {
 
     private double lab, h;
-    private TFTurn AB, NC;
+    private TFTurn AB = new TFTurn(), NC = new TFTurn();
     private ConnectorTurn s1cA, s1cB, s2cB;
     private ConnectorSlide s2cC, s0cC;
-    private TF yN0, tang;
+    private TF yN0 = new TF(), tang = new TF();
     private double tg, tg_, tg__;
     private KPairTurn A, B;
     private KPairSlide C;
@@ -67,7 +67,9 @@ public class GroupTTS extends Group2 {
             yB = (yA + (double) j1 * Math.sqrt(b1));
         } else {
             tg = Math.tan(phiN);
-            yN0.setValue(yN + h / Math.cos(phiN), 0);
+            double cosPhiN = Math.cos(phiN);
+            double hOverCos = h/cosPhiN;
+            yN0.setValue(yN + hOverCos, 0);
             r1 = lab - tg * xN + yN0.getValue(0) - yA;
             r2 = lab + tg * xN - yN0.getValue(0) + yA;
 

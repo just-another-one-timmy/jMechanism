@@ -119,6 +119,6 @@ public abstract class Visualizer {
     protected abstract void drawLine(double x1, double y1, double x2, double y2, int thickness, int color);
 
     protected void drawRect(double x1, double y1, double x2, double y2) {
-        //
+        drawCircle((x1 + x2) / 2, (y1 + y2) / 2, 15, 0xFF0000, 5, 0x0F0F0F);
     }
 }
