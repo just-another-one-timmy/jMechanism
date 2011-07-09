@@ -22,6 +22,8 @@ public final class startWindow extends JFrame {
     private GroupManager gm = new GroupManager(cm);
     private J2dVisualizer vis = new J2dVisualizer(cm);
     private Timer t;
+    
+    private final Logger logger = Logger.getLogger(startWindow.class.getName());
 
     public void buildMechanizm(String name) throws Exception {
 
@@ -40,7 +42,7 @@ public final class startWindow extends JFrame {
                 try {
                     gm.calcNextStep();
                 } catch (Exception ex) {
-                    Logger.getLogger(startWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    logger.log(Level.SEVERE, "Can't calcNextStep()!", ex);
                 }
             }
         });
