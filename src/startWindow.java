@@ -61,7 +61,7 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] names = {"T_TTT", "chebyshev", "T_TSS_some"};
+        String[] names = {"T_TTT"};
         for (String x : names) {
             startWindow s = new startWindow(x);
             s.buildMechanizm(x);
