@@ -19,8 +19,7 @@ import tmm.group.*;
  */
 public class XMLWorker extends DefaultHandler {
 
-    private static final Logger logger  =  Logger.getLogger(XMLWorker.class.getName());
-    
+    private static final Logger logger = Logger.getLogger(XMLWorker.class.getName());
     private static final String ELEMENT_NAME_MECHANISM = "Mechanism",
             ELEMENT_NAME_SEGMENT = "Segment",
             ELEMENT_NAME_CONNECTOR_TURN = "ConnectorTurn",
@@ -43,13 +42,15 @@ public class XMLWorker extends DefaultHandler {
             ATTR_NAME_ALPHA = "alpha",
             ATTR_NAME_C1_NAME = "c1_name",
             ATTR_NAME_C2_NAME = "c2_name",
-            ATTR_NAME_KPAIR_NAME = "kp_name", 
-            ATTR_NAME_KPAIR1_NAME = "kp1_name", 
-            ATTR_NAME_KPAIR2_NAME = "kp2_name", 
+            ATTR_NAME_KPAIR_NAME = "kp_name",
+            ATTR_NAME_KPAIR1_NAME = "kp1_name",
+            ATTR_NAME_KPAIR2_NAME = "kp2_name",
             ATTR_NAME_KPAIR3_NAME = "kp3_name",
             ATTR_NAME_S1_NAME = "s1_name",
             ATTR_NAME_S2_NAME = "s2_name",
-            ATTR_NAME_NEED_ANALYZE = "need_analyze";
+            ATTR_NAME_NEED_ANALYZE = "need_analyze",
+            ATTR_NAME_J1 = "j1",
+            ATTR_NAME_J2 = "j2";
     CompManager cm;
     GroupManager gm;
     String lastSegmentName;
@@ -191,18 +192,21 @@ public class XMLWorker extends DefaultHandler {
                 s2Name = getV(ATTR_NAME_S2_NAME, atts, "");
         gm.addFirstGroupByName(kpairName, s1Name, s2Name);
     }
-        
+
     private void processElementGroup2(Attributes atts) throws Exception {
         String kp1Name = getV(ATTR_NAME_KPAIR1_NAME, atts, ""),
                 kp2Name = getV(ATTR_NAME_KPAIR2_NAME, atts, ""),
                 kp3Name = getV(ATTR_NAME_KPAIR3_NAME, atts, ""),
                 s1Name = getV(ATTR_NAME_S1_NAME, atts, ""),
                 s2Name = getV(ATTR_NAME_S2_NAME, atts, "");
-        gm.addSecondGroupByName(kp1Name, kp2Name, kp3Name, s1Name, s2Name);
+        int j1 = (int) getV(ATTR_NAME_J1, atts),
+                j2 = (int) getV(ATTR_NAME_J2, atts);
+        gm.addSecondGroupByName(kp1Name, kp2Name, kp3Name, s1Name, s2Name, j1, j2);
     }
     //-----------------------------------------------------------------------
     // Helper functions. 
     //-----------------------------------------------------------------------
+
     private double getDoubleValueEx(String attName, Attributes atts, double defaultValue) {
         String doubleValue = atts.getValue(attName);
         if (doubleValue != null) {
