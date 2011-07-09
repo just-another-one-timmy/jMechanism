@@ -193,7 +193,7 @@ public class GroupManager {
                 mj1 = mjs[0];
             }
             if (mjs.length > 1) {
-                mj2 = mjs[2];
+                mj2 = mjs[1];
             }
         }
         Segment s1 = cm.getSegment(segment1name),
