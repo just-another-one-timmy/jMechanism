@@ -49,8 +49,8 @@ public class XMLWorker extends DefaultHandler {
             ATTR_NAME_S1_NAME = "s1_name",
             ATTR_NAME_S2_NAME = "s2_name",
             ATTR_NAME_NEED_ANALYZE = "need_analyze",
-            ATTR_NAME_J1 = "j1",
-            ATTR_NAME_J2 = "j2";
+            ATTR_NAME_SIGN1 = "sign1",
+            ATTR_NAME_SIGN2 = "sign2";
     CompManager cm;
     GroupManager gm;
     String lastSegmentName;
@@ -199,8 +199,8 @@ public class XMLWorker extends DefaultHandler {
                 kp3Name = getV(ATTR_NAME_KPAIR3_NAME, atts, ""),
                 s1Name = getV(ATTR_NAME_S1_NAME, atts, ""),
                 s2Name = getV(ATTR_NAME_S2_NAME, atts, "");
-        int j1 = (int) getV(ATTR_NAME_J1, atts),
-                j2 = (int) getV(ATTR_NAME_J2, atts);
+        int j1 = (int) getV(ATTR_NAME_SIGN1, atts),
+                j2 = (int) getV(ATTR_NAME_SIGN2, atts);
         gm.addSecondGroupByName(kp1Name, kp2Name, kp3Name, s1Name, s2Name, j1, j2);
     }
     //-----------------------------------------------------------------------
