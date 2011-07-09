@@ -204,7 +204,7 @@ public class GroupManager {
         String gname = "(" + s1.getName() + "," + s2.getName() + ")";
         Group2 g = (Group2) GroupBuilder.createGroup(gname, k1, k2, k3, s1, s2);
         g.setJ1(mj1);
-        g.setJ1(mj2);
+        g.setJ2(mj2);
         groups.add(g);
     }
     
