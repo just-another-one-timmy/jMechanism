@@ -36,7 +36,7 @@
     </KPairs>
     <Groups need_analyze="no">
         <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
-        <Group2 kp1_name="C" kp2_name="B" kp3_name="A" s1_name="s3" s2_name="s2" j1="1" />
-        <Group2 kp1_name="D" kp2_name="E" kp3_name="G" s1_name="s4" s2_name="s5" j1="1" j2="0" />
+        <Group2 kp1_name="C" kp2_name="B" kp3_name="A" s1_name="s3" s2_name="s2" sign1="1" />
+        <Group2 kp1_name="D" kp2_name="E" kp3_name="G" s1_name="s4" s2_name="s5" sign1="1" sign2="0" />
     </Groups>
 </Mechanism>
