@@ -46,7 +46,7 @@ public abstract class Visualizer {
                             double x = ct.getLinear().getX().getValue(0);
                             double y = ct.getLinear().getY().getValue(0);
 
-                            System.out.println("Drawing " + ct.getName() + " at: " + x + "  " + y);
+                            //System.out.println("Drawing " + ct.getName() + " at: " + x + "  " + y);
 
                             drawCircle(x, h - y, 5, 0xFFBB22, 2, 0xFFBB22);
 

@@ -9,7 +9,7 @@
     <KPairs>
         <KPTurn name="O" c1_name="s0c1" c2_name="s1c1" />
     </KPairs>
-    <Groups need_analyze="yes">
+    <Groups need_analyze="true">
     
     </Groups>
 </Mechanism>
