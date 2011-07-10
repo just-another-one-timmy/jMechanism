@@ -34,7 +34,7 @@ public final class startWindow extends JFrame {
             logger.log(Level.SEVERE, "Can't first calcNextStep()!", exception);
         }
 
-        t = new Timer(25, new ActionListener() {
+        t = new Timer(10, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
