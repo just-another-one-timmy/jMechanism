@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.connector;
 
 import tmm.segment.Segment;
 import tmm.tf.TFLinear;
 import tmm.tf.TFTurn;
 
-/**
- *
- * @author jtimv
- */
 public class ConnectorSlide extends Connector {
 
     private double alpha;

@@ -1,7 +1,3 @@
-/*
- * С этим вроде закончил :)
- * 
- */
 package tmm.compmanager;
 
 import java.util.*;
