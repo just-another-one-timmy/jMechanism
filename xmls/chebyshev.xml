@@ -21,7 +21,7 @@
         <KPTurn name="C" c1_name="s3c1" c2_name="s0c2" />
         <KPTurn name="O" c1_name="s0c1" c2_name="s1c1" />
     </KPairs>
-    <Groups need_analyze="no">
+    <Groups need_analyze="false">
         <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
         <Group2 kp1_name="C" kp2_name="B" kp3_name="A" s1_name="s3" s2_name="s2" sign1="+1" />
     </Groups>

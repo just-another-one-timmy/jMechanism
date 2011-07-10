@@ -47,7 +47,7 @@
         <KPTurn name="O" c1_name="s0c1" c2_name="s1c1" />
         <KPSliding name="S" c1_name="s3c2" c2_name="s0c3" />
     </KPairs>
-    <Groups need_analyze="no">
+    <Groups need_analyze="false">
         <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
         <Group2 kp1_name="A" kp2_name="D" kp3_name="S" s1_name="s2" s2_name="s3" />
         <Group2 kp1_name="C" kp2_name="B" kp3_name="E" s1_name="s5" s2_name="s4" sign1="1" />
