@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import java.util.*;
 import tmm.compmanager.*;
+import tmm.connector.*;
 import tmm.kpair.KPair;
 import tmm.segment.*;
 
@@ -14,7 +11,7 @@ import tmm.segment.*;
  * @author jtimv
  */
 public class GroupManager {
-    
+
     private double stepSize, minGC, maxGC;
     private boolean jump, moveForward;
     private CompManager cm;
@@ -22,19 +19,20 @@ public class GroupManager {
     private Set<KPair> blackEdges;
     private Map<Segment, Set<KPair>> edges;
     private List<Group> groups;
-    
+    private boolean doSelfTest = true; // Do we want to check segments lengths and angles?
+
     private void addSecondGroup(KPair k1, KPair k2, KPair k3, Segment s1, Segment s2) throws Exception {
         groups.add(GroupBuilder.createGroup("(" + s1.getName() + "," + s2.getName() + ")", k1, k2, k3, s1, s2));
     }
-    
+
     private void addBlackEdge(KPair k) {
         blackEdges.add(k);
     }
-    
+
     private void addBlackVertex(Segment s) {
         blackVertexes.add(s);
     }
-    
+
     private void findPath(List<Segment> path, int len) throws Exception {
         if (len == -1) {
             processPath(path);
@@ -53,13 +51,13 @@ public class GroupManager {
             }
         }
     }
-    
+
     private Set<KPair> commonEdges(Segment s1, Segment s2) {
         Set<KPair> res = new HashSet<KPair>(edges.get(s1));
         res.retainAll(edges.get(s2));
         return res;
     }
-    
+
     private void processPath(List<Segment> path) throws Exception {
         int len = path.size();
         KPair k[] = new KPair[len - 1];
@@ -69,14 +67,14 @@ public class GroupManager {
             newBlackVertexes.add(path.get(i - 1));
         }
         newBlackVertexes.add(path.get(len - 1));
-        
+
         if (len == 4) {
             addSecondGroup(k[0], k[1], k[2], path.get(1), path.get(2));
         } else {
             throw new Exception("Can't process group!");
         }
     }
-    
+
     public GroupManager(CompManager cm) {
         this.cm = cm;
         minGC = maxGC = 0;
@@ -87,39 +85,39 @@ public class GroupManager {
         blackVertexes = new HashSet<Segment>();
         newBlackVertexes = new HashSet<Segment>();
     }
-    
+
     public void setStepSize(double stepSize) {
         this.stepSize = stepSize;
     }
-    
+
     public double getStepSize() {
         return stepSize;
     }
-    
+
     public void setMinGC(double val) {
         minGC = val;
     }
-    
+
     public void setMaxGC(double val) {
         maxGC = val;
     }
-    
+
     public double getMinGC() {
         return minGC;
     }
-    
+
     public double getMaxGC() {
         return maxGC;
     }
-    
+
     public void setJump(boolean jump) {
         this.jump = jump;
     }
-    
+
     public boolean getJump() {
         return jump;
     }
-    
+
     private void addToEdges(Segment s, KPair k) {
         Set<KPair> kps = edges.get(s);
         if (edges.get(s) == null) {
@@ -128,21 +126,15 @@ public class GroupManager {
         }
         kps.add(k);
     }
-    
+
     public void buildEdgesSets() {
         for (KPair k : cm.getKPairs()) {
             addToEdges(k.getC1().getSegment(), k);
             addToEdges(k.getC2().getSegment(), k);
         }
     }
-    
+
     public void calcNextStep() throws Exception {
-        // TODO: переделать gruop, чтобы можно было писать так:
-        // for (int tf=0; tf<=2; tf++){
-        //     for (Group g: gruops){
-        //         g.calcTF(tf);
-        //     }
-        // }
         for (Group g : groups) {
             g.calcTF0();
         }
@@ -152,8 +144,11 @@ public class GroupManager {
         for (Group g : groups) {
             g.calcTF2();
         }
+        if (doSelfTest) {
+            testDistances();
+        }
     }
-    
+
     public void makeStep() {
         if (groups.isEmpty()) {
             return;
@@ -175,7 +170,7 @@ public class GroupManager {
         g.setGC(gc);
         cm.setBusy(false);
     }
-    
+
     public void addFirstGroupByName(String kp1name, String segment1name, String segment2name) {
         Segment s1 = cm.getSegment(segment1name),
                 s2 = cm.getSegment(segment2name);
@@ -185,7 +180,7 @@ public class GroupManager {
         addBlackVertex(s1);
         addBlackVertex(s2);
     }
-    
+
     public void addSecondGroupByName(String kp1name, String kp2name, String kp3name, String segment1name, String segment2name, int... mjs) throws Exception {
         int mj1 = 0, mj2 = 0;
         if (mjs != null) {
@@ -207,11 +202,11 @@ public class GroupManager {
         g.setJ2(mj2);
         groups.add(g);
     }
-    
+
     public void addGround(String groundName) {
         addBlackVertex(cm.getSegment(groundName));
     }
-    
+
     public void analyze() throws Exception {
         int edgesCount = cm.getKPairsCount(),
                 vertexesCount = cm.getSegmentsCount();
@@ -228,9 +223,70 @@ public class GroupManager {
             }
         }
     }
-    
+
     public List<Group> getGroups() {
         return groups;
+    }
+
+    private double getDistDescartes(double x1, double y1, double x2, double y2) {
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
+    private double getConnectorsDist(Connector c1, Connector c2) {
+        double ro1 = c1.getRo(), phi1 = c1.getPhi(),
+                ro2 = c2.getRo(), phi2 = c2.getPhi();
+        double x1 = ro1 * Math.cos(phi1),
+                y1 = ro1 * Math.sin(phi1),
+                x2 = ro2 * Math.cos(phi2),
+                y2 = ro2 * Math.sin(phi2);
+        return getDistDescartes(x1, y1, x2, y2);
+    }
+
+    private double getConnectorsDescartesX(Connector c) throws Exception {
+        if (c.getType() == ConnectorType.CONNECTOR_TYPE_SLIDE) {
+            ConnectorSlide cs = (ConnectorSlide) c;
+            return cs.getLinear0().getX().getValue(0);
+        }
+        if (c.getType() == ConnectorType.CONNECTOR_TYPE_TURN) {
+            ConnectorTurn ct = (ConnectorTurn) c;
+            return ct.getLinear().getX().getValue(0);
+        }
+        return 0;
+    }
+
+    private double getConnectorsDescartesY(Connector c) throws Exception {
+        if (c.getType() == ConnectorType.CONNECTOR_TYPE_SLIDE) {
+            ConnectorSlide cs = (ConnectorSlide) c;
+            return cs.getLinear0().getY().getValue(0);
+        }
+        if (c.getType() == ConnectorType.CONNECTOR_TYPE_TURN) {
+            ConnectorTurn ct = (ConnectorTurn) c;
+            return ct.getLinear().getY().getValue(0);
+        }
+        return 0;
+    }
+
+    private double getConnectorsDistDescartes(Connector c1, Connector c2) throws Exception {
+        double x1 = getConnectorsDescartesX(c1),
+                y1 = getConnectorsDescartesY(c1),
+                x2 = getConnectorsDescartesX(c2),
+                y2 = getConnectorsDescartesY(c2);
+        return getDistDescartes(x1, y1, x2, y2);
+    }
+
+    public void testDistances() throws Exception {
+        for (Segment s : cm.getSegments()) {
+            for (Connector c1 : s.getConnectors()) {
+                for (Connector c2 : s.getConnectors()) {
+                    double distP = getConnectorsDist(c1, c2);
+                    double distD = getConnectorsDistDescartes(c1, c2);
+                    if (Math.abs(distP - distD) > Group.epsilon) {
+                        throw new Exception("testDistances fails on " + c1.getName() + " - " + c2.getName());
+                    }
+                }
+            }
+        }
+        System.out.println("testDistances: OK!");
     }
 }
 
