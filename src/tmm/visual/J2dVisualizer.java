@@ -25,7 +25,7 @@ public class J2dVisualizer extends Visualizer {
     protected void drawCircle(double x, double y, int radius, int color, int outline, int outlineColor) {
         x = x * scaleX + translateX;
         y = y * scaleY + translateY;
-        Shape circle = new Ellipse2D.Double(x-3, y-3, 5, 5);
+        Shape circle = new Ellipse2D.Double(x - 3, y - 3, 5, 5);
         g.setStroke(new BasicStroke(1));
         g.setColor(Color.YELLOW);
         g.draw(circle);
@@ -45,5 +45,17 @@ public class J2dVisualizer extends Visualizer {
 
     public J2dVisualizer(CompManager c) {
         super(c);
+    }
+
+    @Override
+    protected void drawText(double x, double y, String text) {
+        x = x * scaleX + translateX;
+        y = y * scaleY + translateY;
+        g.setColor(Color.WHITE);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        Font font = new Font("Arial", Font.PLAIN, 20);
+        g.setFont(font);
+        g.drawString(text, (float) x, (float) y);
     }
 }
