@@ -121,11 +121,17 @@ public class XMLWorker extends DefaultHandler {
         }
     }
 
-    public void loadFromFile(String filename) throws ParserConfigurationException, SAXException, IOException {
-        cm.setBusy(true);
-        SAXParserFactory.newInstance().newSAXParser().parse(filename, new XMLWorker(cm, gm));
-        cm.createMissingTFs();
-        cm.setBusy(false);
+    public void loadFromFile(String filename) throws ParserConfigurationException, SAXException, IOException, Exception {
+        try {
+            cm.setBusy(true);
+            if (! (new File(filename).exists())){
+                throw new Exception("File "+filename+" doesn't exist. Can't load it.");
+            }
+            SAXParserFactory.newInstance().newSAXParser().parse(filename, new XMLWorker(cm, gm));
+            cm.createMissingTFs();
+        } finally {
+            cm.setBusy(false);
+        }
     }
 
     private void processElementMechanism(Attributes atts) {

@@ -22,7 +22,7 @@ public final class startWindow extends JFrame {
     private GroupManager gm = new GroupManager(cm);
     private J2dVisualizer vis = new J2dVisualizer(cm);
     private Timer t;
-    private final Logger logger = Logger.getLogger(startWindow.class.getName());
+    private static final Logger logger = Logger.getLogger(startWindow.class.getName());
 
     public void buildMechanizm(String name) throws Exception {
 
@@ -63,7 +63,7 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] names = {"invars"};
+        String[] names = {"T_TSS_Some"};
         for (String x : names) {
             startWindow s = new startWindow(x);
             s.buildMechanizm(x);
