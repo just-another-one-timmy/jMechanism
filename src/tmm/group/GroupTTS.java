@@ -55,7 +55,7 @@ public class GroupTTS extends Group2 {
 
         double xB;
         double yB;
-
+        
         if (Math.abs(Math.cos(phiN)) < epsilon) {
             // if axis vertical
             xB = (xN - h);

@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.logging.*;
@@ -8,14 +7,6 @@ import tmm.compmanager.*;
 import tmm.group.*;
 import tmm.visual.*;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author jtimv
- */
 public final class startWindow extends JFrame {
 
     private CompManager cm = new CompManager();
@@ -63,7 +54,7 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] names = {"heron"};
+        String[] names = {"T_TTS_vert"};
         for (String x : names) {
             startWindow s = new startWindow(x);
             s.buildMechanizm(x);
