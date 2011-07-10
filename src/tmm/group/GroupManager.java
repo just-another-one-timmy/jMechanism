@@ -233,3 +233,37 @@ public class GroupManager {
         return groups;
     }
 }
+
+
+/* TODO
+ * c1 c2 s
+ * ro1=c1.getRo();
+ * phi1=c1.getPhi();
+ * 
+ * ro2=c2.getRo();
+ * phi2=c2.getPhi();
+ * 
+ * 
+ * etalon=DistPol(ro1,phi1,ro2,phi2);
+ * 
+ * x1 = c1.getLinear().getX().getValue(0);
+ * y1 = c1.getLinear().getY().getValue(0);
+ * x2 = c2.getLinear().getX().getValue(0);
+ * y2 = c2.getLinear().getY().getValue(0);
+ * 
+ *  
+ * current=DistDec(x1,y1,x2,y2);
+ * Equal(etalon,current);
+ * 
+ * TEST Angles
+ * 
+ * etalon = phi2-phi1;
+ * a=sqrt((x1-xP)^2+(y1-yP)^2); // длины векторов
+ * b=sqrt((x2-xP)^2+(y2-yP)^2);
+ * current= acos((x1-xP)*(x2-xP)+
+ *               (y1-yP)*(y2-yP))/
+ *                  (|a|*|b|)); // из скаларного произведения
+ * 
+ * 
+ * 
+ */

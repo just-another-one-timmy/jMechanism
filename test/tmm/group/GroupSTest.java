@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class GroupSTest {
 
     private static GroupS instance = null;
-    private static Segment s1 = null, s2 = null;
+    private static Segment s0 = null, s1 = null;
     private static KPairSlide kp = null;
     private static ConnectorSlide c1 = null, c2 = null;
 
@@ -27,15 +27,23 @@ public class GroupSTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        s1 = new Segment();
-        s2 = new Segment();
+    /*    s0 = new Segment();
+        s0.setCPolus(new ConnectorTurn(s1, "cs1", new TFLinear()));
         c1 = new ConnectorSlide(s1, "c1");
+        c1.setAlpha(Math.PI/3);
+        c1.setPhi(Math.PI/6);
+        c1.setRo(1.7);
+        
+        
+        s1 = new Segment();
+        s1.setCPolus(new ConnectorTurn(s2, "cs2", new TFLinear()));
         c2 = new ConnectorSlide(s2, "c2");
-        s1.setCPolus(new ConnectorTurn(s1, "cs1", new TFLinear()));
-        s2.setCPolus(new ConnectorTurn(s2, "cs2", new TFLinear()));
+        
+        
         kp = new KPairSlide("A", c1, c2);
-        instance = new GroupS(kp, s1, s1);
-    }
+        instance = new GroupS(kp, s0, s1);
+   */
+        }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
