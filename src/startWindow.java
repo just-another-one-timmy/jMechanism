@@ -17,7 +17,7 @@ public final class startWindow extends JFrame {
 
     public void buildMechanizm(String name) throws Exception {
 
-        new XMLWorker(cm, gm).loadFromFile("xmls\\" + name + ".xml");
+        new XMLWorker(cm, gm).loadFromFile("xmls/" + name + ".xml");
 
         try {
             gm.calcNextStep();
