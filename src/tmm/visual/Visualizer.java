@@ -47,8 +47,10 @@ public abstract class Visualizer {
         double x = cs.getLinear0().getX().getValue(0);
         double y = cs.getLinear0().getY().getValue(0);
 
+        System.out.println("Drawing " + cs.getName() + " at: " + x + "  " + y);
+        
         double phi = cs.getTurn().getPhi().getValue(0);
-        double len = 50;
+        double len = 10;
         double delta_x = len * Math.cos(phi);
         double delta_y = len * Math.sin(phi);
         drawLine(x - delta_x, h - (y - delta_y), x + delta_x, h - (y + delta_y), 1, 0x00FF00);
@@ -61,8 +63,10 @@ public abstract class Visualizer {
         //rect.SetPosition(x, h-y);
         //rect.EnableFill(false);
         //w->Draw(rect);
-        drawRect(x1, y1, x2, y2);
+        //drawRect(x1, h - y, x2, y2);
 
+        drawSquare(x, h - y, 5, 0x00FF00);
+        
         if (!sname.equals("Ground")) {
             drawLine(pol_x, h - pol_y, x, h - y, 1, 0x00BBFF);
         }
@@ -139,7 +143,5 @@ public abstract class Visualizer {
 
     protected abstract void drawText(double x, double y, String text);
 
-    protected void drawRect(double x1, double y1, double x2, double y2) {
-        drawCircle((x1 + x2) / 2, (y1 + y2) / 2, 15, 0xFF0000, 5, 0x0F0F0F);
-    }
+    protected abstract void drawSquare(double x, double y, int side, int color);
 }

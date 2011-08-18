@@ -7,6 +7,7 @@ package tmm.visual;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import tmm.compmanager.*;
 
 /**
@@ -27,10 +28,10 @@ public class J2dVisualizer extends Visualizer {
         y = y * scaleY + translateY;
         Shape circle = new Ellipse2D.Double(x - 3, y - 3, 5, 5);
         g.setStroke(new BasicStroke(1));
-        g.setColor(Color.YELLOW);
+        g.setColor(new Color(color));
         g.draw(circle);
     }
-
+    
     @Override
     protected void drawLine(double x1, double y1, double x2, double y2, int thickness, int color) {
         x1 = x1 * scaleX + translateX;
@@ -57,5 +58,15 @@ public class J2dVisualizer extends Visualizer {
         Font font = new Font("Arial", Font.PLAIN, 20);
         g.setFont(font);
         g.drawString(text, (float) x, (float) y);
+    }
+
+    @Override
+    protected void drawSquare(double x, double y, int side, int color) {
+        x = x * scaleX + translateX;
+        y = y * scaleY + translateY;
+        Shape square = new Rectangle2D.Double(x - 0.5*side, y - 0.5*side, side, side);
+        g.setStroke(new BasicStroke(3));
+        g.setColor(new Color(color));
+        g.draw(square);
     }
 }
