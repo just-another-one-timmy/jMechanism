@@ -147,3 +147,25 @@ public abstract class Visualizer {
 
     protected abstract void drawSquare(double x, double y, int side, int color);
 }
+
+/*const R=3;a=10;b=20;l=40;
+ * 
+ * for (kpairs)
+ * {
+ * line(kpair,kpair.c1.segment.polus);
+ * line(kpair,kpair.c2.segment.polus);
+ * switch(kpair.type)
+ *  {
+ *      case TURN :
+ *          circle(kpair,R);  // кружок
+ *      case SLIDE:
+     *      alfa = kpair.getAngle();
+     *      line_pol(kpair,alfa,l); // худая палка
+     *      rect_pol(kpair,alfa,a,b);    // толстая палка
+     * }
+ * }
+ * line_pol палку наклоненную на угол alfa, и проходящую через точку с координатами 
+ * kpair
+circle and rect закрашивают область внутри себя.
+ */
+
