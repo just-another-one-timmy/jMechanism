@@ -1,4 +1,4 @@
-<Mechanism step_size="0.005" min="0" max="0.25" jump="no">
+<Mechanism step_size="0.005" min="0" max="0.25" jump="false">
     <Segment name="Ground" mass="10000" rot_inertia="0">
         <ConnectorSliding name="s0c1" ro="0.304138" phi="0.165149" alpha="2.61799" />
         <ConnectorTurn name="s0c2" ro="0.25" phi="-2.2143" />
