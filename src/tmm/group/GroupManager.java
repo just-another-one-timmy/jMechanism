@@ -286,7 +286,6 @@ public class GroupManager {
                 }
             }
         }
-        System.out.println("testDistances: OK!");
     }
 }
 

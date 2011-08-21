@@ -8,7 +8,6 @@ import tmm.connector.*;
 import tmm.kpair.*;
 import tmm.segment.*;
 import org.junit.*;
-import tmm.tf.TFLinear;
 import static org.junit.Assert.*;
 
 /**
@@ -23,6 +22,7 @@ public class GroupSTest {
     private static ConnectorSlide c1 = null, c2 = null;
 
     public GroupSTest() {
+        instance = new GroupS(kp, s0, s1);
     }
 
     @BeforeClass
@@ -102,7 +102,6 @@ public class GroupSTest {
      */
     @Test
     public void testGetType() {
-        System.out.println("getType");
         GroupType expResult = GroupType.GROUP_TYPE_S;
         GroupType result = instance.getType();
         assertEquals(expResult, result);

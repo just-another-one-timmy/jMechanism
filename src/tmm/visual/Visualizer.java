@@ -4,6 +4,8 @@
  */
 package tmm.visual;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tmm.compmanager.*;
 import tmm.connector.*;
 import tmm.kpair.*;
@@ -19,6 +21,7 @@ public abstract class Visualizer {
     protected CompManager cm;
     double scaleX = 1.0, scaleY, translateX = 0, translateY = 0;
     double h;
+    private static final Logger logger = Logger.getLogger(Visualizer.class.getName());    
 
     public Visualizer(CompManager c) {
         cm = c;
@@ -47,7 +50,7 @@ public abstract class Visualizer {
         double x = cs.getLinear0().getX().getValue(0);
         double y = cs.getLinear0().getY().getValue(0);
 
-        System.out.println("Drawing " + cs.getName() + " at: " + x + "  " + y);
+        logger.fine("Drawing " + cs.getName() + " at: " + x + "  " + y);
         
         double phi = cs.getTurn().getPhi().getValue(0);
         double len = 10;
@@ -108,8 +111,7 @@ public abstract class Visualizer {
                 try {
                     drawConnector(c, pol_x, pol_y, s.getName(), false, "");
                 } catch (Exception e) {
-                    System.out.println("Visualizer: problems with connector " + c.getName());
-                    System.out.println(e.getMessage());
+                    logger.log(Level.SEVERE, "Visualizer: problems with connector {0} : {1}", new String[]{c.getName(), e.getMessage()});
                 }
             }
         }
