@@ -152,20 +152,67 @@ public abstract class Visualizer {
  * 
  * for (kpairs)
  * {
- * line(kpair,kpair.c1.segment.polus);
- * line(kpair,kpair.c2.segment.polus);
+ * if (kpair.c1.segment != ground)
+ *      line(kpair,kpair.c1.segment.polus);
+ * if (kpair.c2.segment != ground)
+        line(kpair,kpair.c2.segment.polus);
  * switch(kpair.type)
  *  {
  *      case TURN :
+ *          if ((kpair.c1.segment == ground)
+ *          ||   kpair.c2.segment == ground))
+ *          drawGroundTurn(kpair);  // 
  *          circle(kpair,R);  // кружок
+ *           
  *      case SLIDE:
      *      alfa = kpair.getAngle();
-     *      line_pol(kpair,alfa,l); // худая палка
-     *      rect_pol(kpair,alfa,a,b);    // толстая палка
-     * }
+     *      if (kpair.c1.segment == ground)
+ *              drawGroundSlideIn(kpair);    
+ *  *       else 
+ *              line_pol(kpair,alfa,l); // худая палка
+            
+ *          if (kpair.c2.segment == ground)
+ *              drawGroundSlideOut(kpair);   
+ *  *       esle 
+ *              rect_pol(kpair,alfa,a,b);    // толстая палка
+     * 
+ *      }
  * }
- * line_pol палку наклоненную на угол alfa, и проходящую через точку с координатами 
+ * for(segments)
+ * if (segment!=ground)
+ *      line(CMass,polus);
+ * 
+ * line_pol рисует палку наклоненную на угол alfa, и проходящую через точку с координатами 
  * kpair
 circle and rect закрашивают область внутри себя.
+*/
+
+ /*  todo
+ * еще на будущее надо предусмотреть возможность прорисовать 
+ * одну группу или одно звено, или одну скорость/ускорение/силу . т.е. возможно нужно создать какие-то множества элементов
+ * типа Visible. это для генератора отчетов. 
+ * 
+ */
+
+ /* drawGroundTurn(kpair)
+ * {
+ * 
+ *   o
+ *  /_\
+ * ////
+ * }
+ 
+ *drawGroundSlideIn(kpair);
+ * {
+ * ________________
+ * ////
+ * }
+ drawGroundSlideOut(kpair);
+ *{
+ * ////////
+ * --------
+ * --------
+ * ////////
+ *}
  */
 
