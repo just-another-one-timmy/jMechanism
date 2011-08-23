@@ -127,7 +127,7 @@ public class GroupManager {
         kps.add(k);
     }
 
-    public void buildEdgesSets() {
+    private void buildEdgesSets() {
         for (KPair k : cm.getKPairs()) {
             addToEdges(k.getC1().getSegment(), k);
             addToEdges(k.getC2().getSegment(), k);
@@ -208,6 +208,7 @@ public class GroupManager {
     }
 
     public void analyze() throws Exception {
+        buildEdgesSets();
         int edgesCount = cm.getKPairsCount(),
                 vertexesCount = cm.getSegmentsCount();
         while ((blackVertexes.size() != vertexesCount) && (blackEdges.size() != edgesCount)) {
