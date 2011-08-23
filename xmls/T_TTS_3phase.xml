@@ -1,0 +1,81 @@
+<Mechanism step_size="0.005">
+    <Segment name="Ground" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="s0c1" ro="0" phi="-0" />
+        <ConnectorSliding name="s0c2" ro="0" phi="0" alpha="1.57" />
+        <ConnectorSliding name="s0c3" ro="0" phi="0" alpha="1.57" />
+        <ConnectorSliding name="s0c4" ro="0" phi="0" alpha="1.57" />
+        
+    </Segment>
+    <Segment name="s1" mass="1" rot_inertia="0.1">
+        <!--ConnectorTurn name="s1cS" ro="0.1" phi="0" /-->
+        <ConnectorTurn name="s1c1" ro="0" phi="0" />
+        <ConnectorTurn name="s1c2" ro="0.2" phi="1.5708" />
+        <ConnectorTurn name="s1c3" ro="0.2" phi="3.66519" />
+        <ConnectorTurn name="s1c4" ro="0.2" phi="-0.523599" />
+    </Segment>
+    
+    <Segment name="s2" mass="2" rot_inertia="0.4">
+        <!--ConnectorTurn name="s2cS" ro="0.2" phi="0" /-->
+        <ConnectorTurn name="s2c1" ro="0" phi="0" />
+        <ConnectorTurn name="s2c2" ro="0.4" phi="0" />
+    </Segment>
+    
+    <Segment name="s4" mass="2" rot_inertia="0.4">
+        <!--ConnectorTurn name="s2cS" ro="0.2" phi="0" /-->
+        <ConnectorTurn name="s4c1" ro="0" phi="0" />
+        <ConnectorTurn name="s4c2" ro="0.4" phi="0" />
+    </Segment>
+    
+    <Segment name="s6" mass="2" rot_inertia="0.4">
+        <!--ConnectorTurn name="s2cS" ro="0.2" phi="0" /-->
+        <ConnectorTurn name="s6c1" ro="0" phi="0" />
+        <ConnectorTurn name="s6c2" ro="0.4" phi="0" />
+    </Segment>
+    
+    <Segment name="s3" mass="1" rot_inertia="0.5">
+        <!--ConnectorTurn name="s3cS" ro="0" phi="0" /-->
+        <ConnectorTurn name="s3c1" ro="0" phi="0" />
+        <ConnectorSliding name="s3c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    
+    <Segment name="s3" mass="1" rot_inertia="0.5">
+        <!--ConnectorTurn name="s3cS" ro="0" phi="0" /-->
+        <ConnectorTurn name="s3c1" ro="0" phi="0" />
+        <ConnectorSliding name="s3c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    
+    <Segment name="s5" mass="1" rot_inertia="0.5">
+        <!--ConnectorTurn name="s3cS" ro="0" phi="0" /-->
+        <ConnectorTurn name="s5c1" ro="0" phi="0" />
+        <ConnectorSliding name="s5c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    
+    <Segment name="s7" mass="1" rot_inertia="0.5">
+        <!--ConnectorTurn name="s3cS" ro="0" phi="0" /-->
+        <ConnectorTurn name="s7c1" ro="0" phi="0" />
+        <ConnectorSliding name="s7c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    
+    
+    <KPairs>
+        <KPTurn name="O" c1_name="s0c1" c2_name="s1c1" />
+        
+        <KPTurn name="A" c1_name="s1c2" c2_name="s2c1" />
+        <KPTurn name="B" c1_name="s1c3" c2_name="s4c1" />
+        <KPTurn name="C" c1_name="s1c4" c2_name="s6c1" />
+        
+        <KPTurn name="D" c1_name="s2c2" c2_name="s3c1" />
+        <KPTurn name="E" c1_name="s4c2" c2_name="s5c1" />
+        <KPTurn name="F" c1_name="s6c2" c2_name="s7c1" />
+        
+        <KPSliding name="K" c1_name="s3c2" c2_name="s0c2" />
+        <KPSliding name="L" c1_name="s5c2" c2_name="s0c3" />
+        <KPSliding name="M" c1_name="s7c2" c2_name="s0c4" />
+   
+        
+    </KPairs>
+    
+    <Groups need_analyze="true">
+    </Groups>
+</Mechanism>
+
