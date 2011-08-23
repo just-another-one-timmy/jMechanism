@@ -76,6 +76,11 @@
     </KPairs>
     
     <Groups need_analyze="true">
+        <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
+        <Group2 kp1_name="A" kp2_name="D" kp3_name="K" s1_name="s2" s2_name="s3" sign1="1"/>
+        <Group2 kp1_name="B" kp2_name="E" kp3_name="L" s1_name="s4" s2_name="s5" sign1="1"/>
+        <Group2 kp1_name="C" kp2_name="F" kp3_name="M" s1_name="s6" s2_name="s7" sign1="1"/>
+    
     </Groups>
 </Mechanism>
 
