@@ -188,6 +188,8 @@ public class XMLWorker extends DefaultHandler {
             try {
                 gm.analyze();
             } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
     }
