@@ -54,7 +54,10 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] names = {"T_TTT_analyze_true"};
+        String[] names = {"T_TTS_3phase"};
+       // String[] names = {"T_TTT_analyze_true"};
+       // String[] names = {"T_TTT"};
+        
         for (String x : names) {
             startWindow s = new startWindow(x);
             s.buildMechanizm(x);
