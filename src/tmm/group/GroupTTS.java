@@ -111,7 +111,9 @@ public class GroupTTS extends Group2 {
         this.s1 = s1;
         this.s2 = s2;
 
-        ConnectorTurn ct1 = A.getC1(), ct2 = A.getC2();
+        ConnectorTurn ct1,ct2;
+        ct1 = A.getC1();
+        ct2 = A.getC2();
         if (ct1.getSegment() == s1) {
             s1cA = ct1;
         } else if (ct2.getSegment() == s1) {
@@ -127,7 +129,7 @@ public class GroupTTS extends Group2 {
         } else if (ct2.getSegment() == s1) {
             s1cB = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair B not connected to s1");
+            throw new Exception("GroupTTS: KPair "+B.getName()+" not connected to segment "+s1.getName());
         }
 
         if (ct1.getSegment() == s2) {
@@ -135,7 +137,7 @@ public class GroupTTS extends Group2 {
         } else if (ct2.getSegment() == s2) {
             s2cB = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair B not connected to s2");
+            throw new Exception("GroupTTS: KPair "+B.getName()+" not connected to segment "+s2.getName());
         }
 
         ConnectorSlide cs1 = C.getC1(), cs2 = C.getC2();
@@ -146,7 +148,7 @@ public class GroupTTS extends Group2 {
             s2cC = cs2;
             s0cC = cs1;
         } else {
-            throw new Exception("GroupTTS: KPair C not connected to s2");
+            throw new Exception("GroupTTS: KPair "+C.getName()+" not connected to segment "+s2.getName());
         }
 
         lab = getDist(s1cA, s1cB);
