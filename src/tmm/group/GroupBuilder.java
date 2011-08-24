@@ -104,7 +104,7 @@ public class GroupBuilder {
     }
 
     public static Group createGroup(KPairSlide k1, KPairTurn k2, KPairTurn k3, Segment s1, Segment s2) throws Exception {
-        return new GroupTTS(k3, k2, k1, s1, s2);
+        return new GroupTTS(k3, k2, k1, s2, s1);
     }
 
     public static Group createGroup(KPairTurn k1, KPairTurn k2, KPairTurn k3, Segment s1, Segment s2) throws Exception {
