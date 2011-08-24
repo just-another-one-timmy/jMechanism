@@ -78,7 +78,7 @@ public class GroupBuilder {
             res = createGroup((KPairTurn) k1, (KPairTurn) k2, (KPairTurn) k3, s1, s2);
         }
         if (res == null){
-            logger.log(Level.SEVERE, "Can''t process group: unknown combination! Pairs: {0}, {1}, {2}", new Object[]{k1.getName(), k2.getName(), k3.getName()});
+            logger.log(Level.SEVERE, "Can't process group: unknown combination!\nPairs: {0}, {1}, {2}\nSegments: {3}, {4}", new String[]{k1.getName(), k2.getName(), k3.getName(), s1.getName(), s2.getName()});
             return null;
         }
         res.setName(name);
