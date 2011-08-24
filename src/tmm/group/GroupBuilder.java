@@ -4,17 +4,17 @@
  */
 package tmm.group;
 
-import tmm.kpair.KPair;
-import tmm.kpair.KPairSlide;
-import tmm.kpair.KPairTurn;
-import tmm.kpair.KPairType;
-import tmm.segment.Segment;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import tmm.kpair.*;
+import tmm.segment.*;
 
 /**
  *
  * @author jtimv
  */
 public class GroupBuilder {
+    private static final Logger logger = Logger.getLogger(GroupBuilder.class.getName());
 
     public static Group createGroup(String name, KPair k, Segment s1, Segment s2) {
         Group res = null;
@@ -76,6 +76,10 @@ public class GroupBuilder {
                 && k3.getType() == KPairType.KPAIR_TYPE_TURN) {
             // TTT 
             res = createGroup((KPairTurn) k1, (KPairTurn) k2, (KPairTurn) k3, s1, s2);
+        }
+        if (res == null){
+            logger.log(Level.SEVERE, "Can''t process group: unknown combination! Pairs: {0}, {1}, {2}", new Object[]{k1.getName(), k2.getName(), k3.getName()});
+            return null;
         }
         res.setName(name);
         return res;
