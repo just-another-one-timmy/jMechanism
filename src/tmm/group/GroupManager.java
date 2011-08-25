@@ -282,7 +282,7 @@ public class GroupManager {
                     double distP = getConnectorsDist(c1, c2);
                     double distD = getConnectorsDistDescartes(c1, c2);
                     if (Math.abs(distP - distD) > Group.epsilon) {
-                        throw new Exception("testDistances fails on " + c1.getName() + " - " + c2.getName());
+                        throw new Exception("testDistances fails on " + c1.getName() + " - " + c2.getName()+" : distP = " + Double.toString(distP)+" distD = "+Double.toString(distD)+" difference = "+Double.toString(Math.abs(distP - distD)));
                     }
                 }
             }

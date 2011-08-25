@@ -14,7 +14,7 @@ import tmm.segment.*;
 public abstract class Group {
 
     private String name;
-    public static final double epsilon = 1e-10;
+    public static final double epsilon = 1e-5;
 
     public String getName() {
         return name;
