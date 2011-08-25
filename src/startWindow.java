@@ -17,7 +17,7 @@ public final class startWindow extends JFrame {
 
     public void buildMechanizm(String name) throws Exception {
 
-        new XMLWorker(cm, gm).loadFromFile("xmls/" + name + ".xml");
+        new XMLWorker(cm, gm).loadFromFile("xmls/old/" + name + ".xml");
 
         try {
             gm.calcNextStep();
@@ -54,9 +54,9 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] names = {"T_TTT_TTS_med"};
+       // String[] names = {"T_TTT_TTS_med"};
        // String[] names = {"T_TTT_analyze_true"};
-       // String[] names = {"T_TTT"};
+        String[] names = {"T_TTT"};
         
         for (String x : names) {
             startWindow s = new startWindow(x);

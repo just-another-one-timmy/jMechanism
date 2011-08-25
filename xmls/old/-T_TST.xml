@@ -1,0 +1,51 @@
+<Mechanism step_size="0.005">
+    <Segment name="Ground" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="s0c1" ro="0.3" phi="1.5708" />
+        <ConnectorTurn name="s0c2" ro="0" phi="0" />
+    </Segment>
+    cm.AddSegment("Ground", 10000, 0);
+    cm.AddConnectorTurnD("s0c1", "Ground", 0,0.835);
+    cm.AddConnectorTurnD("s0c2", "Ground", 0.0, 0);
+    
+    <Segment name="s1" mass="0" rot_inertia="2">
+        <ConnectorTurn name="s1cS" ro="0.1" phi="0" />
+        <ConnectorTurn name="s1c1" ro="0" phi="0" />
+        <ConnectorTurn name="s1c2" ro="0.2" phi="0" />
+    </Segment>
+     cm.AddSegment("s1");
+    cm.AddConnectorTurn("s1c1", "s1",0, 0);
+    cm.AddConnectorTurn("s1c2", "s1",0.2, pi/2);
+
+    
+    <Segment name="s2" mass="0" rot_inertia="9">
+        <ConnectorTurn name="s2cS" ro="0.2" phi="0" />
+        <ConnectorTurn name="s2c1" ro="0" phi="0" />
+        <ConnectorTurn name="s2c2" ro="0.5" phi="0" />
+    </Segment>
+      cm.AddSegment("s6");
+    cm.AddConnectorTurnD("s6c1", "s6", 0, 0);
+    cm.AddConnectorSlidingD("s6c2", "s6", 0.3, 0.4, 0);
+    <Segment name="s3" mass="280" rot_inertia="6">
+        <ConnectorTurn name="s3cS" ro="0.1" phi="0" />
+        <ConnectorTurn name="s3c1" ro="0" phi="0" />
+        <ConnectorTurn name="s3c2" ro="0.4" phi="0" />
+    </Segment>
+     cm.AddSegment("s7");
+    cm.AddConnectorTurnD("s7c1", "s7", 0, 0);
+    cm.AddConnectorSlidingD("s7c2", "s7", 0.1, -0.1, 0);
+
+    <KPairs>
+        <KPTurn name="A" c1_name="s1c2" c2_name="s2c1" />
+        <KPTurn name="B" c1_name="s2c2" c2_name="s3c2" />
+        <KPTurn name="C" c1_name="s3c1" c2_name="s0c2" />
+        <KPTurn name="O" c1_name="s0c1" c2_name="s1c1" />
+    </KPairs>
+    cm.AddKPTurn("O", "s0c2", "s1c1");
+    cm.AddKPTurn("F", "s1c2", "s6c1");
+    cm.AddKPSliding("M","s6c2","s7c2");
+    cm.AddKPTurn("H", "s7c1", "s0c1");
+    <Groups need_analyze="false">
+        <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
+        <Group2 kp1_name="C" kp2_name="B" kp3_name="A" s1_name="s3" s2_name="s2" sign1="1" />
+    </Groups>
+</Mechanism>
