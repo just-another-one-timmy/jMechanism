@@ -120,9 +120,7 @@ public abstract class Group {
         double num = Math.abs(A * x1 + B * y1 + C);
         double denum = Math.sqrt(A * A + B * B);
         res = num / denum;
-        if (C < 0) {
-            res = -res;
-        }
+    
 
         return res;
     }

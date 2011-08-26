@@ -1,6 +1,6 @@
 <Mechanism step_size="0.005" min="0" max="6.28" jump="true">
     <Segment name="Ground" mass="10000" rot_inertia="0">
-        <ConnectorTurn name="s0c1" ro="0.35" phi="1.5708" />
+        <ConnectorTurn name="s0c1" ro="0.35" phi="1.5707963267948966192313216916398" />
         <ConnectorTurn name="s0c2" ro="0" phi="0" />
         <ConnectorSliding name="s0c3" ro="0.316228" phi="-0.321751" alpha="1.5708" />
     </Segment>
@@ -37,6 +37,6 @@
     <Groups need_analyze="false">
         <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
         <Group2 kp1_name="C" kp2_name="B" kp3_name="A" s1_name="s3" s2_name="s2" sign1="1" />
-        <Group2 kp1_name="D" kp2_name="E" kp3_name="G" s1_name="s4" s2_name="s5" sign1="1" sign2="1" />
+        <Group2 kp1_name="D" kp2_name="E" kp3_name="G" s1_name="s4" s2_name="s5" sign1="-1" sign2="-1" />
     </Groups>
 </Mechanism>
