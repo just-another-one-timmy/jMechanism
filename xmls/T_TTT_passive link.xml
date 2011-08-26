@@ -1,0 +1,48 @@
+<!--
+тестовый механизм с пассивным звеном(s4). программа должна выдавать ошибку.
+т.е. для анализа необходимо устранить все пассивные звенья. 
+-->
+<Mechanism step_size="0.005">
+    <Segment name="Ground" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorTurn name="c2" ro="0.4" phi="0" />
+    </Segment>
+    <Segment name="s1" mass="0" rot_inertia="2">
+        <!--ConnectorTurn name="cS" ro="0.1" phi="0" /-->
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorTurn name="c2" ro="0.1" phi="0" />
+        <ConnectorTurn name="c3" ro="0.2" phi="0" />
+    
+    </Segment>
+    <Segment name="s2" mass="0" rot_inertia="9">
+        <!--ConnectorTurn name="cS" ro="0.0" phi="0" /-->
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorTurn name="c2" ro="0.4" phi="0" />
+    </Segment>
+    
+    <Segment name="s3" mass="0" rot_inertia="2">
+        <!--ConnectorTurn name="cS" ro="0.1" phi="0" /-->
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorTurn name="c2" ro="0.1" phi="0" />
+        <ConnectorTurn name="c3" ro="0.2" phi="0" />
+    </Segment>
+        
+    <Segment name="s4" mass="280" rot_inertia="6">
+        <!--ConnectorTurn name="cS" ro="0.1" phi="0" /-->
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorTurn name="c2" ro="0.4" phi="0" />
+    </Segment>
+    <KPairs>
+        <KPTurn name="O" c1_name="Ground.c1" c2_name="s1.c1" />
+        <KPTurn name="A" c1_name="s1.c3" c2_name="s2.c1" />
+        <KPTurn name="B" c1_name="s2.c2" c2_name="s3.c3" />
+        <KPTurn name="C" c1_name="s3.c1" c2_name="Ground.c2" />
+        
+        <KPTurn name="D" c1_name="s1.c2" c2_name="s4.c1" />
+        <KPTurn name="E" c1_name="s4.c2" c2_name="s3.c2" />
+       
+    </KPairs>
+    <Groups need_analyze="true">
+        <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
+    </Groups>
+</Mechanism>

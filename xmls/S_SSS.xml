@@ -1,0 +1,40 @@
+<!--
+механизм для тестирования невозможности сборать 
+механизм с группой из 3 поступательных пар.
+ошибка должна возникать в анализе графа, как
+исключительный случай. 
+расчет и визуализация невозможны!
+-->
+<Mechanism step_size="0.005" min="0" max="0.25" jump="false">
+    <Segment name="Ground" mass="1000" rot_inertia="1000">
+        <ConnectorSliding name="c1" ro="0" phi="0" alpha="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="1.57" />
+    </Segment>
+    
+    <Segment name="s1" mass="0" rot_inertia="2">
+        <ConnectorSliding name="c1" ro="0" phi="0" alpha="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="1.57" />
+    </Segment>
+    
+    <Segment name="s2" mass="0" rot_inertia="2">
+        <ConnectorSliding name="c1" ro="0" phi="0" alpha="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="1.57" />
+    </Segment>
+    
+    <Segment name="s3" mass="0" rot_inertia="2">
+        <ConnectorSliding name="c1" ro="0" phi="0" alpha="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="1.57" />
+    </Segment>
+    
+    <KPairs>
+        <KPSliding name="O" c1_name="Ground.c2" c2_name="s1.c1" />
+        <KPSliding name="A" c1_name="s1.c2" c2_name="s2.c1" />
+        <KPSliding name="B" c1_name="s2.c2" c2_name="s3.c1" />
+        <KPSliding name="C" c1_name="s3.c2" c2_name="Ground.c1" />
+        
+    </KPairs>
+    <Groups need_analyze="true">
+         <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
+    
+    </Groups>
+</Mechanism>
