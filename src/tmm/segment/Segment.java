@@ -16,14 +16,14 @@ import tmm.tf.*;
 public class Segment {
 
     private ConnectorTurn cmass, cpolus;
-    private List<Connector> connectors;
+    private Map<String, Connector> connectors;
     private List<Force> forces;
     private String name;
     private double mass, rotInertia;
     private TFTurn turn = new TFTurn();
 
     public Segment() {
-        connectors = new LinkedList<Connector>();
+        connectors = new HashMap<String, Connector>();
         forces = new LinkedList<Force>();
     }
 
@@ -78,8 +78,12 @@ public class Segment {
         return turn;
     }
 
-    public List<Connector> getConnectors() {
+    public Map<String, Connector> getConnectorsMap() {
         return connectors;
+    }
+    
+    public Collection<Connector> getConnectors(){
+        return connectors.values();
     }
 
     public List<Force> getForces() {
@@ -87,14 +91,22 @@ public class Segment {
     }
 
     public void addConnector(Connector c) {
-        connectors.add(c);
+        connectors.put(c.getName(), c);
     }
 
     public void deleteConnector(Connector c) {
-        connectors.remove(c);
+        connectors.remove(c.getName());
+    }
+
+    public void deleteConnectorByName(String cname) {
+        connectors.remove(cname);
     }
 
     public void deleteForce(Force f) {
         forces.remove(f);
+    }
+    
+    public Connector getConnector(String cname){
+        return connectors.get(cname);
     }
 }

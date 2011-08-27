@@ -4,6 +4,7 @@
  */
 package tmm.kpair;
 
+import java.util.logging.Logger;
 import tmm.connector.*;
 import tmm.force.*;
 import tmm.tf.*;
@@ -13,6 +14,7 @@ import tmm.tf.*;
  * @author jtimv
  */
 public class KPairSlide extends KPair {
+    private static final Logger logger = Logger.getLogger(KPairTurn.class.getName());
 
     private ConnectorSlide c1, c2;
     private TFTurn angle = new TFTurn();
@@ -32,7 +34,21 @@ public class KPairSlide extends KPair {
         return c2;
     }
 
-    public KPairSlide(String name, ConnectorSlide c1, ConnectorSlide c2) {
+    public KPairSlide(String name, ConnectorSlide c1, ConnectorSlide c2) throws Exception {
+        
+        if (c1==null){
+            logger.severe("c1==null in KPairSlide constructor");
+            throw new Exception("c1==null in KPairSlide constructor");
+        }
+        if (c2==null){
+            logger.severe("c2==null in KPairSlide constructor");
+            throw new Exception("c1==null in KPairSlide constructor");
+        }
+        if (name==null){
+            logger.severe("name==null in KPairSlide constructor");            
+            throw new Exception("c1==null in KPairSlide constructor");
+        }
+
         this.name = name;
         this.c1 = c1;
         this.c2 = c2;

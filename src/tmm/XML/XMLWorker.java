@@ -92,7 +92,11 @@ public class XMLWorker extends DefaultHandler {
             return;
         }
         if (ELEMENT_NAME_KPAIR_TURN.equals(qName) || ELEMENT_NAME_KPAIR_SLIDE.equals(qName)) {
-            processElementKPair(atts, qName);
+            try {
+                processElementKPair(atts, qName);
+            } catch (Exception ex) {
+                Logger.getLogger(XMLWorker.class.getName()).log(Level.SEVERE, "Can't parse file. Error inside element "+qName, ex);
+            }
             return;
         }
         if (ELEMENT_NAME_GROUPS.equals(qName)) {
@@ -167,7 +171,7 @@ public class XMLWorker extends DefaultHandler {
     private void processElementKPairs(Attributes atts) {
     }
 
-    private void processElementKPair(Attributes atts, String elementName) {
+    private void processElementKPair(Attributes atts, String elementName) throws Exception {
         String name = getV(ATTR_NAME_NAME, atts, ""),
                 c1_name = getV(ATTR_NAME_C1_NAME, atts, ""),
                 C2_name = getV(ATTR_NAME_C2_NAME, atts, "");

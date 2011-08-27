@@ -54,7 +54,7 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] names = {"old/T_TTT_TTS_med"};
+        String[] names = {"T_TTT_TTS_med"};
        // String[] names = {"T_TTT_analyze_true"};
        // String[] names = {"T_TTT"};
         
