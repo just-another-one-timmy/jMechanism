@@ -1,3 +1,6 @@
+<!--
+кривошипноползунный механизм
+-->
 <Mechanism step_size="0.005">
     <Segment name="Ground" mass="1000" rot_inertia="1000">
         <ConnectorTurn name="c1" ro="0" phi="-0" />
