@@ -1,0 +1,83 @@
+<!--
+book:985
+
+кулисно-рычажный тангенсный механизм
+T 4*STS
+
+-->
+<Mechanism step_size="0.005" min="0" max="1" jump="false">
+    <Segment name="Ground" mass="10000" rot_inertia="0">
+        <ConnectorTurn name="cO" ro="0" phi="0" />
+        <ConnectorSliding name="cK" ro="0.4" phi="0" alpha="-1.5708" />
+        <ConnectorSliding name="cL" ro="0.4" phi="1.5708" alpha="0" />
+        <ConnectorSliding name="cM" ro="0.4" phi="3.1415" alpha="1.5708" />
+        <ConnectorSliding name="cN" ro="0.4" phi="-1.5708" alpha="3.1415" />
+
+    </Segment>
+    <Segment name="s1" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="cO" ro="0" phi="0" />
+        <ConnectorSliding name="cA" ro="0" phi="0" alpha="0" />
+        <ConnectorSliding name="cB" ro="0" phi="0" alpha="1.57" />
+        <ConnectorSliding name="cC" ro="0" phi="0" alpha="3.14" />
+        <ConnectorSliding name="cD" ro="0" phi="0" alpha="4.71" />
+    </Segment>
+    
+    <Segment name="s2" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    <Segment name="s3" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    <Segment name="s4" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    <Segment name="s5" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    
+    <Segment name="s6" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    <Segment name="s7" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    <Segment name="s8" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    <Segment name="s9" mass="1000" rot_inertia="1000">
+        <ConnectorTurn name="c1" ro="0" phi="0" />
+        <ConnectorSliding name="c2" ro="0" phi="0" alpha="0" />
+    </Segment>
+    
+    
+    <KPairs>
+        <KPTurn name="O" c1_name="Ground.cO" c2_name="s1.cO" />
+        
+        <KPSliding name="A" c1_name="s1.cA" c2_name="s2.c2" />
+        <KPSliding name="B" c1_name="s1.cB" c2_name="s3.c2" />
+        <KPSliding name="C" c1_name="s1.cC" c2_name="s4.c2" />
+        <KPSliding name="D" c1_name="s1.cD" c2_name="s5.c2" />
+        
+        <KPTurn name="E" c1_name="s2.c1" c2_name="s6.c1" />
+        <KPTurn name="F" c1_name="s3.c1" c2_name="s7.c1" />
+        <KPTurn name="G" c1_name="s4.c1" c2_name="s8.c1" />
+        <KPTurn name="H" c1_name="s5.c1" c2_name="s9.c1" />
+        
+        <KPSliding name="K" c1_name="s6.c2" c2_name="Ground.cK" />
+        <KPSliding name="L" c1_name="s7.c2" c2_name="Ground.cL" />
+        <KPSliding name="M" c1_name="s8.c2" c2_name="Ground.cM" />
+        <KPSliding name="N" c1_name="s9.c2" c2_name="Ground.cN" />
+        
+    </KPairs>
+    <Groups need_analyze="true">
+        <Group1 kp_name="O" s1_name="Ground" s2_name="s1" />
+        
+    </Groups>
+</Mechanism>
