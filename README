@@ -1,3 +1,12 @@
 jMechanizm
 
 This is a home made project for vizualizing flat mechanisms.
+
+You can compile project by typing command:
+ant jar
+
+or just:
+ant
+
+when you are in root directory of the project
+.
