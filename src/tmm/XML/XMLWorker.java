@@ -1,22 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.XML;
 
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 import tmm.compmanager.*;
 import tmm.group.*;
 
-/**
- *
- * @author jtimv
- */
 public class XMLWorker extends DefaultHandler {
 
     private static final Logger logger = Logger.getLogger(XMLWorker.class.getName());
@@ -95,7 +86,7 @@ public class XMLWorker extends DefaultHandler {
             try {
                 processElementKPair(atts, qName);
             } catch (Exception ex) {
-                Logger.getLogger(XMLWorker.class.getName()).log(Level.SEVERE, "Can't parse file. Error inside element "+qName, ex);
+                Logger.getLogger(XMLWorker.class.getName()).log(Level.SEVERE, "Can't parse file. Error inside element " + qName, ex);
             }
             return;
         }
@@ -128,8 +119,8 @@ public class XMLWorker extends DefaultHandler {
     public void loadFromFile(String filename) throws ParserConfigurationException, SAXException, IOException, Exception {
         try {
             cm.setBusy(true);
-            if (! (new File(filename).exists())){
-                throw new Exception("File "+filename+" doesn't exist. Can't load it.");
+            if (!(new File(filename).exists())) {
+                throw new Exception("File " + filename + " doesn't exist. Can't load it.");
             }
             SAXParserFactory.newInstance().newSAXParser().parse(filename, new XMLWorker(cm, gm));
             cm.createMissingTFs();
@@ -192,8 +183,7 @@ public class XMLWorker extends DefaultHandler {
             try {
                 gm.analyze();
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                ex.printStackTrace();
+                logger.log(Level.SEVERE, "Can't create Group2. Check your XML file.", ex);
             }
         }
     }

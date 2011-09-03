@@ -25,7 +25,7 @@ public final class startWindow extends JFrame {
             logger.log(Level.SEVERE, "Can't first calcNextStep()!", exception);
         }
 
-        t = new Timer(10, new ActionListener() {
+        t = new Timer(2, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,6 +42,7 @@ public final class startWindow extends JFrame {
 
     public startWindow(String name) throws Exception {
         viewPanel vp = new viewPanel();
+        vis.setUseNewCode(false);
         vis.setGraphics((Graphics2D) vp.getGraphics());
         vp.setVisualizer(vis);
         vis.setScalesAndTranslations(400.0, 400.0, 150, 200);

@@ -1,19 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.visual;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.*;
 import tmm.compmanager.*;
 
-/**
- *
- * @author jtimv
- */
 public class J2dVisualizer extends Visualizer {
 
     private Graphics2D g;

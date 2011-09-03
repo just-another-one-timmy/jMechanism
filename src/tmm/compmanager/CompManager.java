@@ -7,10 +7,6 @@ import tmm.kpair.*;
 import tmm.segment.*;
 import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public class CompManager {
 
     private Map<String, Segment> segments;

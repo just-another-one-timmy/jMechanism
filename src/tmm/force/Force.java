@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.force;
 
-import tmm.connector.Connector;
+import tmm.connector.*;
 import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public class Force {
 
     private String name;

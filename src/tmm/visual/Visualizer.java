@@ -1,27 +1,27 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.visual;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Color;
+import java.util.logging.*;
 import tmm.compmanager.*;
 import tmm.connector.*;
 import tmm.kpair.*;
 import tmm.segment.*;
+import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public abstract class Visualizer {
 
     protected boolean debugMode;
     protected CompManager cm;
     double scaleX = 1.0, scaleY, translateX = 0, translateY = 0;
     double h;
-    private static final Logger logger = Logger.getLogger(Visualizer.class.getName());    
+    private static final Logger logger = Logger.getLogger(Visualizer.class.getName());
+    //const R=3;a=10;b=20;l=40;
+    private static double R = 3, A = 10, B = 20, L = 40;
+    boolean useNewCode = false;
+
+    public void setUseNewCode(boolean x) {
+        useNewCode = x;
+    }
 
     public Visualizer(CompManager c) {
         cm = c;
@@ -50,8 +50,8 @@ public abstract class Visualizer {
         double x = cs.getLinear0().getX().getValue(0);
         double y = cs.getLinear0().getY().getValue(0);
 
-        logger.fine("Drawing " + cs.getName() + " at: " + x + "  " + y);
-        
+        logger.log(Level.FINE, "Drawing {0} at: {1}  {2}", new Object[]{cs.getName(), x, y});
+
         double phi = cs.getTurn().getPhi().getValue(0);
         double len = 10;
         double delta_x = len * Math.cos(phi);
@@ -69,7 +69,7 @@ public abstract class Visualizer {
         //drawRect(x1, h - y, x2, y2);
 
         drawSquare(x, h - y, 5, 0x00FF00);
-        
+
         if (!sname.equals("Ground")) {
             drawLine(pol_x, h - pol_y, x, h - y, 1, 0x00BBFF);
         }
@@ -100,6 +100,10 @@ public abstract class Visualizer {
     }
 
     public void draw() throws Exception {
+        if (useNewCode) {
+            drawNew();
+            return;
+        }
         if (cm.isBusy()) {
             return;
         }
@@ -117,6 +121,90 @@ public abstract class Visualizer {
         }
         for (KPair k : cm.getKPairs()) {
             drawKPair(k);
+        }
+    }
+
+    public void drawNew() throws Exception {
+        if (!cm.isBusy()) {
+            drawSegments();
+            drawKPairs();
+        }
+    }
+
+    /* for(segments)
+     * if (segment!=ground)
+     *      line(CMass,polus);
+     */
+    void drawSegments() throws Exception {
+        for (Segment s : cm.getSegments()) {
+            // Hm..? Doesn't look good for me. :(
+            if (!s.getName().equals("Ground")) {
+                drawLineBetweenConnectors(s.getCMass(), s.getCPolus());
+            }
+        }
+    }
+
+    /*
+     * for (kpairs)
+     * {
+     * if (kpair.c1.segment != ground)
+     *      line(kpair,kpair.c1.segment.polus);
+     * if (kpair.c2.segment != ground)
+    line(kpair,kpair.c2.segment.polus);
+     * switch(kpair.type)
+     *  {
+     *      case TURN :
+     *          if ((kpair.c1.segment == ground)
+     *          ||   kpair.c2.segment == ground))
+     *          drawGroundTurn(kpair);  // 
+     *          circle(kpair,R);  // кружок
+     *           
+     *      case SLIDE:
+     *      alfa = kpair.getAngle();
+     *      if (kpair.c1.segment == ground)
+     *              drawGroundSlideIn(kpair);    
+     *        else 
+     *              line_pol(kpair,alfa,l); // худая палка
+     *
+     *          if (kpair.c2.segment == ground)
+     *              drawGroundSlideOut(kpair);   
+     *         esle 
+     *              rect_pol(kpair,alfa,a,b);    // толстая палка
+     * 
+     *      }
+     * }
+     */
+    void drawKPairs() {
+        for (KPair k : cm.getKPairs()) {
+            if (!k.getC1().getSegment().getName().equals("Ground")) {
+                //
+            }
+            if (!k.getC2().getSegment().getName().equals("Ground")) {
+                //
+            }
+            switch (k.getType()) {
+                case KPAIR_TYPE_TURN: {
+                    if (k.getC1().getSegment().getName().equals("Ground")
+                            || k.getC2().getSegment().getName().equals("Ground")) {
+                        drawGroundTurn(k); // triangle
+                    }
+                    circleForKPair(k, R);  // circle                    
+                    break;
+                }
+                case KPAIR_TYPE_SLIDE: {
+                    if (k.getC1().getSegment().getName().equals("Ground")) {
+                        drawGroundSlideIn(k);
+                    } else {
+                        linePol(k, ((KPairSlide) k).getAngle(), L);
+                    }
+                    if (k.getC2().getSegment().getName().equals("Ground")) {
+                        drawGroundSlideIn(k);
+                    } else {
+                        rectPol(k, ((KPairSlide) k).getAngle(), A, B);
+                    }
+                    break;
+                }
+            }
         }
     }
 
@@ -139,6 +227,52 @@ public abstract class Visualizer {
         this.translateY = translateY;
     }
 
+    void drawLinePol(double ro1, double phi1, double ro2, double phi2) {
+        //
+    }
+
+    void drawLinePolAngle(double ro, double phi, double alpha, double l) {
+        //
+    }
+
+    void drawGroundTurn(KPair k) {
+    }
+
+    void circleForKPair(KPair k, double R) {
+    }
+
+    void drawLineBetweenConnectors(Connector c1, Connector c2) throws Exception {
+        double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+        switch (c1.getType()) {
+            case CONNECTOR_TYPE_SLIDE: {
+                x1 = ((ConnectorSlide) c1).getLinear0().getX().getValue(0);
+                y1 = ((ConnectorSlide) c1).getLinear0().getY().getValue(0);
+                break;
+            }
+            case CONNECTOR_TYPE_TURN: {
+                x1 = ((ConnectorTurn) c1).getLinear().getX().getValue(0);
+                y1 = ((ConnectorTurn) c1).getLinear().getY().getValue(0);
+                break;
+            }
+        }
+        switch (c2.getType()) {
+            case CONNECTOR_TYPE_SLIDE: {
+                x2 = ((ConnectorSlide) c2).getLinear0().getX().getValue(0);
+                y2 = ((ConnectorSlide) c2).getLinear0().getY().getValue(0);
+                break;
+            }
+            case CONNECTOR_TYPE_TURN: {
+                x2 = ((ConnectorTurn) c2).getLinear().getX().getValue(0);
+                y2 = ((ConnectorTurn) c2).getLinear().getY().getValue(0);
+                break;
+            }
+        }
+        drawLine(x1, y1, x2, y2, 2, 0x00FF00);
+    }
+
+    void drawGroundSlideIn(KPair k) {
+    }
+
     protected abstract void drawCircle(double x, double y, int radius, int color, int outline, int outlineColor);
 
     protected abstract void drawLine(double x1, double y1, double x2, double y2, int thickness, int color);
@@ -146,68 +280,45 @@ public abstract class Visualizer {
     protected abstract void drawText(double x, double y, String text);
 
     protected abstract void drawSquare(double x, double y, int side, int color);
+
+    private void linePol(KPair k, TFTurn angle, double L) {
+//        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void rectPol(KPair k, TFTurn angle, double A, double B) {
+//       throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
 
-/*const R=3;a=10;b=20;l=40;
+/*
  * 
- * for (kpairs)
- * {
- * if (kpair.c1.segment != ground)
- *      line(kpair,kpair.c1.segment.polus);
- * if (kpair.c2.segment != ground)
-        line(kpair,kpair.c2.segment.polus);
- * switch(kpair.type)
- *  {
- *      case TURN :
- *          if ((kpair.c1.segment == ground)
- *          ||   kpair.c2.segment == ground))
- *          drawGroundTurn(kpair);  // 
- *          circle(kpair,R);  // кружок
- *           
- *      case SLIDE:
-     *      alfa = kpair.getAngle();
-     *      if (kpair.c1.segment == ground)
- *              drawGroundSlideIn(kpair);    
- *  *       else 
- *              line_pol(kpair,alfa,l); // худая палка
-            
- *          if (kpair.c2.segment == ground)
- *              drawGroundSlideOut(kpair);   
- *  *       esle 
- *              rect_pol(kpair,alfa,a,b);    // толстая палка
-     * 
- *      }
- * }
- * for(segments)
- * if (segment!=ground)
- *      line(CMass,polus);
  * 
  * line_pol рисует палку наклоненную на угол alfa, и проходящую через точку с координатами 
  * kpair
 circle and rect закрашивают область внутри себя.
-*/
+ */
 
- /*  todo
+/*  todo
  * еще на будущее надо предусмотреть возможность прорисовать 
  * одну группу или одно звено, или одну скорость/ускорение/силу . т.е. возможно нужно создать какие-то множества элементов
  * типа Visible. это для генератора отчетов. 
  * 
  */
 
- /* drawGroundTurn(kpair)
+/* drawGroundTurn(kpair)
  * {
  * 
  *   o
  *  /_\
  * ////
  * }
- 
+
  *drawGroundSlideIn(kpair);
  * {
  * ________________
  * ////
  * }
- drawGroundSlideOut(kpair);
+drawGroundSlideOut(kpair);
  *{
  * ////////
  * --------
@@ -215,4 +326,3 @@ circle and rect закрашивают область внутри себя.
  * ////////
  *}
  */
-

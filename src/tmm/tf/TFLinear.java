@@ -1,19 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.tf;
 
-/**
- *
- * @author jtimv
- */
 public class TFLinear {
 
     private TF x = new TF(), y = new TF();
 
     public TFLinear() {
-        x = new TF();   
+        x = new TF();
         y = new TF();
     }
 

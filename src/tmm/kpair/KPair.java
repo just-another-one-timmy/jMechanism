@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.kpair;
 
 import tmm.connector.*;
 import tmm.force.*;
 import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public abstract class KPair {
 
     protected Force R1, R2;

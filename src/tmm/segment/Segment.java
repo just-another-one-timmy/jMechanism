@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.segment;
 
 import java.util.*;
@@ -9,10 +5,6 @@ import tmm.connector.*;
 import tmm.force.*;
 import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public class Segment {
 
     private ConnectorTurn cmass, cpolus;

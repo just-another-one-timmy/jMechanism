@@ -1,8 +1,7 @@
 package tmm.connector;
 
-import tmm.segment.Segment;
-import tmm.tf.TFLinear;
-import tmm.tf.TFTurn;
+import tmm.segment.*;
+import tmm.tf.*;
 
 public class ConnectorSlide extends Connector {
 

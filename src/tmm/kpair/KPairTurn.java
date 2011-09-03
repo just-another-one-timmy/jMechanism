@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.kpair;
 
 import java.util.logging.Logger;
 import tmm.connector.*;
 import tmm.force.*;
 
-/**
- *
- * @author jtimv
- */
 public class KPairTurn extends KPair {
     private static final Logger logger = Logger.getLogger(KPairTurn.class.getName());
 

@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.tf;
 
-/**
- *
- * @author jtimv
- */
 // TODO: здесь проверить, может я зря написал с константой TF_COUNT
 public class TF {
 
