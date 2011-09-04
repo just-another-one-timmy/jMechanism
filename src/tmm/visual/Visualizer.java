@@ -10,9 +10,9 @@ public abstract class Visualizer {
     protected boolean drawSegments = true;
     protected boolean drawKPairs = true;
     protected CompManager cm = null;
-    private double R = 3, A = 10, B = 20, L = 0.2;
+    private double R = 3, A = .03, B = .03, L = 0.2;
     protected double GROUND_TRIANGLE_X_DIFF = .075, GROUND_TRIANGLE_Y_DIFF = .1;
-    protected double GROUND_TRIANGLE_STRIKE_X_DIFF = .015,
+    protected double GROUND_TRIANGLE_STRIKE_X_DIFF = -.015,
             GROUND_TRIANGLE_STRIKE_Y_DIFF = .025,
             // MUST BE > 1 
             GROUND_TRIANGLE_STRIKES_COUNT = 5;
@@ -22,6 +22,8 @@ public abstract class Visualizer {
     protected static int COLOR_GROUND_TRIANGLE_STROKE = 0x00FF00;
     protected static int COLOR_GROUND_TRIANGLE_FILL = 0x005500;
     protected static int COLOR_GROUND_TRIANGLE_STRIKES = 0x225500;
+    protected static int COLOR_KPAIR_SLIDE_RECT_FILL = 0x550000;
+    protected static int COLOR_KPAIR_SLIDE_RECT_STROKE = 0x882233;
 
     public void draw() throws Exception {
         drawKPairs();
@@ -119,8 +121,12 @@ public abstract class Visualizer {
          */
     }
 
-    private void drawRectPol(KPairSlide k, TFTurn angle, double A, double B) {
-        //throw new UnsupportedOperationException("Not yet implemented");
+    private void drawRectPol(KPairSlide k, TFTurn angle, double A, double B) throws Exception {
+        setColor(COLOR_KPAIR_SLIDE_RECT_STROKE);
+        setBgColor(COLOR_KPAIR_SLIDE_RECT_FILL);
+        drawRotatedRect(k.getLinear().getX().getValue(0),
+                k.getLinear().getY().getValue(0),
+                A, B, angle.getPhi().getValue(0));
     }
 
     private void drawGroundSlideOut(KPairSlide k) {
@@ -136,6 +142,8 @@ public abstract class Visualizer {
     public abstract void setBgColor(int bgColor) throws Exception;
 
     public abstract void drawPolygon(double[] points) throws Exception;
+
+    public abstract void drawRotatedRect(double xc, double yc, double w, double h, double phi) throws Exception;
 
     public void setDebugMode(boolean debugMode) {
         this.debugMode = debugMode;

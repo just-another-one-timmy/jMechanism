@@ -53,4 +53,9 @@ public class ProcessingV extends Visualizer {
         }
         parent.endShape(PApplet.CLOSE);
     }
+
+    @Override
+    public void drawRotatedRect(double xc, double yc, double w, double h, double phi) throws Exception {
+
+    }
 }
