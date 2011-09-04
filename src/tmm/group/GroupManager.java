@@ -6,20 +6,19 @@ import tmm.connector.*;
 import tmm.kpair.KPair;
 import tmm.segment.*;
 
-/**
- *
- * @author jtimv
- */
 public class GroupManager {
 
     private double stepSize, minGC, maxGC;
     private boolean jump, moveForward;
     private CompManager cm;
-    private Set<Segment> blackVertexes, newBlackVertexes; // to escape ConcurrentModificationException
+
+    // to escape ConcurrentModificationException
+    private Set<Segment> blackVertexes, newBlackVertexes;
     private Set<KPair> blackEdges;
     private Map<Segment, Set<KPair>> edges;
     private List<Group> groups;
-    private boolean doSelfTest = true; // Do we want to check segments lengths and angles?
+    // Do we want to check segments lengths and angles?
+    private boolean doSelfTest = true;
 
     private void addSecondGroup(KPair k1, KPair k2, KPair k3, Segment s1, Segment s2) throws Exception {
         groups.add(GroupBuilder.createGroup("(" + s1.getName() + "," + s2.getName() + ")", k1, k2, k3, s1, s2));

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import tmm.connector.*;
@@ -9,10 +5,6 @@ import tmm.kpair.*;
 import tmm.segment.*;
 import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public class GroupTTS extends Group2 {
 
     private double lab, h;
@@ -30,20 +22,20 @@ public class GroupTTS extends Group2 {
 
 
         if (!s0cC.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupTTS: s0cC.getTurn().phi not calculated");
+            throw new Exception("GroupTTS: s0cC.getTurn().getPhi().isCalculated(0) == false");
         }
         if (!s0cC.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupTTS: s0cC.getLinear0().x not calculated");
+            throw new Exception("GroupTTS: s0cC.getLinear0().getX().isCalculated(0) == false");
         }
         if (!s0cC.getLinear0().getY().isCalculated(0)) {
-            throw new Exception("GroupTTS: s0cC.getLinear0().y not calculated");
+            throw new Exception("GroupTTS: s0cC.getLinear0().getY().isCalculated(0) == false");
         }
 
         if (!s1cA.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTTS: s1cA.getLinear().x not calculated");
+            throw new Exception("GroupTTS: s1cA.getLinear().getX().isCalculated(0) == false");
         }
         if (!s1cA.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTTS: s1cA.getLinear().y not calculated");
+            throw new Exception("GroupTTS: s1cA.getLinear().getY().isCalculated(0) == false");
         }
 
         double phiN = s0cC.getTurn().getPhi().getValue(0);
@@ -57,11 +49,11 @@ public class GroupTTS extends Group2 {
         double yB;
         
         if (Math.abs(Math.cos(phiN)) < epsilon) {
-            // if axis vertical
+            // if axis is vertical
             xB = (xN - h);
             b1 = Math.pow(lab, 2.0) - Math.pow(xB - xA, 2.0);
             if (b1 < 0.0) {
-                // Cbopku HET
+                // impossible to build mechanism
                 throw new Exception("GroupTTS: b1<0 ");
             }
             yB = (yA + (double) j1 * Math.sqrt(b1));
@@ -78,7 +70,7 @@ public class GroupTTS extends Group2 {
             b1 = Math.pow(p, 2.0) - q0 / Math.pow(Math.cos(phiN), 2.0);
 
             if (b1 < 0.0) {
-                // Cbopku HET
+                // impossible to build mechanism
                 throw new Exception("GroupTTS: b1<0 ");
             }
 
@@ -119,7 +111,7 @@ public class GroupTTS extends Group2 {
         } else if (ct2.getSegment() == s1) {
             s1cA = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair "+A.getName()+" not connected to segment "+s1.getName());
+            throw new Exception("GroupTTS: KPair "+A.getName()+" is not connected to segment "+s1.getName());
         }
 
         ct1 = B.getC1();
@@ -129,7 +121,7 @@ public class GroupTTS extends Group2 {
         } else if (ct2.getSegment() == s1) {
             s1cB = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair "+B.getName()+" not connected to segment "+s1.getName());
+            throw new Exception("GroupTTS: KPair "+B.getName()+" is not connected to segment "+s1.getName());
         }
 
         if (ct1.getSegment() == s2) {
@@ -137,7 +129,7 @@ public class GroupTTS extends Group2 {
         } else if (ct2.getSegment() == s2) {
             s2cB = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair "+B.getName()+" not connected to segment "+s2.getName());
+            throw new Exception("GroupTTS: KPair "+B.getName()+" is not connected to segment "+s2.getName());
         }
 
         ConnectorSlide cs1 = C.getC1(), cs2 = C.getC2();
@@ -148,7 +140,7 @@ public class GroupTTS extends Group2 {
             s2cC = cs2;
             s0cC = cs1;
         } else {
-            throw new Exception("GroupTTS: KPair "+C.getName()+" not connected to segment "+s2.getName());
+            throw new Exception("GroupTTS: KPair "+C.getName()+" is not connected to segment "+s2.getName());
         }
 
         lab = getDist(s1cA, s1cB);

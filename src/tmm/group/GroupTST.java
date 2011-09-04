@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import tmm.connector.*;
@@ -9,10 +5,6 @@ import tmm.kpair.*;
 import tmm.segment.*;
 import tmm.tf.*;
 
-/**
- *
- * @author jtimv
- */
 public class GroupTST extends Group2 {
 
     private KPairTurn A, C;
@@ -26,16 +18,16 @@ public class GroupTST extends Group2 {
     @Override
     public void calcTF0() throws Exception {
         if (!s1cA.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTST: s1cA.getLinear().x not calculated");
+            throw new Exception("GroupTST: s1cA.getLinear().getX().isCalculated(0) == false");
         }
         if (!s1cA.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTST: s1cA.getLinear().y not calculated");
+            throw new Exception("GroupTST: s1cA.getLinear().getY().isCalculated(0) == false");
         }
         if (!s2cC.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTST: s2cC.getLinear().x not calculated");
+            throw new Exception("GroupTST: s2cC.getLinear().getX().isCalculated(0) == false");
         }
         if (!s2cC.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTST: s2cC.getLinear().y not calculated");
+            throw new Exception("GroupTST: s2cC.getLinear().getY().isCalculated(0) == false");
         }
 
 
@@ -46,8 +38,9 @@ public class GroupTST extends Group2 {
         double yC = s2cC.getLinear().getY().getValue(0);
 
         lac = Math.sqrt(Math.pow(xA - xC, 2.0) + Math.pow(yA - yC, 2));
-        sin_b = (h1 + h2) / lac; // sin beta
-        b = Math.asin(sin_b); // ##
+        // sin beta
+        sin_b = (h1 + h2) / lac;
+        b = Math.asin(sin_b); 
         AC.getPhi().setValue(Math.atan2(yA - yC, xA - xC), 0);
         B.getAngle().getPhi().setValue(AC.getPhi().getValue(0) - b, 0);
 
@@ -79,7 +72,7 @@ public class GroupTST extends Group2 {
         } else if (ct2.getSegment() == s1) {
             s1cA = ct2;
         } else {
-            throw new Exception("GroupTST: KPair A not connected to s1");
+            throw new Exception("GroupTST: KPair A is not connected to s1");
         }
 
         ConnectorSlide cs1 = B.getC1(), cs2 = B.getC2();
@@ -88,7 +81,7 @@ public class GroupTST extends Group2 {
         } else if (cs2.getSegment() == s1) {
             s1cB = cs2;
         } else {
-            throw new Exception("GroupTST: KPair B not connected to s1");
+            throw new Exception("GroupTST: KPair B is not connected to s1");
         }
 
         if (cs1.getSegment() == s2) {
@@ -96,7 +89,7 @@ public class GroupTST extends Group2 {
         } else if (cs2.getSegment() == s2) {
             s2cB = cs2;
         } else {
-            throw new Exception("GroupTST: KPair B not connected to s2");
+            throw new Exception("GroupTST: KPair B is not connected to s2");
         }
         ct1 = C.getC1();
         ct2 = C.getC2();
@@ -107,7 +100,7 @@ public class GroupTST extends Group2 {
         } else if (ct2.getSegment() == s2) {
             s2cC = ct2;
         } else {
-            throw new Exception("GroupTTS: KPair C not connected to s2");
+            throw new Exception("GroupTTS: KPair C is not connected to s2");
         }
 
         h1 = -getHeight(s1cA, s1cB);

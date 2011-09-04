@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import tmm.segment.*;
 
-/**
- *
- * @author jtimv
- */
 public abstract class Group2 extends Group {
 
     protected int j1, j2;

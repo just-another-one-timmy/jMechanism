@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import tmm.connector.*;
 import tmm.segment.*;
 
-/**
- *
- * @author jtimv
- */
 public abstract class Group {
 
     private String name;
@@ -26,7 +18,7 @@ public abstract class Group {
 
     public void calcTF0Segment(Segment s, ConnectorTurn c) throws Exception {
         if (!s.getTFTurn().getPhi().isCalculated(0)) {
-            throw new Exception("calcTF0Segment: s.getTFTurn().getPhi().isCalculated(0)");
+            throw new Exception("calcTF0Segment: s.getTFTurn().getPhi().isCalculated(0) == false");
         }
         double x = c.getLinear().getX().getValue(0),
                 y = c.getLinear().getY().getValue(0),
@@ -59,7 +51,7 @@ public abstract class Group {
                     }
 
                     if (cs.getTurn() == null) {
-                        throw new Exception("CalcTF0Segment: ConnectorSliding doesn't have TurnTF");
+                        throw new Exception("CalcTF0Segment: ConnectorSliding ["+ cs.getName() + "] doesn't have TurnTF");
                     }
 
                     double phi0c = s.getTFTurn().getPhi().getValue(0);

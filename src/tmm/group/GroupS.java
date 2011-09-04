@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import tmm.connector.*;
 import tmm.kpair.*;
 import tmm.segment.*;
 
-/**
- *
- * @author jtimv
- */
 public class GroupS extends Group1 {
 
     private ConnectorSlide s0c0, s1c0;

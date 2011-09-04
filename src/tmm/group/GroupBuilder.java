@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import java.util.logging.Level;
@@ -9,10 +5,6 @@ import java.util.logging.Logger;
 import tmm.kpair.*;
 import tmm.segment.*;
 
-/**
- *
- * @author jtimv
- */
 public class GroupBuilder {
     private static final Logger logger = Logger.getLogger(GroupBuilder.class.getName());
 

@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tmm.group;
 
 import tmm.connector.*;
 import tmm.kpair.*;
 import tmm.segment.*;
 
-/**
- *
- * @author jtimv
- */
 public class GroupSTS extends Group2 {
 
     private double h1, h2;
@@ -26,25 +18,25 @@ public class GroupSTS extends Group2 {
     @Override
     public void calcTF0() throws Exception {
         if (!s0cA.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cA->turn->phi not calculated");
+            throw new Exception("GroupSTS: s0cA.getTurn().getPhi().isCalculated(0) == false");
         }
         if (!s0cC.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cC->turn->phi not calculated");
+            throw new Exception("GroupSTS: s0cC.getTurn().getPhi().isCalculated(0) == false");
         }
 
         if (!s0cA.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cA->linear0.x not calculated");
+            throw new Exception("GroupSTS: s0cA.getLinear0().getX().isCalculated(0) == false");
         }
         if (!s0cA.getLinear0().getY().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cA->linear0.y not calculated");
+            throw new Exception("GroupSTS: s0cA.getLinear0().getY().isCalcualted(0) == false");
         }
 
 
         if (!s0cC.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cC->linear0.x not calculated");
+            throw new Exception("GroupSTS: s0cC.getLinear0().getX().isCalculated(0) == false");
         }
         if (!s0cC.getLinear0().getY().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cC->linear0.y not calculated");
+            throw new Exception("GroupSTS: s0cC.getLinear0().getY().isCalculated(0) == false");
         }
 
         double phiN = s0cA.getTurn().getPhi().getValue(0);
@@ -58,7 +50,7 @@ public class GroupSTS extends Group2 {
         if ((Math.abs(Math.cos(phiN)) < epsilon)
                 && (Math.abs(Math.cos(phiM)) < epsilon)) {
             // both are vertical
-            throw new Exception("GroupSTS: both external axis are vertical and parallel");
+            throw new Exception("GroupSTS: both external axises are vertical and parallel");
         }
 
         if (Math.abs(Math.cos(phiN)) > epsilon) {
@@ -89,8 +81,8 @@ public class GroupSTS extends Group2 {
 
             yB = tgN * xB - tgN * xN + yN + h1 / Math.cos(phiN);
         } else {
-            // палки параллельны
-            throw new Exception("GroupSTS: external axis are parallel");
+            // both are parallel
+            throw new Exception("GroupSTS: external axises are parallel");
         }
 
         B.getLinear().getX().setValue(xB, 0);
@@ -124,7 +116,7 @@ public class GroupSTS extends Group2 {
             s1cA = cs2;
             s0cA = cs1;
         } else {
-            throw new Exception("GroupSTS: KPair A doesn't connected to s1");
+            throw new Exception("GroupSTS: KPair A is not connected to s1");
         }
 
         ConnectorTurn ct1 = B.getC1(), ct2 = B.getC2();
@@ -133,7 +125,7 @@ public class GroupSTS extends Group2 {
         } else if (ct2.getSegment() == s1) {
             s1cB = ct2;
         } else {
-            throw new Exception("GroupSTS: KPair B doesn't connected to s1");
+            throw new Exception("GroupSTS: KPair B is not connected to s1");
         }
 
         if (ct1.getSegment() == s2) {
@@ -141,7 +133,7 @@ public class GroupSTS extends Group2 {
         } else if (ct2.getSegment() == s2) {
             s2cB = ct2;
         } else {
-            throw new Exception("GroupSTS: KPair B doesn't connected to s2");
+            throw new Exception("GroupSTS: KPair B is not connected to s2");
         }
 
         cs1 = C.getC1();
@@ -153,7 +145,7 @@ public class GroupSTS extends Group2 {
             s2cC = cs2;
             s0cC = cs1;
         } else {
-            throw new Exception("GroupSTS: KPair C not connected to s2");
+            throw new Exception("GroupSTS: KPair C is not connected to s2");
         }
 
         h1 = getHeight(s1cB, s1cA);
