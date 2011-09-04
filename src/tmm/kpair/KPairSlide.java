@@ -34,11 +34,11 @@ public class KPairSlide extends KPair {
         }
         if (c2==null){
             logger.severe("c2==null in KPairSlide constructor");
-            throw new Exception("c1==null in KPairSlide constructor");
+            throw new Exception("c2==null in KPairSlide constructor");
         }
         if (name==null){
             logger.severe("name==null in KPairSlide constructor");            
-            throw new Exception("c1==null in KPairSlide constructor");
+            throw new Exception("name==null in KPairSlide constructor");
         }
 
         this.name = name;

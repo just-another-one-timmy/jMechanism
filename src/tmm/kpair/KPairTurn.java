@@ -32,11 +32,11 @@ public class KPairTurn extends KPair {
         }
         if (c2==null){
             logger.severe("c2==null in KPairTurn constructor");
-            throw new Exception("c1==null in KPairTurn constructor");
+            throw new Exception("c2==null in KPairTurn constructor");
         }
         if (name==null){
             logger.severe("name==null in KPairTurn constructor");            
-            throw new Exception("c1==null in KPairTurn constructor");
+            throw new Exception("name==null in KPairTurn constructor");
         }
         
         this.name = name;
