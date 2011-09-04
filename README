@@ -2,11 +2,11 @@ jMechanizm
 
 This is a home made project for vizualizing flat mechanisms.
 
-You can compile project by typing command:
+To see how it works execute next commands:
+
+cd <project root direcotry>
 ant jar
+java -jar dist/jMechanizm.jar xmls/T_TTT_TTS_simple.xml
 
-or just:
-ant
+You can find many mechanisms in xmls/ folder.
 
-when you are in root directory of the project
-.

@@ -14,10 +14,11 @@ public final class startWindow extends JFrame {
     private J2dVisualizer vis = new J2dVisualizer(cm);
     private Timer t;
     private static final Logger logger = Logger.getLogger(startWindow.class.getName());
+    private int counter=0;
 
     public void buildMechanizm(String name) throws Exception {
 
-        new XMLWorker(cm, gm).loadFromFile("xmls/" + name + ".xml");
+        new XMLWorker(cm, gm).loadFromFile(name);
 
         try {
             gm.calcNextStep();
@@ -25,10 +26,11 @@ public final class startWindow extends JFrame {
             logger.log(Level.SEVERE, "Can't first calcNextStep()!", exception);
         }
 
-        t = new Timer(2, new ActionListener() {
+        t = new Timer(50, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                counter = (counter + 1) % 10;
                 gm.makeStep();
                 try {
                     gm.calcNextStep();
@@ -55,13 +57,12 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-       // String[] names = {"T_TTT_TTS_med"};
-       // String[] names = {"T_TTT_analyze_true"};
-        String[] names = {"swastika"};
-        
-        for (String x : names) {
-            startWindow s = new startWindow(x);
-            s.buildMechanizm(x);
+        String name = "xmls/swastika.xml";
+        if (args.length > 0){
+            // there should be good arg-parsing, now just checking for filename
+            name = args[0];
         }
+        startWindow s = new startWindow(name);
+        s.buildMechanizm(name);
     }
 }
