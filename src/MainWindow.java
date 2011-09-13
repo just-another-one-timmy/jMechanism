@@ -13,7 +13,8 @@ public class MainWindow extends PApplet {
     private static Visualizer vis = null;
     private static final Logger logger = Logger.getLogger(MainWindow.class.getName());
     private static final String DEFAULT_MECHANISM = "xmls/swastika.xml";
-
+    private static PGraphics pg = null;
+    
     private void buildMechanism(String[] args) throws Exception {
         cm = new CompManager();
         gm = new GroupManager(cm);
@@ -26,7 +27,9 @@ public class MainWindow extends PApplet {
         try {
             size(800, 800);
             background(0);
-            vis = new ProcessingV(this);
+            pg = createGraphics(800, 800, P2D);
+            pg.smooth();
+            vis = new ProcessingV(pg);
             vis.setCompManager(cm);
         } catch (Exception ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,6 +41,7 @@ public class MainWindow extends PApplet {
         try {
             background(0);
             vis.draw();
+            image(pg, 0, 0);
             gm.makeStep();
             gm.calcNextStep();
         } catch (Exception ex) {

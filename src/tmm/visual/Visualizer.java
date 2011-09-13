@@ -25,8 +25,10 @@ public abstract class Visualizer {
     protected static int COLOR_KPAIR_SLIDE_RECT_FILL = 0x550000;
     protected static int COLOR_KPAIR_SLIDE_RECT_STROKE = 0x882233;
 
-    public void draw() throws Exception {
+    public final void draw() throws Exception {
+        beforeDraw();
         drawKPairs();
+        afterDraw();
     }
 
     /* Abstraction level = mechanism 
@@ -145,6 +147,10 @@ public abstract class Visualizer {
 
     public abstract void drawRotatedRect(double xc, double yc, double w, double h, double phi) throws Exception;
 
+    public abstract void beforeDraw();
+    
+    public abstract void afterDraw();
+    
     public void setDebugMode(boolean debugMode) {
         this.debugMode = debugMode;
     }
