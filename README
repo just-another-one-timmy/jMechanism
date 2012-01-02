@@ -5,8 +5,12 @@ This is a home made project for vizualizing flat mechanisms.
 To see how it works execute next commands:
 
 cd <project root direcotry>
-ant jar
-java -jar dist/jMechanizm.jar xmls/T_TTT_TTS_simple.xml
+ant run
 
+or
+
+ant run -Dapplication.args=xmls/heron.xml
+
+to load specific mechanism. 
 You can find many mechanisms in xmls/ folder.
 
