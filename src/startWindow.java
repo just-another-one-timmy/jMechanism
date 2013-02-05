@@ -1,20 +1,24 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.logging.*;
-import javax.swing.*;
-import tmm.XML.*;
-import tmm.compmanager.*;
-import tmm.group.*;
-import tmm.visual.*;
+
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+import tmm.XML.XMLWorker;
+import tmm.compmanager.CompManager;
+import tmm.group.GroupManager;
+import tmm.visual.J2dVisualizer;
 
 public final class startWindow extends JFrame {
 
     private CompManager cm = new CompManager();
     private GroupManager gm = new GroupManager(cm);
     private J2dVisualizer vis = new J2dVisualizer(cm);
-    private Timer t;
-    private static final Logger logger = Logger.getLogger(startWindow.class.getName());
-    private int counter=0;
+    private static final Logger logger = Logger.getLogger(
+            startWindow.class.getName());
 
     public void buildMechanizm(String name) throws Exception {
 
@@ -23,28 +27,28 @@ public final class startWindow extends JFrame {
         try {
             gm.calcNextStep();
         } catch (Exception exception) {
-            logger.log(Level.SEVERE, "Can't first calcNextStep()!", exception);
+            logger.log(Level.SEVERE, "Exception when calling calcNextStep()"
+                    + " first time.", exception);
         }
 
-        t = new Timer(50, new ActionListener() {
+        new Timer(10, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                counter = (counter + 1) % 10;
                 gm.makeStep();
                 try {
                     gm.calcNextStep();
                 } catch (Exception ex) {
-                    logger.log(Level.SEVERE, "Can't calcNextStep()!", ex);
+                    logger.log(Level.SEVERE, "Exception when calling "
+                            + "calcNextStep()", ex);
                 }
             }
-        });
-        t.start();
+        }).start();
     }
 
     public startWindow(String name) throws Exception {
         viewPanel vp = new viewPanel();
-        vis.setUseNewCode(false);
+        vis.setUseNewCode(true);
         vis.setGraphics((Graphics2D) vp.getGraphics());
         vp.setVisualizer(vis);
         vis.setScalesAndTranslations(400.0, 400.0, 150, 200);
@@ -57,9 +61,9 @@ public final class startWindow extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        String name = "xmls/swastika.xml";
-        if (args.length > 0){
-            // there should be good arg-parsing, now just checking for filename
+        String name = "./xmls/T_TTT.xml";
+        if (args.length > 0) {
+            // Here should be good arg-parsing, now just taking filename.
             name = args[0];
         }
         startWindow s = new startWindow(name);

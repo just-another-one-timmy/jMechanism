@@ -1,12 +1,16 @@
 package tmm.visual;
 
-import java.awt.Color;
-import java.util.logging.*;
-import tmm.compmanager.*;
-import tmm.connector.*;
-import tmm.kpair.*;
-import tmm.segment.*;
-import tmm.tf.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import tmm.compmanager.CompManager;
+import tmm.connector.Connector;
+import tmm.connector.ConnectorSlide;
+import tmm.connector.ConnectorTurn;
+import tmm.kpair.KPair;
+import tmm.kpair.KPairSlide;
+import tmm.kpair.KPairTurn;
+import tmm.segment.Segment;
+import tmm.tf.TFTurn;
 
 public abstract class Visualizer {
 
@@ -46,14 +50,14 @@ public abstract class Visualizer {
         }
     }
 
-    private void drawConnectorSlide(ConnectorSlide cs, double pol_x, double pol_y, String sname, boolean drawText, String text) throws Exception {
+    private void drawConnectorSlide(ConnectorSlide cs) throws Exception {
         double x = cs.getLinear0().getX().getValue(0);
         double y = cs.getLinear0().getY().getValue(0);
 
         logger.log(Level.FINE, "Drawing {0} at: {1}  {2}", new Object[]{cs.getName(), x, y});
 
         double phi = cs.getTurn().getPhi().getValue(0);
-        double len = 10;
+        double len = .3;
         double delta_x = len * Math.cos(phi);
         double delta_y = len * Math.sin(phi);
         drawLine(x - delta_x, h - (y - delta_y), x + delta_x, h - (y + delta_y), 1, 0x00FF00);
@@ -68,24 +72,28 @@ public abstract class Visualizer {
         //w->Draw(rect);
         //drawRect(x1, h - y, x2, y2);
 
+        /*
         drawSquare(x, h - y, 5, 0x00FF00);
-
+        
         if (!sname.equals("Ground")) {
-            drawLine(pol_x, h - pol_y, x, h - y, 1, 0x00BBFF);
+        drawLine(pol_x, h - pol_y, x, h - y, 1, 0x00BBFF);
         }
         if (drawText) {
-            drawText(x, h - y, text);
+        drawText(x, h - y, text);
         }
+         */
     }
 
-    private void drawConnector(Connector c, double pol_x, double pol_y, String sname, boolean drawText, String text) throws Exception {
+    private void drawConnector(Connector c, double pol_x, double pol_y,
+            String sname, boolean drawText, String text) throws Exception {
         switch (c.getType()) {
             case CONNECTOR_TYPE_TURN: {
-                drawConnectorTurn((ConnectorTurn) c, pol_x, pol_y, sname, drawText, text);
+                drawConnectorTurn((ConnectorTurn) c, pol_x, pol_y, sname,
+                        drawText, text);
                 break;
             }
             case CONNECTOR_TYPE_SLIDE: {
-                drawConnectorSlide((ConnectorSlide) c, pol_x, pol_y, sname, drawText, text);
+                drawConnectorSlide((ConnectorSlide) c);
                 break;
             }
         }
@@ -115,7 +123,9 @@ public abstract class Visualizer {
                 try {
                     drawConnector(c, pol_x, pol_y, s.getName(), false, "");
                 } catch (Exception e) {
-                    logger.log(Level.SEVERE, "Visualizer: problems with connector {0} : {1}", new String[]{c.getName(), e.getMessage()});
+                    logger.log(Level.SEVERE,
+                            "Visualizer: problems with connector {0} : {1}",
+                            new String[]{c.getName(), e.getMessage()});
                 }
             }
         }
@@ -139,7 +149,9 @@ public abstract class Visualizer {
         for (Segment s : cm.getSegments()) {
             // Hm..? Doesn't look good for me. :(
             if (!s.getName().equals("Ground")) {
-                drawLineBetweenConnectors(s.getCMass(), s.getCPolus());
+                if (s.getCMass() != null) {
+                    drawLineBetweenConnectors(s.getCMass(), s.getCPolus());
+                }
             }
         }
     }
@@ -174,8 +186,10 @@ public abstract class Visualizer {
      *      }
      * }
      */
-    void drawKPairs() {
+    void drawKPairs() throws Exception {
         for (KPair k : cm.getKPairs()) {
+            // Temporary to get started.
+            // drawKPair(k);
             if (!k.getC1().getSegment().getName().equals("Ground")) {
                 //
             }
@@ -186,21 +200,24 @@ public abstract class Visualizer {
                 case KPAIR_TYPE_TURN: {
                     if (k.getC1().getSegment().getName().equals("Ground")
                             || k.getC2().getSegment().getName().equals("Ground")) {
-                        drawGroundTurn(k); // triangle
+                        // Draw triangle.
+                        drawGroundTurn((KPairTurn) k);
                     }
-                    circleForKPair(k, R);  // circle                    
+                    circleForKPair((KPairTurn) k, R);
                     break;
                 }
                 case KPAIR_TYPE_SLIDE: {
+                    Connector c = k.getC1();
+                    drawConnectorSlide((ConnectorSlide) c);
                     if (k.getC1().getSegment().getName().equals("Ground")) {
-                        drawGroundSlideIn(k);
+                        drawGroundSlideIn((KPairSlide) k);
                     } else {
                         linePol(k, ((KPairSlide) k).getAngle(), L);
                     }
                     if (k.getC2().getSegment().getName().equals("Ground")) {
-                        drawGroundSlideIn(k);
+                        drawGroundSlideIn((KPairSlide) k);
                     } else {
-                        rectPol(k, ((KPairSlide) k).getAngle(), A, B);
+                        rectPol((KPairSlide) k, ((KPairSlide) k).getAngle(), A, B);
                     }
                     break;
                 }
@@ -220,7 +237,8 @@ public abstract class Visualizer {
         cm = c;
     }
 
-    public final void setScalesAndTranslations(double scaleX, double scaleY, double translateX, double translateY) {
+    public final void setScalesAndTranslations(double scaleX, double scaleY,
+            double translateX, double translateY) {
         this.scaleX = scaleX;
         this.scaleY = scaleY;
         this.translateX = translateX;
@@ -235,10 +253,28 @@ public abstract class Visualizer {
         //
     }
 
-    void drawGroundTurn(KPair k) {
+    /**
+     * Draws triangle.
+     */
+    void drawGroundTurn(KPairTurn k) throws Exception {
+        // Here should be a triangle with equal sides.
+        // Let me do the math later.
+        double x = k.getC1().getLinear().getX().getValue(0);
+        double y = k.getC1().getLinear().getY().getValue(0);
+        drawLine(x - .05, y, x + .05, y, 1, 0x00FF00);
+        drawLine(x - .05, y, x, y - .05, 1, 0x00FF00);
+        drawLine(x + .05, y, x, y - .05, 1, 0x00FF00);
     }
 
-    void circleForKPair(KPair k, double R) {
+    /**
+     * Draws circle.
+     * @param k KPair for which circle should be drawn.
+     * @param R radius.
+     */
+    void circleForKPair(KPairTurn k, double R) throws Exception {
+        double x = k.getC1().getLinear().getX().getValue(0);
+        double y = k.getC1().getLinear().getY().getValue(0);
+        drawCircle(x, h - y, 5, 0xFFBB22, 2, 0xFFBB22);
     }
 
     void drawLineBetweenConnectors(Connector c1, Connector c2) throws Exception {
@@ -270,12 +306,17 @@ public abstract class Visualizer {
         drawLine(x1, y1, x2, y2, 2, 0x00FF00);
     }
 
-    void drawGroundSlideIn(KPair k) {
+    void drawGroundSlideIn(KPairSlide k) throws Exception {
+        double x = k.getC1().getLinear0().getX().getValue(0);
+        double y = k.getC1().getLinear0().getX().getValue(1);
+        drawSquare(x, h - y, 5, 0xAAFFCC);
     }
 
-    protected abstract void drawCircle(double x, double y, int radius, int color, int outline, int outlineColor);
+    protected abstract void drawCircle(double x, double y, int radius,
+            int color, int outline, int outlineColor);
 
-    protected abstract void drawLine(double x1, double y1, double x2, double y2, int thickness, int color);
+    protected abstract void drawLine(double x1, double y1, double x2,
+            double y2, int thickness, int color);
 
     protected abstract void drawText(double x, double y, String text);
 
@@ -285,8 +326,11 @@ public abstract class Visualizer {
 //        throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private void rectPol(KPair k, TFTurn angle, double A, double B) {
-//       throw new UnsupportedOperationException("Not yet implemented");
+    private void rectPol(KPairSlide k, TFTurn angle, double A, double B) throws Exception {
+        // This should also rotate the rectangle, but for now it doesn't.
+        double x = k.getC1().getLinear0().getX().getValue(0);
+        double y = k.getC1().getLinear0().getX().getValue(1);
+        drawSquare(x, h - y, 5, 0x00FF00);
     }
 }
 
