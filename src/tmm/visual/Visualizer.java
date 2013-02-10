@@ -85,7 +85,12 @@ public abstract class Visualizer {
         }
     }
 
-    private void drawGroundSlideIn(KPair k) {
+    private void drawGroundSlideIn(KPairSlide k) throws Exception {
+        setColor(0x0000FF);
+        setBgColor(0x222222);
+        drawRotatedRect(k.getC1().getLinear0().getX().getValue(0),
+                k.getC1().getLinear0().getY().getValue(0),
+                A, B, k.getAngle().getPhi().getValue(0));
     }
 
     private void drawKPairTurn(KPairTurn k) throws Exception {
@@ -136,8 +141,12 @@ public abstract class Visualizer {
                 A, B, angle.getPhi().getValue(0));
     }
 
-    private void drawGroundSlideOut(KPairSlide k) {
-        //throw new UnsupportedOperationException("Not yet implemented");
+    private void drawGroundSlideOut(KPairSlide k) throws Exception {
+        setColor(0xFF0000);
+        setBgColor(0x222222);
+        drawRotatedRect(k.getC1().getLinear0().getX().getValue(0),
+                k.getC1().getLinear0().getY().getValue(0),
+                A, B, k.getAngle().getPhi().getValue(0));
     }
 
     public abstract void drawLine(double x1, double y1, double x2, double y2);
