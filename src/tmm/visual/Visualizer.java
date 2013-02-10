@@ -13,7 +13,7 @@ public abstract class Visualizer {
     protected boolean drawSegments = true;
     protected boolean drawKPairs = true;
     protected CompManager cm = null;
-    private double R = 3, A = .1, B = .2, L = .6;
+    private double R = 3, A = .1, B = .2, L = 1.5;
     protected double GROUND_TRIANGLE_X_DIFF = .075, GROUND_TRIANGLE_Y_DIFF = .1;
     protected double GROUND_TRIANGLE_STRIKE_X_DIFF = -.015,
             GROUND_TRIANGLE_STRIKE_Y_DIFF = .025,
@@ -53,19 +53,21 @@ public abstract class Visualizer {
      * for all methods below
      */
     void drawKPairs() throws Exception {
+        // Draw all KPairSlide.
         for (KPair k : cm.getKPairs()) {
-            drawLineForConnector(k, k.getC1());
-            drawLineForConnector(k, k.getC2());
+            if (k.getType() == KPairType.KPAIR_TYPE_SLIDE) {
+                drawLineForConnector(k, k.getC1());
+                drawLineForConnector(k, k.getC2());
+                drawKPairSlide((KPairSlide) k);
+            }
+        }
 
-            switch (k.getType()) {
-                case KPAIR_TYPE_TURN: {
-                    drawKPairTurn((KPairTurn) k);
-                    break;
-                }
-                case KPAIR_TYPE_SLIDE: {
-                    drawKPairSlide((KPairSlide) k);
-                    break;
-                }
+        // Draw all KPairTurn.
+        for (KPair k : cm.getKPairs()) {
+            if (k.getType() == KPairType.KPAIR_TYPE_TURN) {
+                drawLineForConnector(k, k.getC1());
+                drawLineForConnector(k, k.getC2());
+                drawKPairTurn((KPairTurn) k);
             }
         }
     }
