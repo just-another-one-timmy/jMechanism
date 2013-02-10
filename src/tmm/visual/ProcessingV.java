@@ -56,7 +56,12 @@ public class ProcessingV extends Visualizer {
 
     @Override
     public void drawRotatedRect(double xc, double yc, double w, double h, double phi) throws Exception {
-
+        graphics.rectMode(processing.core.PConstants.CENTER);
+        graphics.translate(tr, tr);
+        graphics.rotate((float) phi);
+        graphics.rect(sc * (float) xc, sc * (float) yc, (float) w * sc, (float) h * sc);
+        graphics.rotate((float) -phi);
+        graphics.translate(-tr, -tr);
     }
 
     @Override

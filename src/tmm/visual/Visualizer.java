@@ -1,6 +1,9 @@
 package tmm.visual;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tmm.compmanager.*;
+import tmm.connector.Connector;
 import tmm.kpair.*;
 import tmm.tf.*;
 
@@ -10,7 +13,7 @@ public abstract class Visualizer {
     protected boolean drawSegments = true;
     protected boolean drawKPairs = true;
     protected CompManager cm = null;
-    private double R = 3, A = .03, B = .03, L = 0.2;
+    private double R = 3, A = .1, B = .2, L = 0.2;
     protected double GROUND_TRIANGLE_X_DIFF = .075, GROUND_TRIANGLE_Y_DIFF = .1;
     protected double GROUND_TRIANGLE_STRIKE_X_DIFF = -.015,
             GROUND_TRIANGLE_STRIKE_Y_DIFF = .025,
@@ -31,25 +34,29 @@ public abstract class Visualizer {
         afterDraw();
     }
 
-    /* Abstraction level = mechanism 
-     * for all methods below
-     */
-    void drawKPairs() throws Exception {
-        for (KPair k : cm.getKPairs()) {
-            if (!k.getC1().getSegment().getName().equals("Ground")) {
-                setColor(COLOR_SEGMENT);
+    void drawLineForConnector(KPair k, Connector c) {
+        if (!c.getSegment().getName().equals("Ground")) {
+            setColor(COLOR_SEGMENT);
+            try {
                 drawLine(k.getLinear().getX().getValue(0),
                         k.getLinear().getY().getValue(0),
                         k.getC1().getSegment().getCPolus().getLinear().getX().getValue(0),
                         k.getC1().getSegment().getCPolus().getLinear().getY().getValue(0));
+            } catch (Exception e) {
+                Logger.getLogger(Visualizer.class.getName()).log(Level.SEVERE, null, e);
             }
-            if (!k.getC2().getSegment().getName().equals("Ground")) {
-                setColor(COLOR_SEGMENT);
-                drawLine(k.getLinear().getX().getValue(0),
-                        k.getLinear().getY().getValue(0),
-                        k.getC2().getSegment().getCPolus().getLinear().getX().getValue(0),
-                        k.getC2().getSegment().getCPolus().getLinear().getY().getValue(0));
-            }
+        }
+
+    }
+
+    /* Abstraction level = mechanism
+     * for all methods below
+     */
+    void drawKPairs() throws Exception {
+        for (KPair k : cm.getKPairs()) {
+            drawLineForConnector(k, k.getC1());
+            drawLineForConnector(k, k.getC2());
+
             switch (k.getType()) {
                 case KPAIR_TYPE_TURN: {
                     drawKPairTurn((KPairTurn) k);
@@ -126,8 +133,8 @@ public abstract class Visualizer {
     private void drawRectPol(KPairSlide k, TFTurn angle, double A, double B) throws Exception {
         setColor(COLOR_KPAIR_SLIDE_RECT_STROKE);
         setBgColor(COLOR_KPAIR_SLIDE_RECT_FILL);
-        drawRotatedRect(k.getLinear().getX().getValue(0),
-                k.getLinear().getY().getValue(0),
+        drawRotatedRect(k.getC1().getLinear0().getX().getValue(0),
+                k.getC1().getLinear0().getY().getValue(0),
                 A, B, angle.getPhi().getValue(0));
     }
 
@@ -135,11 +142,11 @@ public abstract class Visualizer {
         //throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    public abstract void drawLine(double x1, double y1, double x2, double y2) throws Exception;
+    public abstract void drawLine(double x1, double y1, double x2, double y2);
 
     public abstract void drawCircle(double x, double y, double radius) throws Exception;
 
-    public abstract void setColor(int color) throws Exception;
+    public abstract void setColor(int color);
 
     public abstract void setBgColor(int bgColor) throws Exception;
 
@@ -148,9 +155,9 @@ public abstract class Visualizer {
     public abstract void drawRotatedRect(double xc, double yc, double w, double h, double phi) throws Exception;
 
     public abstract void beforeDraw();
-    
+
     public abstract void afterDraw();
-    
+
     public void setDebugMode(boolean debugMode) {
         this.debugMode = debugMode;
     }
