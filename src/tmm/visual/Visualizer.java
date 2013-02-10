@@ -13,7 +13,7 @@ public abstract class Visualizer {
     protected boolean drawSegments = true;
     protected boolean drawKPairs = true;
     protected CompManager cm = null;
-    private double R = 3, A = .1, B = .2, L = 0.2;
+    private double R = 3, A = .1, B = .2, L = .6;
     protected double GROUND_TRIANGLE_X_DIFF = .075, GROUND_TRIANGLE_Y_DIFF = .1;
     protected double GROUND_TRIANGLE_STRIKE_X_DIFF = -.015,
             GROUND_TRIANGLE_STRIKE_Y_DIFF = .025,
@@ -117,17 +117,15 @@ public abstract class Visualizer {
     }
 
     private void drawLinePol(KPairSlide k, TFTurn angle) throws Exception {
-        /*
         double phi = angle.getPhi().getValue(0);
-        double xCenter = k.getLinear().getX().getValue(0),
-        yCenter = k.getLinear().getY().getValue(0);
-        double xRight = k.getLinear().getX().getValue(0) + .5 * L * Math.cos(phi),
-        yRight = k.getLinear().getY().getValue(0) + .5 * L * Math.sin(phi);
-        double xLeft = k.getLinear().getX().getValue(0) - .5 * L * Math.cos(phi),
-        yLeft = k.getLinear().getY().getValue(0) + .5 * L * Math.sin(phi);
+        double xCenter = k.getC1().getLinear0().getX().getValue(0),
+                yCenter = k.getC1().getLinear0().getY().getValue(0);
+        double xRight = xCenter + .5 * L * Math.cos(phi),
+                yRight = yCenter + .5 * L * Math.sin(phi);
+        double xLeft = xCenter - .5 * L * Math.cos(phi),
+                yLeft = yCenter - .5 * L * Math.sin(phi);
         setColor(COLOR_SEGMENT);
         drawLine(xLeft, yLeft, xRight, yRight);
-         */
     }
 
     private void drawRectPol(KPairSlide k, TFTurn angle, double A, double B) throws Exception {
