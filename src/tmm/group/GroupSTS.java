@@ -17,25 +17,25 @@ public class GroupSTS extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        if (!s0cA.getTurn().getPhi().isCalculatedTF0()) {
+        if (!s0cA.getTurn().getPhi().isTF0Calculated()) {
             throw new Exception("GroupSTS: s0cA.getTurn().getPhi().isCalculatedTF0() == false");
         }
-        if (!s0cC.getTurn().getPhi().isCalculatedTF0()) {
+        if (!s0cC.getTurn().getPhi().isTF0Calculated()) {
             throw new Exception("GroupSTS: s0cC.getTurn().getPhi().isCalculatedTF0() == false");
         }
 
-        if (!s0cA.getLinear0().getX().isCalculatedTF0()) {
+        if (!s0cA.getLinear0().getX().isTF0Calculated()) {
             throw new Exception("GroupSTS: s0cA.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cA.getLinear0().getY().isCalculatedTF0()) {
+        if (!s0cA.getLinear0().getY().isTF0Calculated()) {
             throw new Exception("GroupSTS: s0cA.getLinear0().getY().isCalcualted(0) == false");
         }
 
 
-        if (!s0cC.getLinear0().getX().isCalculatedTF0()) {
+        if (!s0cC.getLinear0().getX().isTF0Calculated()) {
             throw new Exception("GroupSTS: s0cC.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getY().isCalculatedTF0()) {
+        if (!s0cC.getLinear0().getY().isTF0Calculated()) {
             throw new Exception("GroupSTS: s0cC.getLinear0().getY().isCalculatedTF0() == false");
         }
 

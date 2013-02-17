@@ -17,19 +17,19 @@ public class GroupTSS extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+        if (!s1cA.getLinear().getX().isTF0Calculated()) {
             throw new Exception("GroupTSS: s1cA.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+        if (!s1cA.getLinear().getY().isTF0Calculated()) {
             throw new Exception("GroupTSS: s1cA.getLinear().getY().isCalculatedTF0() == false");
         }
-        if (!s0cC.getTurn().getPhi().isCalculatedTF0()) {
+        if (!s0cC.getTurn().getPhi().isTF0Calculated()) {
             throw new Exception("GroupTSS: s0cC.getTurn().getPhi().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getX().isCalculatedTF0()) {
+        if (!s0cC.getLinear0().getX().isTF0Calculated()) {
             throw new Exception("GroupTSS: s0cC.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getY().isCalculatedTF0()) {
+        if (!s0cC.getLinear0().getY().isTF0Calculated()) {
             throw new Exception("GroupTSS: s0cC.getLinear0().getY().isCalculatedTF0() == false");
         }
 

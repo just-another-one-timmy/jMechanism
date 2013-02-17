@@ -17,16 +17,16 @@ public class GroupTST extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+        if (!s1cA.getLinear().getX().isTF0Calculated()) {
             throw new Exception("GroupTST: s1cA.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+        if (!s1cA.getLinear().getY().isTF0Calculated()) {
             throw new Exception("GroupTST: s1cA.getLinear().getY().isCalculatedTF0() == false");
         }
-        if (!s2cC.getLinear().getX().isCalculatedTF0()) {
+        if (!s2cC.getLinear().getX().isTF0Calculated()) {
             throw new Exception("GroupTST: s2cC.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s2cC.getLinear().getY().isCalculatedTF0()) {
+        if (!s2cC.getLinear().getY().isTF0Calculated()) {
             throw new Exception("GroupTST: s2cC.getLinear().getY().isCalculatedTF0() == false");
         }
 

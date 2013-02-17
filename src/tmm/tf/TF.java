@@ -11,15 +11,15 @@ public class TF {
         calculatedTF2 = false;
     }
 
-    public boolean isCalculatedTF0() {
+    public boolean isTF0Calculated() {
         return calculatedTF0;
     }
     
-    public boolean isCalculatedTF1() {
+    public boolean isTF1Calculated() {
         return calculatedTF1;
     }
 
-    public boolean isCalculatedTF2() {
+    public boolean isTF2Calculated() {
         return calculatedTF2;
     }
     

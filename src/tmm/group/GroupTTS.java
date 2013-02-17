@@ -21,20 +21,20 @@ public class GroupTTS extends Group2 {
         double b1, r1, r2, q0, p;
 
 
-        if (!s0cC.getTurn().getPhi().isCalculatedTF0()) {
+        if (!s0cC.getTurn().getPhi().isTF0Calculated()) {
             throw new Exception("GroupTTS: s0cC.getTurn().getPhi().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getX().isCalculatedTF0()) {
+        if (!s0cC.getLinear0().getX().isTF0Calculated()) {
             throw new Exception("GroupTTS: s0cC.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getY().isCalculatedTF0()) {
+        if (!s0cC.getLinear0().getY().isTF0Calculated()) {
             throw new Exception("GroupTTS: s0cC.getLinear0().getY().isCalculatedTF0() == false");
         }
 
-        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+        if (!s1cA.getLinear().getX().isTF0Calculated()) {
             throw new Exception("GroupTTS: s1cA.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+        if (!s1cA.getLinear().getY().isTF0Calculated()) {
             throw new Exception("GroupTTS: s1cA.getLinear().getY().isCalculatedTF0() == false");
         }
 
