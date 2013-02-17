@@ -11,12 +11,12 @@ public class GroupT extends Group1 {
     
     @Override
     public void calcTF0() throws Exception {
-        s0.getTFTurn().getPhi().setValue(0.0, 0);
-        s0.getCPolus().getLinear().getX().setValue(0.0, 0);
-        s0.getCPolus().getLinear().getY().setValue(0.0, 0);
+        s0.getTFTurn().getPhi().setTF0(0.0);
+        s0.getCPolus().getLinear().getX().setTF0(0.0);
+        s0.getCPolus().getLinear().getY().setTF0(0.0);
         calcTF0Segment(s0, s0.getCPolus());
         
-        s1.getTFTurn().getPhi().setValue(GC, 0);
+        s1.getTFTurn().getPhi().setTF0(GC);
         calcTF0Segment(s1, s1c0);
     }
 

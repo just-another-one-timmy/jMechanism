@@ -17,34 +17,34 @@ public class GroupSTS extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        if (!s0cA.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cA.getTurn().getPhi().isCalculated(0) == false");
+        if (!s0cA.getTurn().getPhi().isCalculatedTF0()) {
+            throw new Exception("GroupSTS: s0cA.getTurn().getPhi().isCalculatedTF0() == false");
         }
-        if (!s0cC.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cC.getTurn().getPhi().isCalculated(0) == false");
+        if (!s0cC.getTurn().getPhi().isCalculatedTF0()) {
+            throw new Exception("GroupSTS: s0cC.getTurn().getPhi().isCalculatedTF0() == false");
         }
 
-        if (!s0cA.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cA.getLinear0().getX().isCalculated(0) == false");
+        if (!s0cA.getLinear0().getX().isCalculatedTF0()) {
+            throw new Exception("GroupSTS: s0cA.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cA.getLinear0().getY().isCalculated(0)) {
+        if (!s0cA.getLinear0().getY().isCalculatedTF0()) {
             throw new Exception("GroupSTS: s0cA.getLinear0().getY().isCalcualted(0) == false");
         }
 
 
-        if (!s0cC.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cC.getLinear0().getX().isCalculated(0) == false");
+        if (!s0cC.getLinear0().getX().isCalculatedTF0()) {
+            throw new Exception("GroupSTS: s0cC.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getY().isCalculated(0)) {
-            throw new Exception("GroupSTS: s0cC.getLinear0().getY().isCalculated(0) == false");
+        if (!s0cC.getLinear0().getY().isCalculatedTF0()) {
+            throw new Exception("GroupSTS: s0cC.getLinear0().getY().isCalculatedTF0() == false");
         }
 
-        double phiN = s0cA.getTurn().getPhi().getValue(0);
-        double phiM = s0cC.getTurn().getPhi().getValue(0);
-        double xN = s0cA.getLinear0().getX().getValue(0);
-        double yN = s0cA.getLinear0().getY().getValue(0);
-        double xM = s0cC.getLinear0().getX().getValue(0);
-        double yM = s0cC.getLinear0().getY().getValue(0);
+        double phiN = s0cA.getTurn().getPhi().getTF0();
+        double phiM = s0cC.getTurn().getPhi().getTF0();
+        double xN = s0cA.getLinear0().getX().getTF0();
+        double yN = s0cA.getLinear0().getY().getTF0();
+        double xM = s0cC.getLinear0().getX().getTF0();
+        double yM = s0cC.getLinear0().getY().getTF0();
         double xB = 0, yB = 0;
 
         if ((Math.abs(Math.cos(phiN)) < epsilon)
@@ -85,10 +85,10 @@ public class GroupSTS extends Group2 {
             throw new Exception("GroupSTS: external axises are parallel");
         }
 
-        B.getLinear().getX().setValue(xB, 0);
-        B.getLinear().getY().setValue(yB, 0);
-        s1.getTFTurn().getPhi().setValue(phiN - s1cA.getAlpha(), 0);
-        s2.getTFTurn().getPhi().setValue(phiM - s2cC.getAlpha(), 0);
+        B.getLinear().getX().setTF0(xB);
+        B.getLinear().getY().setTF0(yB);
+        s1.getTFTurn().getPhi().setTF0(phiN - s1cA.getAlpha());
+        s2.getTFTurn().getPhi().setTF0(phiM - s2cC.getAlpha());
         calcTF0Segment(s1, s1cB);
         calcTF0Segment(s2, s2cB);
     }

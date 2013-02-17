@@ -38,10 +38,10 @@ public abstract class Visualizer {
         if (!c.getSegment().getName().equals("Ground")) {
             setColor(COLOR_SEGMENT);
             try {
-                drawLine(k.getLinear().getX().getValue(0),
-                        k.getLinear().getY().getValue(0),
-                        k.getC1().getSegment().getCPolus().getLinear().getX().getValue(0),
-                        k.getC1().getSegment().getCPolus().getLinear().getY().getValue(0));
+                drawLine(k.getLinear().getX().getTF0(),
+                        k.getLinear().getY().getTF0(),
+                        k.getC1().getSegment().getCPolus().getLinear().getX().getTF0(),
+                        k.getC1().getSegment().getCPolus().getLinear().getY().getTF0());
             } catch (Exception e) {
                 Logger.getLogger(Visualizer.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -73,8 +73,8 @@ public abstract class Visualizer {
     }
 
     private void drawGroundTurn(KPair k) throws Exception {
-        double xTop = k.getLinear().getX().getValue(0),
-                yTop = k.getLinear().getY().getValue(0);
+        double xTop = k.getLinear().getX().getTF0(),
+                yTop = k.getLinear().getY().getTF0();
         double xRight = xTop + GROUND_TRIANGLE_X_DIFF, yRight = yTop + GROUND_TRIANGLE_Y_DIFF;
         double xLeft = xTop - GROUND_TRIANGLE_X_DIFF, yLeft = yTop + GROUND_TRIANGLE_Y_DIFF;
         setColor(COLOR_GROUND_TRIANGLE_STROKE);
@@ -90,9 +90,9 @@ public abstract class Visualizer {
     private void drawGroundSlideIn(KPairSlide k) throws Exception {
         setColor(0x0000FF);
         setBgColor(0x222222);
-        drawRotatedRect(k.getC1().getLinear0().getX().getValue(0),
-                k.getC1().getLinear0().getY().getValue(0),
-                A, B, k.getAngle().getPhi().getValue(0));
+        drawRotatedRect(k.getC1().getLinear0().getX().getTF0(),
+                k.getC1().getLinear0().getY().getTF0(),
+                A, B, k.getAngle().getPhi().getTF0());
     }
 
     private void drawKPairTurn(KPairTurn k) throws Exception {
@@ -120,13 +120,13 @@ public abstract class Visualizer {
     }
 
     private void drawCircleForKPair(KPairTurn k) throws Exception {
-        drawCircle(k.getLinear().getX().getValue(0), k.getLinear().getY().getValue(0), R);
+        drawCircle(k.getLinear().getX().getTF0(), k.getLinear().getY().getTF0(), R);
     }
 
     private void drawLinePol(KPairSlide k, TFTurn angle) throws Exception {
-        double phi = angle.getPhi().getValue(0);
-        double xCenter = k.getC1().getLinear0().getX().getValue(0),
-                yCenter = k.getC1().getLinear0().getY().getValue(0);
+        double phi = angle.getPhi().getTF0();
+        double xCenter = k.getC1().getLinear0().getX().getTF0(),
+                yCenter = k.getC1().getLinear0().getY().getTF0();
         double xRight = xCenter + .5 * L * Math.cos(phi),
                 yRight = yCenter + .5 * L * Math.sin(phi);
         double xLeft = xCenter - .5 * L * Math.cos(phi),
@@ -138,17 +138,17 @@ public abstract class Visualizer {
     private void drawRectPol(KPairSlide k, TFTurn angle, double A, double B) throws Exception {
         setColor(COLOR_KPAIR_SLIDE_RECT_STROKE);
         setBgColor(COLOR_KPAIR_SLIDE_RECT_FILL);
-        drawRotatedRect(k.getC1().getLinear0().getX().getValue(0),
-                k.getC1().getLinear0().getY().getValue(0),
-                A, B, angle.getPhi().getValue(0));
+        drawRotatedRect(k.getC1().getLinear0().getX().getTF0(),
+                k.getC1().getLinear0().getY().getTF0(),
+                A, B, angle.getPhi().getTF0());
     }
 
     private void drawGroundSlideOut(KPairSlide k) throws Exception {
         setColor(0xFF0000);
         setBgColor(0x222222);
-        drawRotatedRect(k.getC1().getLinear0().getX().getValue(0),
-                k.getC1().getLinear0().getY().getValue(0),
-                A, B, k.getAngle().getPhi().getValue(0));
+        drawRotatedRect(k.getC1().getLinear0().getX().getTF0(),
+                k.getC1().getLinear0().getY().getTF0(),
+                A, B, k.getAngle().getPhi().getTF0());
     }
 
     public abstract void drawLine(double x1, double y1, double x2, double y2);

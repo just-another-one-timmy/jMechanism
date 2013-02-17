@@ -16,23 +16,23 @@ public class GroupTTT extends Group2 {
     public void calcTF0() throws Exception {
         double lac, b1, beta, alfa;
 
-        if (!s1cA.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTTT: s1cA.getLinear().getX().isCalculated(0) == false");
+        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTTT: s1cA.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s1cA.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTTT: s1cA.getLinear().getY().isCalculated(0) == false");
+        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTTT: s1cA.getLinear().getY().isCalculatedTF0() == false");
         }
-        if (!s2cC.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTTT: s2cC.getLinear().getX().isCalculated(0) == false");
+        if (!s2cC.getLinear().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTTT: s2cC.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s2cC.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTTT: s2cC.getLinear().getY().isCalculated(0) == false");
+        if (!s2cC.getLinear().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTTT: s2cC.getLinear().getY().isCalculatedTF0() == false");
         }
 
-        double xA = A.getLinear().getX().getValue(0);
-        double yA = A.getLinear().getY().getValue(0);
-        double xC = C.getLinear().getX().getValue(0);
-        double yC = C.getLinear().getY().getValue(0);
+        double xA = A.getLinear().getX().getTF0();
+        double yA = A.getLinear().getY().getTF0();
+        double xC = C.getLinear().getX().getTF0();
+        double yC = C.getLinear().getY().getTF0();
 
         lac = Math.sqrt(Math.pow(xA - xC, 2.0) + Math.pow(yA - yC, 2.0));
         // cos beta
@@ -48,12 +48,12 @@ public class GroupTTT extends Group2 {
         }
 
         alfa = Math.atan2(yC - yA, xC - xA);
-        AB.getPhi().setValue(alfa + (double) j1 * beta, 0);
-        CB.getPhi().setValue(Math.atan2(lab * Math.sin(AB.getPhi().getValue(0)) - yC + yA,
-                lab * Math.cos(AB.getPhi().getValue(0)) - xC + xA), 0);
+        AB.getPhi().setTF0(alfa + (double) j1 * beta);
+        CB.getPhi().setTF0(Math.atan2(lab * Math.sin(AB.getPhi().getTF0()) - yC + yA,
+                lab * Math.cos(AB.getPhi().getTF0()) - xC + xA));
 
-        s1.getTFTurn().getPhi().setValue(AB.getPhi().getValue(0) - getAngleTT(s1cA, s1cB), 0);
-        s2.getTFTurn().getPhi().setValue(CB.getPhi().getValue(0) - getAngleTT(s2cC, s2cB), 0);
+        s1.getTFTurn().getPhi().setTF0(AB.getPhi().getTF0() - getAngleTT(s1cA, s1cB));
+        s2.getTFTurn().getPhi().setTF0(CB.getPhi().getTF0() - getAngleTT(s2cC, s2cB));
 
         calcTF0Segment(s1, s1cA);
         calcTF0Segment(s2, s2cC);

@@ -17,35 +17,35 @@ public class GroupTST extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        if (!s1cA.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTST: s1cA.getLinear().getX().isCalculated(0) == false");
+        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTST: s1cA.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s1cA.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTST: s1cA.getLinear().getY().isCalculated(0) == false");
+        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTST: s1cA.getLinear().getY().isCalculatedTF0() == false");
         }
-        if (!s2cC.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTST: s2cC.getLinear().getX().isCalculated(0) == false");
+        if (!s2cC.getLinear().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTST: s2cC.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s2cC.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTST: s2cC.getLinear().getY().isCalculated(0) == false");
+        if (!s2cC.getLinear().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTST: s2cC.getLinear().getY().isCalculatedTF0() == false");
         }
 
 
         double sin_b;
-        double xA = s1cA.getLinear().getX().getValue(0);
-        double yA = s1cA.getLinear().getY().getValue(0);
-        double xC = s2cC.getLinear().getX().getValue(0);
-        double yC = s2cC.getLinear().getY().getValue(0);
+        double xA = s1cA.getLinear().getX().getTF0();
+        double yA = s1cA.getLinear().getY().getTF0();
+        double xC = s2cC.getLinear().getX().getTF0();
+        double yC = s2cC.getLinear().getY().getTF0();
 
         lac = Math.sqrt(Math.pow(xA - xC, 2.0) + Math.pow(yA - yC, 2));
         // sin beta
         sin_b = (h1 + h2) / lac;
         b = Math.asin(sin_b); 
-        AC.getPhi().setValue(Math.atan2(yA - yC, xA - xC), 0);
-        B.getAngle().getPhi().setValue(AC.getPhi().getValue(0) - b, 0);
+        AC.getPhi().setTF0(Math.atan2(yA - yC, xA - xC));
+        B.getAngle().getPhi().setTF0(AC.getPhi().getTF0() - b);
 
-        s1.getTFTurn().getPhi().setValue(B.getAngle().getPhi().getValue(0) - s1cB.getAlpha(), 0);
-        s2.getTFTurn().getPhi().setValue(B.getAngle().getPhi().getValue(0) - s2cB.getAlpha(), 0);
+        s1.getTFTurn().getPhi().setTF0(B.getAngle().getPhi().getTF0() - s1cB.getAlpha());
+        s2.getTFTurn().getPhi().setTF0(B.getAngle().getPhi().getTF0() - s2cB.getAlpha());
         calcTF0Segment(s1, s1cA);
         calcTF0Segment(s2, s2cC);
     }

@@ -21,29 +21,29 @@ public class GroupTTS extends Group2 {
         double b1, r1, r2, q0, p;
 
 
-        if (!s0cC.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupTTS: s0cC.getTurn().getPhi().isCalculated(0) == false");
+        if (!s0cC.getTurn().getPhi().isCalculatedTF0()) {
+            throw new Exception("GroupTTS: s0cC.getTurn().getPhi().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupTTS: s0cC.getLinear0().getX().isCalculated(0) == false");
+        if (!s0cC.getLinear0().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTTS: s0cC.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getY().isCalculated(0)) {
-            throw new Exception("GroupTTS: s0cC.getLinear0().getY().isCalculated(0) == false");
-        }
-
-        if (!s1cA.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTTS: s1cA.getLinear().getX().isCalculated(0) == false");
-        }
-        if (!s1cA.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTTS: s1cA.getLinear().getY().isCalculated(0) == false");
+        if (!s0cC.getLinear0().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTTS: s0cC.getLinear0().getY().isCalculatedTF0() == false");
         }
 
-        double phiN = s0cC.getTurn().getPhi().getValue(0);
-        double xN = s0cC.getLinear0().getX().getValue(0);
-        double yN = s0cC.getLinear0().getY().getValue(0);
+        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTTS: s1cA.getLinear().getX().isCalculatedTF0() == false");
+        }
+        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTTS: s1cA.getLinear().getY().isCalculatedTF0() == false");
+        }
 
-        double xA = A.getLinear().getX().getValue(0);
-        double yA = A.getLinear().getY().getValue(0);
+        double phiN = s0cC.getTurn().getPhi().getTF0();
+        double xN = s0cC.getLinear0().getX().getTF0();
+        double yN = s0cC.getLinear0().getY().getTF0();
+
+        double xA = A.getLinear().getX().getTF0();
+        double yA = A.getLinear().getY().getTF0();
 
         double xB;
         double yB;
@@ -61,9 +61,9 @@ public class GroupTTS extends Group2 {
             tg = Math.tan(phiN);
             double cosPhiN = Math.cos(phiN);
             double hOverCos = h/cosPhiN;
-            yN0.setValue(yN + hOverCos, 0);
-            r1 = lab - tg * xN + yN0.getValue(0) - yA;
-            r2 = lab + tg * xN - yN0.getValue(0) + yA;
+            yN0.setTF0(yN + hOverCos);
+            r1 = lab - tg * xN + yN0.getTF0() - yA;
+            r2 = lab + tg * xN - yN0.getTF0() + yA;
 
             p = 0.5 * (2.0 * xA - r1 * tg + r2 * tg);
             q0 = Math.pow(xA, 2.0) - r1 * r2;
@@ -75,15 +75,15 @@ public class GroupTTS extends Group2 {
             }
 
             xB = ((p + j1 * Math.sqrt(b1)) * Math.pow(Math.cos(phiN), 2.0));
-            yB = (tg * (xB - xN) + yN0.getValue(0));
+            yB = (tg * (xB - xN) + yN0.getTF0());
         }
-        B.getLinear().getX().setValue(xB, 0);
-        B.getLinear().getY().setValue(yB, 0);
+        B.getLinear().getX().setTF0(xB);
+        B.getLinear().getY().setTF0(yB);
 
-        tang.setValue(tg, 0);
-        AB.getPhi().setValue(Math.atan2(-yB + yA, -xB + xA), 0);
-        s1.getTFTurn().getPhi().setValue(AB.getPhi().getValue(0) - getAngleTT(s1cB, s1cA), 0);
-        s2.getTFTurn().getPhi().setValue(phiN - s2cC.getAlpha(), 0);
+        tang.setTF0(tg);
+        AB.getPhi().setTF0(Math.atan2(-yB + yA, -xB + xA));
+        s1.getTFTurn().getPhi().setTF0(AB.getPhi().getTF0() - getAngleTT(s1cB, s1cA));
+        s2.getTFTurn().getPhi().setTF0(phiN - s2cC.getAlpha());
         calcTF0Segment(s1, s1cA);
         calcTF0Segment(s2, s2cB);
     }

@@ -11,20 +11,20 @@ public class GroupS extends Group1 {
 
     @Override
     public void calcTF0() throws Exception {
-        s0.getTFTurn().getPhi().setValue(0.0, 0);
-        s0.getCPolus().getLinear().getX().setValue(0.0, 0);
-        s0.getCPolus().getLinear().getY().setValue(0.0, 0);
+        s0.getTFTurn().getPhi().setTF0(0.0);
+        s0.getCPolus().getLinear().getX().setTF0(0.0);
+        s0.getCPolus().getLinear().getY().setTF0(0.0);
 
         calcTF0Segment(s0, s0.getCPolus());
 
-        double phi0 = s0c0.getTurn().getPhi().getValue(0);
-        s1.getTFTurn().getPhi().setValue(phi0, 0);
-        s1c0.getLinear0().getX().setValue(s0c0.getLinear0().getX().getValue(0) + GC * Math.cos(s0c0.getTurn().getPhi().getValue(0)), 0);
-        s1c0.getLinear0().getY().setValue(s0c0.getLinear0().getY().getValue(0) + GC * Math.sin(s0c0.getTurn().getPhi().getValue(0)), 0);
-        s1.getCPolus().getLinear().getX().setValue(s1c0.getLinear0().getX().getValue(0)
-                - s1c0.getRo() * Math.cos(phi0 + s1c0.getPhi()), 0);
-        s1.getCPolus().getLinear().getY().setValue(s1c0.getLinear0().getY().getValue(0)
-                - s1c0.getRo() * Math.sin(phi0 + s1c0.getPhi()), 0);
+        double phi0 = s0c0.getTurn().getPhi().getTF0();
+        s1.getTFTurn().getPhi().setTF0(phi0);
+        s1c0.getLinear0().getX().setTF0(s0c0.getLinear0().getX().getTF0() + GC * Math.cos(s0c0.getTurn().getPhi().getTF0()));
+        s1c0.getLinear0().getY().setTF0(s0c0.getLinear0().getY().getTF0() + GC * Math.sin(s0c0.getTurn().getPhi().getTF0()));
+        s1.getCPolus().getLinear().getX().setTF0(s1c0.getLinear0().getX().getTF0()
+                - s1c0.getRo() * Math.cos(phi0 + s1c0.getPhi()));
+        s1.getCPolus().getLinear().getY().setTF0(s1c0.getLinear0().getY().getTF0()
+                - s1c0.getRo() * Math.sin(phi0 + s1c0.getPhi()));
 
         calcTF0Segment(s1, s1.getCPolus());
     }

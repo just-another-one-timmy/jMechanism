@@ -245,11 +245,11 @@ public class GroupManager {
     private double getConnectorsDescartesX(Connector c) throws Exception {
         if (c.getType() == ConnectorType.CONNECTOR_TYPE_SLIDE) {
             ConnectorSlide cs = (ConnectorSlide) c;
-            return cs.getLinear0().getX().getValue(0);
+            return cs.getLinear0().getX().getTF0();
         }
         if (c.getType() == ConnectorType.CONNECTOR_TYPE_TURN) {
             ConnectorTurn ct = (ConnectorTurn) c;
-            return ct.getLinear().getX().getValue(0);
+            return ct.getLinear().getX().getTF0();
         }
         return 0;
     }
@@ -257,11 +257,11 @@ public class GroupManager {
     private double getConnectorsDescartesY(Connector c) throws Exception {
         if (c.getType() == ConnectorType.CONNECTOR_TYPE_SLIDE) {
             ConnectorSlide cs = (ConnectorSlide) c;
-            return cs.getLinear0().getY().getValue(0);
+            return cs.getLinear0().getY().getTF0();
         }
         if (c.getType() == ConnectorType.CONNECTOR_TYPE_TURN) {
             ConnectorTurn ct = (ConnectorTurn) c;
-            return ct.getLinear().getY().getValue(0);
+            return ct.getLinear().getY().getTF0();
         }
         return 0;
     }
@@ -301,10 +301,10 @@ public class GroupManager {
  * 
  * etalon=DistPol(ro1,phi1,ro2,phi2);
  * 
- * x1 = c1.getLinear().getX().getValue(0);
- * y1 = c1.getLinear().getY().getValue(0);
- * x2 = c2.getLinear().getX().getValue(0);
- * y2 = c2.getLinear().getY().getValue(0);
+ * x1 = c1.getLinear().getX().getTF0();
+ * y1 = c1.getLinear().getY().getTF0();
+ * x2 = c2.getLinear().getX().getTF0();
+ * y2 = c2.getLinear().getY().getTF0();
  * 
  *  
  * current=DistDec(x1,y1,x2,y2);

@@ -17,36 +17,36 @@ public class GroupTSS extends Group2 {
 
     @Override
     public void calcTF0() throws Exception {
-        if (!s1cA.getLinear().getX().isCalculated(0)) {
-            throw new Exception("GroupTSS: s1cA.getLinear().getX().isCalculated(0) == false");
+        if (!s1cA.getLinear().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTSS: s1cA.getLinear().getX().isCalculatedTF0() == false");
         }
-        if (!s1cA.getLinear().getY().isCalculated(0)) {
-            throw new Exception("GroupTSS: s1cA.getLinear().getY().isCalculated(0) == false");
+        if (!s1cA.getLinear().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTSS: s1cA.getLinear().getY().isCalculatedTF0() == false");
         }
-        if (!s0cC.getTurn().getPhi().isCalculated(0)) {
-            throw new Exception("GroupTSS: s0cC.getTurn().getPhi().isCalculated(0) == false");
+        if (!s0cC.getTurn().getPhi().isCalculatedTF0()) {
+            throw new Exception("GroupTSS: s0cC.getTurn().getPhi().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getX().isCalculated(0)) {
-            throw new Exception("GroupTSS: s0cC.getLinear0().getX().isCalculated(0) == false");
+        if (!s0cC.getLinear0().getX().isCalculatedTF0()) {
+            throw new Exception("GroupTSS: s0cC.getLinear0().getX().isCalculatedTF0() == false");
         }
-        if (!s0cC.getLinear0().getY().isCalculated(0)) {
-            throw new Exception("GroupTSS: s0cC.getLinear0().getY().isCalculated(0) == false");
+        if (!s0cC.getLinear0().getY().isCalculatedTF0()) {
+            throw new Exception("GroupTSS: s0cC.getLinear0().getY().isCalculatedTF0() == false");
         }
 
-        double xA = s1cA.getLinear().getX().getValue(0);
-        double yA = s1cA.getLinear().getY().getValue(0);
-        double phiN = s0cC.getTurn().getPhi().getValue(0);
-        double xN = s0cC.getLinear0().getX().getValue(0);
-        double yN = s0cC.getLinear0().getY().getValue(0);
+        double xA = s1cA.getLinear().getX().getTF0();
+        double yA = s1cA.getLinear().getY().getTF0();
+        double phiN = s0cC.getTurn().getPhi().getTF0();
+        double xN = s0cC.getLinear0().getX().getTF0();
+        double yN = s0cC.getLinear0().getY().getTF0();
         double phi2 = phiN - s2cC.getAlpha();
 
-        s2.getTFTurn().getPhi().setValue(phi2 - s2cC.getAlpha(), 0);
-        s1.getTFTurn().getPhi().setValue(phi2 + s2cB.getAlpha() - s1cB.getAlpha(), 0);
+        s2.getTFTurn().getPhi().setTF0(phi2 - s2cC.getAlpha());
+        s1.getTFTurn().getPhi().setTF0(phi2 + s2cB.getAlpha() - s1cB.getAlpha());
         calcTF0Segment(s1, s1cA);
 
-        double phiM = s2cB.getTurn().getPhi().getValue(0);
-        double xM = s2cB.getLinear0().getX().getValue(0);
-        double yM = s2cB.getLinear0().getY().getValue(0);
+        double phiM = s2cB.getTurn().getPhi().getTF0();
+        double xM = s2cB.getLinear0().getX().getTF0();
+        double yM = s2cB.getLinear0().getY().getTF0();
 
         if ((Math.abs(Math.cos(phiN)) < epsilon)
                 && (Math.abs(Math.cos(phiM)) < epsilon)) {
@@ -80,8 +80,8 @@ public class GroupTSS extends Group2 {
             throw new Exception("GroupTSS: external axises are parallel");
         }
 
-        s2.getCPolus().getLinear().getX().setValue(xK - roK * Math.cos(phi2 + phiK), 0);
-        s2.getCPolus().getLinear().getY().setValue(yK - roK * Math.sin(phi2 + phiK), 0);
+        s2.getCPolus().getLinear().getX().setTF0(xK - roK * Math.cos(phi2 + phiK));
+        s2.getCPolus().getLinear().getY().setTF0(yK - roK * Math.sin(phi2 + phiK));
 
         calcTF0Segment(s2, s2.getCPolus());
     }

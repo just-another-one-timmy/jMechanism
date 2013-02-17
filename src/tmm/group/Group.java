@@ -17,24 +17,24 @@ public abstract class Group {
     }
 
     public void calcTF0Segment(Segment s, ConnectorTurn c) throws Exception {
-        if (!s.getTFTurn().getPhi().isCalculated(0)) {
-            throw new Exception("calcTF0Segment: s.getTFTurn().getPhi().isCalculated(0) == false");
+        if (!s.getTFTurn().getPhi().isCalculatedTF0()) {
+            throw new Exception("calcTF0Segment: s.getTFTurn().getPhi().isCalculatedTF0() == false");
         }
-        double x = c.getLinear().getX().getValue(0),
-                y = c.getLinear().getY().getValue(0),
+        double x = c.getLinear().getX().getTF0(),
+                y = c.getLinear().getY().getTF0(),
                 ro = c.getRo(),
-                phi0 = s.getTFTurn().getPhi().getValue(0),
+                phi0 = s.getTFTurn().getPhi().getTF0(),
                 phi = c.getPhi();
 
-        if (!s.getCPolus().getLinear().getX().isCalculated(0)) {
-            s.getCPolus().getLinear().getX().setValue(x - ro * Math.cos(phi0 + phi), 0);
+        if (!s.getCPolus().getLinear().getX().isCalculatedTF0()) {
+            s.getCPolus().getLinear().getX().setTF0(x - ro * Math.cos(phi0 + phi));
         }
-        if (!s.getCPolus().getLinear().getY().isCalculated(0)) {
-            s.getCPolus().getLinear().getY().setValue(y - ro * Math.sin(phi0 + phi), 0);
+        if (!s.getCPolus().getLinear().getY().isCalculatedTF0()) {
+            s.getCPolus().getLinear().getY().setTF0(y - ro * Math.sin(phi0 + phi));
         }
 
-        double pol_x = s.getCPolus().getLinear().getX().getValue(0),
-                pol_y = s.getCPolus().getLinear().getY().getValue(0);
+        double pol_x = s.getCPolus().getLinear().getX().getTF0(),
+                pol_y = s.getCPolus().getLinear().getY().getTF0();
         
         for (Connector ci : s.getConnectors()) {
             switch (ci.getType()) {
@@ -42,20 +42,20 @@ public abstract class Group {
                     ConnectorSlide cs = (ConnectorSlide) ci;
                     double roc = cs.getRo(),
                             phic = cs.getPhi();
-                    if (!cs.getLinear0().getX().isCalculated(0)) {
-                        cs.getLinear0().getX().setValue(pol_x + roc * Math.cos(phi0 + phic), 0);
+                    if (!cs.getLinear0().getX().isCalculatedTF0()) {
+                        cs.getLinear0().getX().setTF0(pol_x + roc * Math.cos(phi0 + phic));
                     }
 
-                    if (!cs.getLinear0().getY().isCalculated(0)) {
-                        cs.getLinear0().getY().setValue(pol_y + roc * Math.sin(phi0 + phic), 0);
+                    if (!cs.getLinear0().getY().isCalculatedTF0()) {
+                        cs.getLinear0().getY().setTF0(pol_y + roc * Math.sin(phi0 + phic));
                     }
 
                     if (cs.getTurn() == null) {
                         throw new Exception("CalcTF0Segment: ConnectorSliding ["+ cs.getName() + "] doesn't have TurnTF");
                     }
 
-                    double phi0c = s.getTFTurn().getPhi().getValue(0);
-                    cs.getTurn().getPhi().setValue(phi0c + cs.getAlpha(), 0);
+                    double phi0c = s.getTFTurn().getPhi().getTF0();
+                    cs.getTurn().getPhi().setTF0(phi0c + cs.getAlpha());
 
                     break;
                 }
@@ -67,11 +67,11 @@ public abstract class Group {
                     double roc = ct.getRo();
                     double phic = ct.getPhi();
 
-                    if (!ct.getLinear().getX().isCalculated(0)) {
-                        ct.getLinear().getX().setValue(pol_x + roc * Math.cos(phi0 + phic), 0);
+                    if (!ct.getLinear().getX().isCalculatedTF0()) {
+                        ct.getLinear().getX().setTF0(pol_x + roc * Math.cos(phi0 + phic));
                     }
-                    if (!ct.getLinear().getY().isCalculated(0)) {
-                        ct.getLinear().getY().setValue(pol_y + roc * Math.sin(phi0 + phic), 0);
+                    if (!ct.getLinear().getY().isCalculatedTF0()) {
+                        ct.getLinear().getY().setTF0(pol_y + roc * Math.sin(phi0 + phic));
                     }
                     break;
                 }

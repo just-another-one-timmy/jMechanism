@@ -1,39 +1,77 @@
 package tmm.tf;
 
-// TODO: здесь проверить, может я зря написал с константой TF_COUNT
 public class TF {
 
-    public static final int TF_COUNT = 3;
-    private double values[];
-    private boolean calculated[];
+    private double TF0,TF1,TF2;
+    private boolean calculatedTF0,calculatedTF1,calculatedTF2;
 
     public TF() {
-        values = new double[TF_COUNT];
-        calculated = new boolean[TF_COUNT];
+        calculatedTF0 = false;
+        calculatedTF1 = false;
+        calculatedTF2 = false;
     }
 
-    public boolean isCalculated(int i) {
-        return calculated[i];
+    public boolean isCalculatedTF0() {
+        return calculatedTF0;
+    }
+    
+    public boolean isCalculatedTF1() {
+        return calculatedTF1;
     }
 
-    public void setValue(double value, int i) {
-        values[i] = value;
-        calculated[i] = true;
+    public boolean isCalculatedTF2() {
+        return calculatedTF2;
+    }
+    
+    public void setTF0(double TransferFunction0) {
+        TF0 = TransferFunction0;
+        calculatedTF0 = true;
+    }
+    
+    public void setTF1(double TransferFunction1) {
+        TF1 = TransferFunction1;
+        calculatedTF1 = true;
     }
 
-    public double getValue(int i) throws Exception {
+    public void setTF2(double TransferFunction2) {
+        TF2 = TransferFunction2;
+        calculatedTF2 = true;
+    }
+    
+    public double getTF0() throws Exception {
         try {
-            if (!calculated[i]) {
-                throw new Exception("values[" + i + "] is not calculated yet!");
+            if (!calculatedTF0) {
+                throw new Exception("TF0 is not calculated yet!");
             }
         } catch (Exception e) {
         }
-        return values[i];
+        return TF0;
     }
-
-    public void clear() {
-        for (int i = 0; i < calculated.length; i++) {
-            calculated[i] = false;
+    
+    public double getTF1() throws Exception {
+        try {
+            if (!calculatedTF1) {
+                throw new Exception("TF1 is not calculated yet!");
+            }
+        } catch (Exception e) {
         }
+        return TF1;
+    }
+    
+        public double getTF2() throws Exception {
+        try {
+            if (!calculatedTF2) {
+                throw new Exception("TF2 is not calculated yet!");
+            }
+        } catch (Exception e) {
+        }
+        return TF2;
+    }
+    
+    public void clear() {
+        calculatedTF0 = false;
+        calculatedTF1 = false;
+        calculatedTF2 = false;
+        
     }
 }
