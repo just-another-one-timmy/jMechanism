@@ -6,7 +6,7 @@ import tmm.segment.*;
 
 public class GroupT extends Group1 {
 
-    private ConnectorTurn s0c0, s1c0;
+    private ConnectorTurn s0cO, s1cO;
     private KPairTurn O;
     
     @Override
@@ -17,7 +17,7 @@ public class GroupT extends Group1 {
         calcTF0Segment(s0, s0.getCPolus());
         
         s1.getTFTurn().getPhi().setTF0(GC);
-        calcTF0Segment(s1, s1c0);
+        calcTF0Segment(s1, s1cO);
     }
 
     @Override
@@ -35,12 +35,12 @@ public class GroupT extends Group1 {
         ConnectorTurn c1 = O.getC1(),
                       c2 = O.getC2();
         if (c1.getSegment() == s1){
-            s0c0 = c2;
-            s1c0 = c1;
+            s0cO = c2;
+            s1cO = c1;
         }
         if (c2.getSegment() == s1){
-            s0c0 = c1;
-            s1c0 = c2;
+            s0cO = c1;
+            s1cO = c2;
         }
     }
 
